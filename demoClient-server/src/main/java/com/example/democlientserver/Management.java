@@ -237,7 +237,6 @@ public class Management implements Initializable{
                         client.getInputStream()));
             }
             ArrayList<Sale> sales= (ArrayList<Sale>) is.readObject();
-            System.out.println(sales.get(0).getSaleId());
             for(int i=0; i<sales.size(); i++){
                 Sale temp= sales.get(i);
                 obsSale.add(temp);}
@@ -252,8 +251,15 @@ public class Management implements Initializable{
             signSale.setCellValueFactory(new PropertyValueFactory<Sale,Boolean>("signature"));
             acceptedSale.setCellValueFactory(new PropertyValueFactory<Sale,Boolean>("accepted"));
             tabSale.setItems(obsSale);
-            
-            clients=listClientDBMS();
+
+            os.writeObject("getListClient");
+            os.flush();
+            if (is == null)
+            {
+                is = new ObjectInputStream(new BufferedInputStream(
+                        client.getInputStream()));
+            }
+            ArrayList<Client> clients= (ArrayList<Client>) is.readObject();
             for(int i=0; i<clients.size(); i++){
                 Client temp= clients.get(i);
                 obsClient.add(temp);}
@@ -267,7 +273,14 @@ public class Management implements Initializable{
             usernameClient.setCellValueFactory(new PropertyValueFactory<Client,String>("username"));
             tabClient.setItems(obsClient);
 
-            purchases=listPurchaseDBMS();
+            os.writeObject("getListPurchase");
+            os.flush();
+            if (is == null)
+            {
+                is = new ObjectInputStream(new BufferedInputStream(
+                        client.getInputStream()));
+            }
+            ArrayList<Purchase> purchases= (ArrayList<Purchase>) is.readObject();
             for(int i=0; i<purchases.size(); i++){
                 Purchase temp= purchases.get(i);
                 obsPurchase.add(temp);}

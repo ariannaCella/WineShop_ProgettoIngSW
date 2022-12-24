@@ -44,7 +44,7 @@
                                 <columns>
                                     <TableColumn fx:id="idSale" prefWidth="40.0" text="idSale" />
                                     <TableColumn fx:id="cfSale" prefWidth="131.0" text="cfSale" />
-                                    <TableColumn fx:id="addrSale" prefWidth="110.0" text="addrSale" />
+                                    <TableColumn fx:id="addressSale" prefWidth="110.0" text="addressSale" />
                                     <TableColumn fx:id="idWineSale" prefWidth="50.0" text="idWineSale" />
                                     <TableColumn fx:id="nBottlesSale" prefWidth="74.0" text="nBottlesSale" />
                                     <TableColumn fx:id="priceSale" prefWidth="71.0" text="priceSale" />

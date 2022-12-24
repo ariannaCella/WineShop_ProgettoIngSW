@@ -7,6 +7,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static com.example.democlientserver.ModelDBMS.listPurchaseDBMS;
 import static com.example.democlientserver.ModelDBMS.listSaleDBMS;
 
 /**
@@ -71,6 +72,8 @@ public class ServerThread implements Runnable
             Supplier connectedSupplier=new Supplier();
             ArrayList<Wine> winesInPromo=new ArrayList<>();
             ArrayList<Sale> salesTot=new ArrayList<Sale>();
+            ArrayList<Client> clientTot=new ArrayList<Client>();
+            ArrayList<Purchase> purchaseTot=new ArrayList<Purchase>();
             while(true){
                 cmd = (String) is.readObject();
                 Thread.sleep(1000);
@@ -269,13 +272,29 @@ public class ServerThread implements Runnable
                         if (os == null) {
                             os = new ObjectOutputStream(this.socket.getOutputStream());
                         }
-                        System.out.println("ciao");
                         salesTot=ModelDBMS.listSaleDBMS();
-                        System.out.println(salesTot.get(0).getSaleId());
                         os.writeObject(salesTot);
                         os.flush();
                         break;
+                    case "getListClient":
+                        if (os == null) {
+                            os = new ObjectOutputStream(this.socket.getOutputStream());
+                        }
+                        clientTot=ModelDBMS.listClientDBMS();
+                        os.writeObject(clientTot);
+                        os.flush();
+                        break;
+                    case "getListPurchase":
+                        if (os == null) {
+                            os = new ObjectOutputStream(this.socket.getOutputStream());
+                        }
+                        purchaseTot=ModelDBMS.listPurchaseDBMS();
+                        os.writeObject(purchaseTot);
+                        os.flush();
+                        break;
+
                 }
+
             }
 
         } catch (Exception e) {
