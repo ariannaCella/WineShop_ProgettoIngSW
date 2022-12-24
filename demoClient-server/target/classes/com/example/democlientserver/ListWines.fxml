@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="4126.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.democlientserver.ListWines">
+<children>
+    <ScrollPane fx:id="scroll" layoutX="18.0" layoutY="55.0" prefHeight="2033.0" prefWidth="563.0">
+        <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2500.0" prefWidth="550.0">
+                <children>
+                    <VBox layoutY="3.0" prefHeight="894.0" prefWidth="550.0" spacing="10.0" visible="true">
+                        <children>
+                            <HBox prefHeight="150.0" prefWidth="214.0">
+                                <children>
+                                    <Label fx:id="imgWine0" prefHeight="142.0" prefWidth="118.0" />
+                                    <Label fx:id="txtInfoWine0" prefHeight="202.0" prefWidth="316.0" />
+                                    <VBox fx:id="viewShop0" prefHeight="120.0" prefWidth="100.0" visible="false">
+                                        <children>
+                                            <Button fx:id="shopping0" alignment="CENTER" mnemonicParsing="false" onAction="#shopWine0" prefHeight="26.0" prefWidth="105.0" text="Acquista" textFill="#0d0966">
+                                                <font>
+                                                    <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+                                                </font>
+                                                <VBox.margin>
+                                                    <Insets top="25.0" />
+                                                </VBox.margin>
+                                            </Button>
+
+                                            <ChoiceBox fx:id="choiceTypeUser0" prefHeight="14.0" prefWidth="100.0">
+                                                <items>
+                                                    <FXCollections fx:factory="observableArrayList">
+                                                        <String fx:value="Bottiglia" />
+                                                        <String fx:value="Cassa da 6" />
+                                                        <String fx:value="Cassa da 12" />
+                                                    </FXCollections>
+                                                </items>
+                                                <VBox.margin>
+                                                    <Insets />
+                                                </VBox.margin>
+                                            </ChoiceBox>
+                                            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="15.0" prefWidth="104.0" text="Quantità">
+                                                <VBox.margin>
+                                                    <Insets top="10.0" />
+                                                </VBox.margin>
+                                                <font>
+                                                    <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+                                                </font>
+                                            </Label>
+                                            <TextField fx:id="quantityShop0" prefHeight="26.0" prefWidth="72.0" promptText="Numero di casse/bottiglie">
+                                                <VBox.margin>
+                                                    <Insets />
+                                                </VBox.margin>
+                                                <font>
+                                                    <Font size="7.8" />
+                                                </font>
+                                            </TextField>
+                                    <Label fx:id="error0" alignment="CENTER" prefHeight="28.0" prefWidth="100.0" text="Inserire dati mancanti" textAlignment="CENTER" textFill="#e40909" visible="false">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="25.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                        </children>
+                                    </VBox>
+                                </children>
+                            </HBox>
+                            <HBox prefHeight="150.0" prefWidth="214.0">
+                                <children>
+                                    <Label fx:id="imgWine1" prefHeight="142.0" prefWidth="118.0" />
+                                    <Label fx:id="txtInfoWine1" prefHeight="202.0" prefWidth="316.0" />
+                                    <VBox fx:id="viewShop1" prefHeight="120.0" prefWidth="100.0" visible="false">
+                                        <children>
+                                            <Button fx:id="shopping1" alignment="CENTER" mnemonicParsing="false" onAction="#shopWine1" prefHeight="26.0" prefWidth="105.0" text="Acquista" textFill="#0d0966">
+                                                <font>
+                                                    <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+                                                </font>
+                                                <VBox.margin>
+                                                    <Insets top="25.0" />
+                                                </VBox.margin>
+                                            </Button>
+                                            <ChoiceBox fx:id="choiceTypeUser1" prefHeight="14.0" prefWidth="100.0">
+                                                <items>
+                                                    <FXCollections fx:factory="observableArrayList">
+                                                        <String fx:value="Bottiglia" />
+                                                        <String fx:value="Cassa da 6" />
+                                                        <String fx:value="Cassa da 12" />
+                                                    </FXCollections>
+                                                </items>
+                                                <VBox.margin>
+                                                    <Insets />
+                                                </VBox.margin>
+                                            </ChoiceBox>
+                                            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="15.0" prefWidth="104.0" text="Quantità">
+                                                <VBox.margin>
+                                                    <Insets top="10.0" />
+                                                </VBox.margin>
+                                                <font>
+                                                    <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+                                                </font>
+                                            </Label>
+                                            <TextField fx:id="quantityShop1" prefHeight="26.0" prefWidth="72.0" promptText="Numero di casse/bottiglie">
+                                                <VBox.margin>
+                                                    <Insets />
+                                                </VBox.margin>
+                                                <font>
+                                                    <Font size="7.8" />
+                                                </font>
+                                            </TextField>
+                                    <Label fx:id="error1" alignment="CENTER" prefHeight="28.0" prefWidth="100.0" text="Inserire dati mancanti" textAlignment="CENTER" textFill="#e40909" visible="false">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="25.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                        </children>
+                                    </VBox>
+                                </children>
+                            </HBox>
+                            <HBox prefHeight="150.0" prefWidth="214.0">
+                                <children>
+                                    <Label fx:id="imgWine2" prefHeight="142.0" prefWidth="118.0" />
+                                    <Label fx:id="txtInfoWine2" prefHeight="202.0" prefWidth="316.0" />
+                                    <VBox fx:id="viewShop2" prefHeight="120.0" prefWidth="100.0" visible="false">
+                                        <children>
+                                            <Button fx:id="shopping2" alignment="CENTER" mnemonicParsing="false" onAction="#shopWine2" prefHeight="26.0" prefWidth="105.0" text="Acquista" textFill="#0d0966">
+                                                <font>
+                                                    <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+                                                </font>
+                                                <VBox.margin>
+                                                    <Insets top="25.0" />
+                                                </VBox.margin>
+                                            </Button>
+                                            <ChoiceBox fx:id="choiceTypeUser2" prefHeight="14.0" prefWidth="100.0">
+                                                <items>
+                                                    <FXCollections fx:factory="observableArrayList">
+                                                        <String fx:value="Bottiglia" />
+                                                        <String fx:value="Cassa da 6" />
+                                                        <String fx:value="Cassa da 12" />
+                                                    </FXCollections>
+                                                </items>
+                                                <VBox.margin>
+                                                    <Insets />
+                                                </VBox.margin>
+                                            </ChoiceBox>
+                                            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="15.0" prefWidth="104.0" text="Quantità">
+                                                <VBox.margin>
+                                                    <Insets top="10.0" />
+                                                </VBox.margin>
+                                                <font>
+                                                    <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+                                                </font>
+                                            </Label>
+                                            <TextField fx:id="quantityShop2" prefHeight="26.0" prefWidth="72.0" promptText="Numero di casse/bottiglie">
+                                                <VBox.margin>
+                                                    <Insets />
+                                                </VBox.margin>
+                                                <font>
+                                                    <Font size="7.8" />
+                                                </font>
+                                            </TextField>
+                                    <Label fx:id="error2" alignment="CENTER" prefHeight="28.0" prefWidth="100.0" text="Inserire dati mancanti" textAlignment="CENTER" textFill="#e40909" visible="false">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="25.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                        </children>
+                                    </VBox>
+                                </children>
+                            </HBox>
+                            <HBox prefHeight="150.0" prefWidth="214.0">
+                                <children>
+                                    <Label fx:id="imgWine3" prefHeight="142.0" prefWidth="118.0" />
+                                    <Label fx:id="txtInfoWine3" prefHeight="202.0" prefWidth="316.0" />
+                                    <VBox fx:id="viewShop3" prefHeight="120.0" prefWidth="100.0" visible="false">
+                                        <children>
+                                            <Button fx:id="shopping3" alignment="CENTER" mnemonicParsing="false" onAction="#shopWine3" prefHeight="26.0" prefWidth="105.0" text="Acquista" textFill="#0d0966">
+                                                <font>
+                                                    <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+                                                </font>
+                                                <VBox.margin>
+                                                    <Insets top="25.0" />
+                                                </VBox.margin>
+                                            </Button>
+                                            <ChoiceBox fx:id="choiceTypeUser3" prefHeight="14.0" prefWidth="100.0">
+                                                <items>
+                                                    <FXCollections fx:factory="observableArrayList">
+                                                        <String fx:value="Bottiglia" />
+                                                        <String fx:value="Cassa da 6" />
+                                                        <String fx:value="Cassa da 12" />
+                                                    </FXCollections>
+                                                </items>
+                                                <VBox.margin>
+                                                    <Insets />
+                                                </VBox.margin>
+                                            </ChoiceBox>
+                                            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="15.0" prefWidth="104.0" text="Quantità">
+                                                <VBox.margin>
+                                                    <Insets top="10.0" />
+                                                </VBox.margin>
+                                                <font>
+                                                    <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+                                                </font>
+                                            </Label>
+                                            <TextField fx:id="quantityShop3" prefHeight="26.0" prefWidth="72.0" promptText="Numero di casse/bottiglie">
+                                                <VBox.margin>
+                                                    <Insets />
+                                                </VBox.margin>
+                                                <font>
+                                                    <Font size="7.8" />
+                                                </font>
+                                            </TextField>
+                                    <Label fx:id="error3" alignment="CENTER" prefHeight="28.0" prefWidth="100.0" text="Inserire dati mancanti" textAlignment="CENTER" textFill="#e40909" visible="false">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="25.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                        </children>
+                                    </VBox>
+                                </children>
+                            </HBox>
+                            <HBox prefHeight="150.0" prefWidth="214.0">
+                                <children>
+                                    <Label fx:id="imgWine4" prefHeight="142.0" prefWidth="118.0" />
+                                    <Label fx:id="txtInfoWine4" prefHeight="202.0" prefWidth="316.0" />
+                                    <VBox fx:id="viewShop4" prefHeight="120.0" prefWidth="100.0" visible="false">
+                                        <children>
+                                            <Button fx:id="shopping4" alignment="CENTER" mnemonicParsing="false" onAction="#shopWine4" prefHeight="26.0" prefWidth="105.0" text="Acquista" textFill="#0d0966">
+                                                <font>
+                                                    <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+                                                </font>
+                                                <VBox.margin>
+                                                    <Insets top="25.0" />
+                                                </VBox.margin>
+                                            </Button>
+                                            <ChoiceBox fx:id="choiceTypeUser4" prefHeight="14.0" prefWidth="100.0">
+                                                <items>
+                                                    <FXCollections fx:factory="observableArrayList">
+                                                        <String fx:value="Bottiglia" />
+                                                        <String fx:value="Cassa da 6" />
+                                                        <String fx:value="Cassa da 12" />
+                                                    </FXCollections>
+                                                </items>
+                                                <VBox.margin>
+                                                    <Insets />
+                                                </VBox.margin>
+                                            </ChoiceBox>
+                                            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="15.0" prefWidth="104.0" text="Quantità">
+                                                <VBox.margin>
+                                                    <Insets top="10.0" />
+                                                </VBox.margin>
+                                                <font>
+                                                    <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+                                                </font>
+                                            </Label>
+                                            <TextField fx:id="quantityShop4" prefHeight="26.0" prefWidth="72.0" promptText="Numero di casse/bottiglie">
+                                                <VBox.margin>
+                                                    <Insets />
+                                                </VBox.margin>
+                                                <font>
+                                                    <Font size="7.8" />
+                                                </font>
+                                            </TextField>
+                                    <Label fx:id="error4" alignment="CENTER" prefHeight="28.0" prefWidth="100.0" text="Inserire dati mancanti" textAlignment="CENTER" textFill="#e40909" visible="false">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="25.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                        </children>
+                                    </VBox>
+                                </children>
+                            </HBox>
+                            <HBox prefHeight="210.0" prefWidth="600.0">
+                                <children>
+                                    <Label fx:id="imgWine5" prefHeight="142.0" prefWidth="118.0" />
+                                    <Label fx:id="txtInfoWine5" prefHeight="202.0" prefWidth="316.0" />
+                                    <VBox fx:id="viewShop5" prefHeight="120.0" prefWidth="100.0" visible="false">
+                                        <children>
+                                            <Button fx:id="shopping5" alignment="CENTER" mnemonicParsing="false" onAction="#shopWine5" prefHeight="26.0" prefWidth="105.0" text="Acquista" textFill="#0d0966">
+                                                <font>
+                                                    <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+                                                </font>
+                                                <VBox.margin>
+                                                    <Insets top="25.0" />
+                                                </VBox.margin>
+                                            </Button>
+                                            <ChoiceBox fx:id="choiceTypeUser5" prefHeight="14.0" prefWidth="100.0">
+                                                <items>
+                                                    <FXCollections fx:factory="observableArrayList">
+                                                        <String fx:value="Bottiglia" />
+                                                        <String fx:value="Cassa da 6" />
+                                                        <String fx:value="Cassa da 12" />
+                                                    </FXCollections>
+                                                </items>
+                                                <VBox.margin>
+                                                    <Insets />
+                                                </VBox.margin>
+                                            </ChoiceBox>
+                                            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="15.0" prefWidth="104.0" text="Quantità">
+                                                <VBox.margin>
+                                                    <Insets top="10.0" />
+                                                </VBox.margin>
+                                                <font>
+                                                    <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+                                                </font>
+                                            </Label>
+                                            <TextField fx:id="quantityShop5" prefHeight="26.0" prefWidth="72.0" promptText="Numero di casse/bottiglie">
+                                                <VBox.margin>
+                                                    <Insets />
+                                                </VBox.margin>
+                                                <font>
+                                                    <Font size="7.8" />
+                                                </font>
+                                            </TextField>
+                                    <Label fx:id="error5" alignment="CENTER" prefHeight="28.0" prefWidth="100.0" text="Inserire dati mancanti" textAlignment="CENTER" textFill="#e40909" visible="false">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="25.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                        </children>
+                                    </VBox>
+                                </children>
+                            </HBox>
+                        </children>
+                    </VBox>
+                </children>
+            </AnchorPane>
+        </content>
+    </ScrollPane>
+    <Button fx:id="goBackHome" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goHome" text="HOME" textFill="#4f0fcf">
+        <font>
+            <Font name="System Bold" size="12.0" />
+        </font>
+    </Button>
+    <Label alignment="CENTER" layoutX="77.0" layoutY="11.0" prefHeight="18.0" prefWidth="405.0" text="VINI" textFill="#711296">
+        <font>
+            <Font name="Berlin Sans FB Demi Bold" size="27.0" />
+        </font>
+    </Label>
+    <Label fx:id="noWine" layoutX="108.0" layoutY="84.0" prefHeight="118.0" prefWidth="376.0" text="Nessun vino che soddisfa la ricerca..." visible="false">
+        <font>
+            <Font name="Berlin Sans FB Demi Bold" size="22.0" />
+        </font>
+    </Label>
+</children>
+</AnchorPane>
