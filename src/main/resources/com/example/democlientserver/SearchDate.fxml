@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="883.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.democlientserver.SearchDate">
+    <children>
+        <DatePicker fx:id="dataInizio" layoutX="192.0" layoutY="121.0" onAction="#dataInizio" promptText="Data di inizio" />
+        <DatePicker fx:id="dataFine" layoutX="420.0" layoutY="121.0" onAction="#dataFine" promptText="Data di fine" />
+        <Label layoutX="269.0" layoutY="59.0" prefHeight="35.0" prefWidth="357.0" text="Ricerca Vendite Intervallo di Date">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <Button fx:id="searchData" layoutX="649.0" layoutY="121.0" mnemonicParsing="false" onAction="#searchData" text="OK" />
+        <Button fx:id="goHome" layoutX="30.0" layoutY="34.0" mnemonicParsing="false" onAction="#goHome" text="HOME" />
+        <TableView fx:id="tabSale" layoutX="23.0" layoutY="172.0" prefHeight="337.0" prefWidth="833.0">
+            <columns>
+                <TableColumn fx:id="idSale" prefWidth="40.0" text="idSale" />
+                <TableColumn fx:id="cfSale" prefWidth="131.0" text="cfSale" />
+                <TableColumn fx:id="addressSale" prefWidth="110.0" text="addrSale" />
+                <TableColumn fx:id="idWineSale" prefWidth="50.0" text="idWineSale" />
+                <TableColumn fx:id="nBottlesSale" prefWidth="74.0" text="nBottlesSale" />
+                <TableColumn fx:id="priceSale" prefWidth="143.0" text="priceSale" />
+                <TableColumn fx:id="dateSale" prefWidth="94.0" text="dateSale" />
+                <TableColumn fx:id="signSale" prefWidth="90.0" text="signSale" />
+                <TableColumn fx:id="acceptedSale" prefWidth="100.0" text="consSale" />
+            </columns>
+        </TableView>
+    </children>
+</Pane>

@@ -133,7 +133,7 @@ public class ModelDBMS
             int admin = Integer.parseInt(rset.getString("Admin"));
             String user = rset.getString("Username");
             String psw = rset.getString("Password");
-            Client c=new Client(name,surname,fc,email,phone,address,admin,user,psw);
+            Client c=new Client(name,surname,fc,email,phone,address,0,user,psw);
             return c;
         }
         catch (SQLException e)
@@ -331,7 +331,7 @@ public class ModelDBMS
                 int wid = rset.getInt("WineId");
                 int nbott = rset.getInt("Nbottles");
                 float price = rset.getFloat("Price");
-                int date= rset.getInt("Date");
+                Date date= rset.getDate("Date");
                 boolean sign=rset.getBoolean("Signature");
                 boolean acc=rset.getBoolean("Accepted");
                 Sale s= new Sale(saleId,wid,nbott,sign,acc, fc,addr,price,date);
@@ -485,7 +485,7 @@ public class ModelDBMS
             pstmt.setInt(4, order.getWineId());
             pstmt.setInt(5, order.getnBottles());
             pstmt.setDouble(6, order.getPrice());
-            pstmt.setInt(7, order.getD());
+            pstmt.setDate(7, order.getD());
             pstmt.setBoolean(8, order.getSignature());
             pstmt.setBoolean(9, order.getAccepted());
             pstmt.addBatch();
@@ -496,7 +496,67 @@ public class ModelDBMS
             e.printStackTrace();
         }
     }
+    public static ArrayList searchClientSurname(String txt){
+        try (Connection conn = DriverManager.getConnection(
+                DBURL  , LOGIN, PASSWORD);
+             Statement stmt = conn.createStatement();) {
 
+            String strSelect="SELECT c.Name, c.Surname, c.FiscalCode, c.Email, c.Phone, c.Address, c.Username FROM client AS c WHERE c.Surname = '"+txt+"' ";
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            ArrayList<Client> c = new ArrayList<Client>();
+            while (rset.next()) {
+                String name = rset.getString("Name");
+                String surname = rset.getString("Surname");
+                String fiscalCode = rset.getString("FiscalCode");
+                String email = rset.getString("Email");
+                int phone = rset.getInt("Phone");
+                String address = rset.getString("Address");
+                String username = rset.getString("Username");
+                Client v=new Client(name,surname,fiscalCode,email,phone,address,username);
+                c.add(v);
+            }
+            return c;
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static ArrayList<Sale> SaleDateDBMS(Date d1,Date d2) {
+        try (Connection conn = DriverManager.getConnection(
+                DBURL  , LOGIN, PASSWORD);
+             Statement stmt = conn.createStatement();) {
+
+            String strSelect="SELECT s.SaleId, s.FiscalCode, s.Address, s.WineId, s.Nbottles, s.Price, s.Date, s.Signature, s.Accepted " +
+                    "FROM sale AS s WHERE s.Date>"+d1.getDate()+ " AND s.Date <"+d2.getDate()+"";
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            ArrayList<Sale> arraySale = new ArrayList<Sale>();
+            while (rset.next()) {
+                int saleId = rset.getInt("SaleId");
+                String fc = rset.getString("FiscalCode");
+                String addr = rset.getString("Address");
+                int wid = rset.getInt("WineId");
+                int nbott = rset.getInt("Nbottles");
+                float price = rset.getFloat("Price");
+                Date date= rset.getDate("Date");
+                boolean sign=rset.getBoolean("Signature");
+                boolean acc=rset.getBoolean("Accepted");
+                Sale s= new Sale(saleId,wid,nbott,sign,acc, fc,addr,price,date);
+                arraySale.add(s);
+                System.out.println(s.infoSale());
+            }
+            return arraySale;
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 
 
