@@ -17,6 +17,7 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.URL;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -59,7 +60,7 @@ public class Management implements Initializable{
     private TableColumn<Purchase,Boolean> consegnatoPurchase;
 
     @FXML
-    private TableColumn<Sale,Integer> dateSale;
+    private TableColumn<Sale, java.sql.Date> dateSale;
 
     @FXML
     private TableColumn<Client,String> emailClient;
@@ -302,7 +303,7 @@ public class Management implements Initializable{
             idWineSale.setCellValueFactory(new PropertyValueFactory<Sale,Integer>("wineId"));
             nBottlesSale.setCellValueFactory(new PropertyValueFactory<Sale,Integer>("nBottles"));
             priceSale.setCellValueFactory(new PropertyValueFactory<Sale,Float>("price"));
-            dateSale.setCellValueFactory(new PropertyValueFactory<Sale,Integer>("d"));
+            dateSale.setCellValueFactory(new PropertyValueFactory<Sale, Date>("date"));
             signSale.setCellValueFactory(new PropertyValueFactory<Sale,Boolean>("signature"));
             acceptedSale.setCellValueFactory(new PropertyValueFactory<Sale,Boolean>("accepted"));
             tabSale.setItems(obsSale);

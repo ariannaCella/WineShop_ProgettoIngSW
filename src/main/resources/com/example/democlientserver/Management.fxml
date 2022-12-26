@@ -101,8 +101,7 @@
                                         <TableColumn fx:id="emailClient" prefWidth="130.0" text="emailClient" />
                                         <TableColumn fx:id="phoneClient" minWidth="0.0" prefWidth="124.0" text="phoneClient" />
                                         <TableColumn fx:id="addressClient" prefWidth="137.0" text="addressClient" />
-                                        <TableColumn fx:id="usernameClient" prefWidth="133.0" text="Username" />
-                                        <TableColumn fx:id="usernameClient1" prefWidth="133.0" text="usernameClient" />
+                                        <TableColumn fx:id="usernameClient" prefWidth="133.0" text="UsernameClient" />
                                     </columns>
                                 </TableView>
                             </children>

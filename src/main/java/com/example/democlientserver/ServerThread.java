@@ -4,6 +4,7 @@ import RequestResponse.*;
 
 import java.io.*;
 import java.net.Socket;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -66,12 +67,14 @@ public class ServerThread implements Runnable
             String cmd,rs;
             Object o1;
             ArrayList<Wine> listWines=new ArrayList<Wine>();
+            ArrayList<Client> clientSurname=new ArrayList<Client>();
             Employee connectedEmployee=new Employee();
             Client connectedClient=new Client();
             Shipper connectedShipper=new Shipper();
             Supplier connectedSupplier=new Supplier();
             ArrayList<Wine> winesInPromo=new ArrayList<>();
             ArrayList<Sale> salesTot=new ArrayList<Sale>();
+            ArrayList<Sale> SaleDate=new ArrayList<Sale>();
             ArrayList<Client> clientTot=new ArrayList<Client>();
             ArrayList<Purchase> purchaseTot=new ArrayList<Purchase>();
             Wine wineOrder=new Wine();
@@ -349,7 +352,7 @@ public class ServerThread implements Runnable
                         ModelDBMS.addSales(nBottleShop,wineOrder);
                         System.out.println(connectedClient.getFiscalCode());
                         salesTot=ModelDBMS.listSaleDBMS();
-                        order=new Sale(salesTot.size()+2, wineOrder.getWineId(), nBottleShop, false , false, connectedClient.getFiscalCode(), connectedClient.getAddress(), priceOrder, 0);
+                        order=new Sale(salesTot.size()+2, wineOrder.getWineId(), nBottleShop, false , false, connectedClient.getFiscalCode(), connectedClient.getAddress(), priceOrder);
                         ModelDBMS.newOrder(order);
                         break;
 
@@ -445,6 +448,51 @@ public class ServerThread implements Runnable
                         int data=0;
                         ResponseOrderRepilog res=new ResponseOrderRepilog(infoClient,infoWine,data,nBottleShop,priceOrder);
                         os.writeObject(res);
+                        os.flush();
+                        break;
+
+                    case "searchClientSurname":
+                        if (os == null) {
+                            os = new ObjectOutputStream(this.socket.getOutputStream());
+                        }
+                        rs = "OK";
+                        o1 = (Object) rs;
+                        os.writeObject(o1);
+                        os.flush();
+                        String rscs;
+                        rscs = (String) is.readObject();
+                        clientSurname=ModelDBMS.searchClientSurname(rscs);
+                        if (os == null) {
+                            os = new ObjectOutputStream(this.socket.getOutputStream());
+                        }
+                        rs = "View Clients";
+                        o1 = (Object) rs;
+                        os.writeObject(o1);
+                        os.flush();
+                        break;
+
+                    case "getListSurnameClient":
+                        if (os == null) {
+                            os = new ObjectOutputStream(this.socket.getOutputStream());
+                        }
+                        os.writeObject(clientSurname);
+                        os.flush();
+                        break;
+
+                    case "SearchDate":
+                        if (os == null) {
+                            os = new ObjectOutputStream(this.socket.getOutputStream());
+                        }
+                        rs = "OK";
+                        o1 = (Object) rs;
+                        os.writeObject(o1);
+                        os.flush();
+                        RequestDate reqd;
+                        reqd = (RequestDate) is.readObject();
+                        Date d1 =reqd.getBegin();
+                        Date d2=reqd.getEnd();
+                        SaleDate=ModelDBMS.SaleDateDBMS(d1,d2);
+                        os.writeObject(salesTot);
                         os.flush();
                         break;
                 }

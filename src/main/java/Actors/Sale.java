@@ -1,15 +1,17 @@
 package Actors;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.util.Date;
 
 public class Sale implements Serializable {
     private int saleId, wineId, nBottles;
     private boolean signature = false, accepted = false;
     private String fiscalCode, address;
     private double price;
-    private int d; //contiene la data corrente
+    private java.sql.Date d; //contiene la data corrente
 
-    public Sale(int saleId, int wineId, int nBottles, boolean signature, boolean accepted, String fiscalCode, String address, double price, int d) {
+    public Sale(int saleId, int wineId, int nBottles, boolean signature, boolean accepted, String fiscalCode, String address, double price, java.sql.Date d) {
         this.saleId = saleId;
         this.wineId = wineId;
         this.nBottles = nBottles;
@@ -21,6 +23,7 @@ public class Sale implements Serializable {
         this.d = d;
     }
 
+
     public Sale() {
         this.saleId = 0;
         this.wineId = 0;
@@ -30,11 +33,24 @@ public class Sale implements Serializable {
         this.fiscalCode = null;
         this.address = null;
         this.price = 0;
-        this.d = 0;
+        this.d = java.sql.Date.valueOf("2001-11-11");
+    }
+    Date date = new Date();
+    static DateFormat formatoData = DateFormat.getDateInstance(DateFormat.SHORT);
+
+    public Sale(int saleId, int wineId, int nBottleShop, boolean signature, boolean accepted, String fiscalCode, String address, double priceOrder) {
+        this.saleId = saleId;
+        this.wineId = wineId;
+        this.nBottles = nBottleShop;
+        this.signature = signature;
+        this.accepted = accepted;
+        this.fiscalCode = fiscalCode;
+        this.address = address;
+        this.price = priceOrder;
     }
 
     public String infoSale() {
-        return "Id:" + saleId + "\nCodice Fiscale: " + fiscalCode + "  indirizzo:" + address + "\nwineId:" + wineId + ", numero bottiglie:" + nBottles + "Prezzo di vendita:" + price + "$\n\npresa visione impiegato:" + signature + "\nconsegnato:" + accepted + "\n";
+        return "Id:" + saleId + "\nCodice Fiscale: " + fiscalCode + "  indirizzo:" + address + "\nwineId:" + wineId + ", numero bottiglie:" + nBottles + "Prezzo di vendita:" + price + "$\nData: "+d+"\npresa visione impiegato:" + signature + "\nconsegnato:" + accepted + "\n";
     }
 
     public int getSaleId() {
@@ -101,11 +117,11 @@ public class Sale implements Serializable {
         this.price = price;
     }
 
-    public int getD() {
+    public java.sql.Date getD() {
         return d;
     }
 
-    public void setD(int d) {
+    public void setD(java.sql.Date d) {
         this.d = d;
     }
 }

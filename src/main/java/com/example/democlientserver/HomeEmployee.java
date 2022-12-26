@@ -101,7 +101,7 @@ public class HomeEmployee {
                 Parent root = FXMLLoader.load(getClass().getResource("wineView.fxml"));
                 Stage stage = new Stage();
                 stage.setTitle("wines!");
-                stage.setScene(new Scene(root, 600, 700));
+                stage.setScene(new Scene(root, 1000, 800));
                 stage.setResizable(false);
                 stage.show();
                 Stage thisStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -112,8 +112,40 @@ public class HomeEmployee {
     }
 
     @FXML
-    void searchClientSurname(ActionEvent event) {
-
+    void searchClientSurname(ActionEvent event) throws IOException, ClassNotFoundException {
+        String txt1=txtClientSurname.getText();
+        if(txt1.isBlank()){
+            error.setVisible(true);
+            error.setText("Compilare campo cognome");
+            return;
+        }
+        os.writeObject("searchClientSurname");
+        os.flush();
+        if (is == null)
+        {
+            is = new ObjectInputStream(new BufferedInputStream(
+                    client.getInputStream()));
+        }
+        String o = (String) is.readObject();
+        if(o.equals("OK")) {
+            os.writeObject(txt1);
+            os.flush();
+            if (is == null) {
+                is = new ObjectInputStream(new BufferedInputStream(
+                        client.getInputStream()));
+            }
+            String message = (String) is.readObject();
+            if (message.equals("View Clients")) {
+                Parent root = FXMLLoader.load(getClass().getResource("ClientSurname.fxml"));
+                Stage stage = new Stage();
+                stage.setTitle("Clients");
+                stage.setScene(new Scene(root, 1050, 800));
+                stage.setResizable(false);
+                stage.show();
+                Stage thisStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                thisStage.hide();
+            }
+        }
     }
 
     @FXML
@@ -141,8 +173,15 @@ public class HomeEmployee {
     }
 
     @FXML
-    void searchPurchaseForDates(ActionEvent event) {
-
+    void searchSalesForDates(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("SearchDate.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("Search Date");
+        stage.setScene(new Scene(root, 800, 1000));
+        stage.setResizable(false);
+        stage.show();
+        Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        thisStage.hide();
     }
 
     @FXML
