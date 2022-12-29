@@ -165,7 +165,7 @@ public class ListWines implements Initializable{
                     forShop.get(i).setVisible(true);
                     InputStream stream = null;
                     try {
-                        stream = new FileInputStream("C:\\Users\\huawei\\WineShop\\demo1\\src\\main\\resources\\graf\\demo1\\"+winesList.get(i).getImgWine());
+                        stream = new FileInputStream("C:\\Users\\Elena\\Desktop\\ProgettoPoggi\\ProgettoPoggi\\demoClient-server\\src\\main\\resources\\com\\example\\democlientserver\\"+winesList.get(i).getImgWine());
                     } catch (FileNotFoundException e) {
                         throw new RuntimeException(e);
                     }

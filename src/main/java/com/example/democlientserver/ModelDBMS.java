@@ -133,7 +133,7 @@ public class ModelDBMS
             int admin = Integer.parseInt(rset.getString("Admin"));
             String user = rset.getString("Username");
             String psw = rset.getString("Password");
-            Client c=new Client(name,surname,fc,email,phone,address,0,user,psw);
+            Client c=new Client(name,surname,fc,email,phone,address,admin,user,psw);
             return c;
         }
         catch (SQLException e)
