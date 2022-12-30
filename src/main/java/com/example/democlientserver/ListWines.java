@@ -254,6 +254,7 @@ public class ListWines implements Initializable{
         String n=quantityShop0.getText();
         if((n.isBlank())||typeCaseOrBottle==null){error0.setVisible(true);return;}
         int number=Integer.parseInt(n);
+        if(number==0){error0.setVisible(true);return;}
         functionShop(number,chosenBottleWine,typeCaseOrBottle,buttonNumber,actionEvent);
     }
 
@@ -264,6 +265,7 @@ public class ListWines implements Initializable{
         String n=quantityShop1.getText();
         if((n.isBlank())||typeCaseOrBottle==null){error1.setVisible(true);return;}
         int number=Integer.parseInt(n);
+        if(number==0){error0.setVisible(true);return;}
         functionShop(number,chosenBottleWine,typeCaseOrBottle,buttonNumber,actionEvent);
     }
     public void shopWine2(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
@@ -273,6 +275,7 @@ public class ListWines implements Initializable{
         String n=quantityShop2.getText();
         if((n.isBlank())||typeCaseOrBottle==null){error2.setVisible(true);return;}
         int number=Integer.parseInt(n);
+        if(number==0){error0.setVisible(true);return;}
         functionShop(number,chosenBottleWine,typeCaseOrBottle,buttonNumber,actionEvent);
     }
     public void shopWine3(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
@@ -282,6 +285,7 @@ public class ListWines implements Initializable{
         String n=quantityShop3.getText();
         if((n.isBlank())||typeCaseOrBottle==null){error3.setVisible(true);return;}
         int number=Integer.parseInt(n);
+        if(number==0){error0.setVisible(true);return;}
         functionShop(number,chosenBottleWine,typeCaseOrBottle,buttonNumber,actionEvent);
     }
     public void shopWine4(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
@@ -291,6 +295,7 @@ public class ListWines implements Initializable{
         String n=quantityShop4.getText();
         if((n.isBlank())||typeCaseOrBottle==null){error4.setVisible(true);return;}
         int number=Integer.parseInt(n);
+        if(number==0){error0.setVisible(true);return;}
         functionShop(number,chosenBottleWine,typeCaseOrBottle,buttonNumber,actionEvent);
     }
     public void shopWine5(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
@@ -300,6 +305,7 @@ public class ListWines implements Initializable{
         String n=quantityShop5.getText();
         if((n.isBlank())||typeCaseOrBottle==null){error5.setVisible(true);return;}
         int number=Integer.parseInt(n);
+        if(number==0){error0.setVisible(true);return;}
         functionShop(number,chosenBottleWine,typeCaseOrBottle,buttonNumber,actionEvent);
     }
 

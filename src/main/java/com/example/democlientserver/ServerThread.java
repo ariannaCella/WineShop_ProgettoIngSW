@@ -274,16 +274,23 @@ public class ServerThread implements Runnable
                         Wine wine=rq.getWine();
                         String type=rq.getType();
                         int nButton=rq.getButton();
+                        double sconto=0;
                         if(type.equals("Bottiglie")){
                             priceOrder=listWines.get(nButton).getPrice()*n;
                         }
                         else if (type.equals("Cassa da 6")){
+                            //sconto 5%, se nBottigle>1 del 7%
+                            if(n>1){sconto=0.93;}
+                            else{sconto=0.95;}
                             n=n*6;
-                            priceOrder=listWines.get(nButton).getPrice()*(0.98) *n;
+                            priceOrder=listWines.get(nButton).getPrice()*sconto *n;
                         }
                         else if (type.equals("Cassa da 12")){
+                            //sconto 10%, se nBottiglie>1 del 13%
+                            if(n>1){sconto=0.87;}
+                            else{sconto=0.90;}
                             n=n*12;
-                            priceOrder=listWines.get(nButton).getPrice()*(0.95)*n;
+                            priceOrder=listWines.get(nButton).getPrice()*sconto*n;
                         }
 
                         if(listWines.get(nButton).getQuantity()>=n){
@@ -316,16 +323,21 @@ public class ServerThread implements Runnable
                         Wine winepromo=request.getWine();
                         String typepromo=request.getType();
                         int nButtonPromo=request.getButton();
+                        double scontoPromo=0;
                         if(typepromo.equals("Bottiglie")){
                             priceOrder=winesInPromo.get(nButtonPromo).getPrice()* nu;
                         }
                         else if (typepromo.equals("Cassa da 6")){
+                            if(nu>1){scontoPromo=0.93;}
+                            else{scontoPromo=0.95;}
                             nu=nu*6;
-                            priceOrder=winesInPromo.get(nButtonPromo).getPrice()*(0.98) *nu;
+                            priceOrder=winesInPromo.get(nButtonPromo).getPrice()*scontoPromo *nu;
                         }
                         else if (typepromo.equals("Cassa da 12")){
+                            if(nu>1){scontoPromo=0.87;}
+                            else{scontoPromo=0.90;}
                             nu=nu*12;
-                            priceOrder=winesInPromo.get(nButtonPromo).getPrice()*(0.95) * nu;
+                            priceOrder=winesInPromo.get(nButtonPromo).getPrice()*scontoPromo * nu;
                         }
 
                         if(winesInPromo.get(nButtonPromo).getQuantity()>=nu){

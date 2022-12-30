@@ -249,6 +249,7 @@ public class HomeClient implements Initializable {
         String n=quantityShop0.getText();
         if((n.isBlank())||typeCaseOrBottle==null){error0.setVisible(true);return;}
         int number=Integer.parseInt(n);
+        if(number==0){error0.setVisible(true);return;}
         functionShop(number,chosenBottleWine,typeCaseOrBottle,buttonNumber,actionEvent);
     }
 
@@ -268,6 +269,7 @@ public class HomeClient implements Initializable {
         String n=quantityShop1.getText();
         if((n.isBlank())||typeCaseOrBottle==null){error1.setVisible(true);return;}
         int number=Integer.parseInt(n);
+        if(number==0){error0.setVisible(true);return;}
         functionShop(number,chosenBottleWine,typeCaseOrBottle,buttonNumber,actionEvent);
     }
 
@@ -287,6 +289,7 @@ public class HomeClient implements Initializable {
         String n=quantityShop2.getText();
         if((n.isBlank())||typeCaseOrBottle==null){error2.setVisible(true);return;}
         int number=Integer.parseInt(n);
+        if(number==0){error0.setVisible(true);return;}
         functionShop(number,chosenBottleWine,typeCaseOrBottle,buttonNumber,actionEvent);
     }
     @FXML
