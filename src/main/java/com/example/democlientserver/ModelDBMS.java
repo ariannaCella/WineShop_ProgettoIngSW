@@ -43,7 +43,7 @@ public class ModelDBMS
         try (Connection conn = DriverManager.getConnection(
                 DBURL  , LOGIN, PASSWORD);
              Statement stmt = conn.createStatement();) {
-            String strSelect= "select * from "+table + " where u.Username='"+ username+ "' and u.Password='"+password+"'";
+            String strSelect= "select * from "+table + " where Username='"+ username+ "' and Password='"+password+"'";
             ResultSet rset = stmt.executeQuery(strSelect);
             rset.next();
             String name = rset.getString("Name");

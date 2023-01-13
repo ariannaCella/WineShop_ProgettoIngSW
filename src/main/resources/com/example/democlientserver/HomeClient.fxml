@@ -19,9 +19,9 @@
     <children>
       <AnchorPane prefHeight="870.0" prefWidth="535.0">
          <children>
-              <VBox alignment="CENTER" layoutY="1.0" prefHeight="766.0" prefWidth="535.0" spacing="15.0">
+              <VBox alignment="CENTER" layoutY="1.0" prefHeight="762.0" prefWidth="535.0" spacing="10.0">
                   <padding>
-                      <Insets bottom="40.0" left="20.0" right="20.0" top="10.0" />
+                      <Insets bottom="40.0" left="20.0" right="20.0" />
                   </padding>
                <HBox prefHeight="22.0" prefWidth="495.0" spacing="200.0">
                   <children>
@@ -130,7 +130,7 @@
             <HBox prefHeight="150.0" prefWidth="495.0">
                 <children>
                     <Label fx:id="imgWine0" prefHeight="150.0" prefWidth="130.0" />
-                    <Label fx:id="txtInfoWine0" prefHeight="150.0" prefWidth="226.0" />
+                    <Label fx:id="txtInfoWine0" prefHeight="150.0" prefWidth="270.0" />
                     <VBox fx:id="viewShop0" prefHeight="150.0" prefWidth="94.0" visible="false">
                         <children>
                             <Button alignment="CENTER" mnemonicParsing="false" onAction="#shopWine0" prefHeight="26.0" prefWidth="105.0" text="Acquista" textFill="#0d0966">
@@ -185,7 +185,7 @@
                <HBox prefHeight="150.0" prefWidth="495.0">
                   <children>
                      <Label fx:id="imgWine1" prefHeight="150.0" prefWidth="130.0" />
-                     <Label fx:id="txtInfoWine1" prefHeight="150.0" prefWidth="226.0" />
+                     <Label fx:id="txtInfoWine1" prefHeight="150.0" prefWidth="278.0" />
                      <VBox fx:id="viewShop1" prefHeight="150.0" prefWidth="94.0" visible="false">
                         <children>
                            <Button alignment="CENTER" mnemonicParsing="false" onAction="#shopWine1" prefHeight="26.0" prefWidth="105.0" text="Acquista" textFill="#0d0966">
@@ -239,7 +239,7 @@
                <HBox prefHeight="150.0" prefWidth="495.0">
                   <children>
                      <Label fx:id="imgWine2" prefHeight="150.0" prefWidth="130.0" />
-                     <Label fx:id="txtInfoWine2" prefHeight="150.0" prefWidth="226.0" />
+                     <Label fx:id="txtInfoWine2" prefHeight="150.0" prefWidth="278.0" />
                      <VBox fx:id="viewShop2" prefHeight="150.0" prefWidth="94.0" visible="false">
                         <children>
                            <Button alignment="CENTER" mnemonicParsing="false" onAction="#shopWine2" prefHeight="26.0" prefWidth="105.0" text="Acquista" textFill="#0d0966">

@@ -23,15 +23,14 @@ public class Payment {
     @FXML
     private Button payment;
     @FXML
-    private Label error;
+    private Label error, iban;
 
     @FXML
     private TextField txtPsw;
 
     @FXML
     private TextField txtUsername;
-    @FXML
-    private TextField iban;
+
     @FXML
     private TextField card;
 
@@ -96,10 +95,12 @@ public class Payment {
         if(choicePayment.getValue().equals("Bonifico")){
             iban.setVisible(true);
             card.setVisible(false);
+            payment.setText("Riepilogo Ordine");
         }
         else{
             card.setVisible(true);
             iban.setVisible(false);
+            payment.setText("PAGA");
         }
     }
 }

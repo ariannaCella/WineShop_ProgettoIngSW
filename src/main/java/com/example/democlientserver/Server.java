@@ -49,9 +49,10 @@ public class Server extends Application {
         {
             try
             {
-                Socket s = this.socket.accept();
 
+                Socket s = this.socket.accept();
                 this.pool.execute(new ServerThread(this, s));
+
             }
             catch (Exception e)
             {

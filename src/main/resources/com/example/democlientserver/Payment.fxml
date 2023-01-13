@@ -31,11 +31,6 @@
             <Font name="Berlin Sans FB Demi Bold" size="14.0" />
         </font>
     </Label>
-    <Button fx:id="payment" layoutX="253.0" layoutY="310.0" mnemonicParsing="false" onAction="#makeOrder" text="PAGA" textFill="#271179">
-        <font>
-            <Font name="Berlin Sans FB Demi Bold" size="22.0" />
-        </font>
-    </Button>
     <VBox layoutX="118.0" layoutY="115.0" prefHeight="115.0" prefWidth="363.0" spacing="20.0">
         <children>
             <Label alignment="CENTER" prefHeight="18.0" prefWidth="363.0" text="Inserisci i tuoi dati per confermare l'ordine">
@@ -58,6 +53,22 @@
         </font>
     </Button>
     <TextField fx:id="card" layoutX="118.0" layoutY="247.0" prefHeight="26.0" prefWidth="363.0" promptText="Numero di carta di credito" visible="false" />
-    <TextField fx:id="iban" layoutX="118.0" layoutY="247.0" prefHeight="26.0" prefWidth="363.0" promptText="IBAN" visible="false" />
+      <Label fx:id="iban" layoutX="123.0" layoutY="237.0" prefHeight="55.0" prefWidth="356.0" text="DATI PER IL BONIFICO:&#10;INTESTATARIO: OnlineWineShop &#10;IBAN: IT14Y0300203280267244426349" visible="false">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="13.0" />
+         </font>
+      </Label>
+      <VBox layoutX="119.0" layoutY="310.0" prefHeight="38.0" prefWidth="363.0">
+         <children>
+          <Button fx:id="payment" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#makeOrder" prefHeight="42.0" prefWidth="374.0" text="PAGA" textFill="#271179">
+              <font>
+                  <Font name="Berlin Sans FB Demi Bold" size="22.0" />
+              </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+          </Button>
+         </children>
+      </VBox>
 </children>
 </AnchorPane>
