@@ -27,6 +27,7 @@ import javafx.stage.Stage;
 import static com.example.democlientserver.HelloApplication.*;
 import static com.example.democlientserver.HelloApplication.is;
 import static com.example.democlientserver.ModelDBMS.*;
+import static java.lang.Integer.parseInt;
 
 
 public class Management implements Initializable{
@@ -189,13 +190,79 @@ public class Management implements Initializable{
     private TableColumn<Wine,Integer> yearWine;
 
     @FXML
-    void modifyIdPurchase(ActionEvent event) {
-
+    void modifyIdPurchase(ActionEvent event) throws IOException, ClassNotFoundException {
+        String txt1=txtIdPurchase.getText();
+        int idpurchase=parseInt(txt1);
+        if(txt1.isBlank()){
+            error.setVisible(true);
+            error.setText("Compilare campo id");
+            return;
+        }
+        os.writeObject("SignIdPurchase");
+        os.flush();
+        if (is == null)
+        {
+            is = new ObjectInputStream(new BufferedInputStream(
+                    client.getInputStream()));
+        }
+        String o = (String) is.readObject();
+        if(o.equals("OK")) {
+            os.writeObject(idpurchase);
+            os.flush();
+            if (is == null) {
+                is = new ObjectInputStream(new BufferedInputStream(
+                        client.getInputStream()));
+            }
+            String message = (String) is.readObject();
+            if (message.equals("Updated")) {
+                Parent root = FXMLLoader.load(getClass().getResource("Management.fxml"));
+                Stage stage = new Stage();
+                stage.setTitle("Management");
+                stage.setScene(new Scene(root, 1008, 665));
+                stage.setResizable(false);
+                stage.show();
+                Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                thisStage.hide();
+            }
+        }
     }
 
     @FXML
-    void modifyIdSale(ActionEvent event) {
-
+    void modifyIdSale(ActionEvent event) throws IOException, ClassNotFoundException {
+        String txt1=txtIdSale.getText();
+        int idsale=parseInt(txt1);
+        if(txt1.isBlank()){
+            error.setVisible(true);
+            error.setText("Compilare campo id");
+            return;
+        }
+        os.writeObject("SignIdSale");
+        os.flush();
+        if (is == null)
+        {
+            is = new ObjectInputStream(new BufferedInputStream(
+                    client.getInputStream()));
+        }
+        String o = (String) is.readObject();
+        if(o.equals("OK")) {
+            os.writeObject(idsale);
+            os.flush();
+            if (is == null) {
+                is = new ObjectInputStream(new BufferedInputStream(
+                        client.getInputStream()));
+            }
+            String message = (String) is.readObject();
+            if (message.equals("Updated")) {
+                Parent root = FXMLLoader.load(getClass().getResource("Management.fxml"));
+                Stage stage = new Stage();
+                stage.setTitle("Management");
+                stage.setScene(new Scene(root, 1008, 665));
+                stage.setResizable(false);
+                stage.show();
+                Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                thisStage.hide();
+            }
+        }
     }
 
     @FXML
@@ -236,14 +303,14 @@ public class Management implements Initializable{
     }
 
     @FXML
-    void textIdSale(ActionEvent event) {
+    void textIdSale(ActionEvent event) throws IOException, ClassNotFoundException {
 
     }
 
     @FXML
     void textIdWine(ActionEvent event) throws IOException, ClassNotFoundException {
             String txt=txtIdWine.getText();
-            int id=Integer.parseInt(txt);
+            int id= parseInt(txt);
             if(txt.isBlank()){
                 error.setVisible(true);
                 error.setText("Inserire l'id del vino che vuoi ricercare");

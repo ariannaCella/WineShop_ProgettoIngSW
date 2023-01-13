@@ -363,7 +363,7 @@ public class ServerThread implements Runnable
                         ModelDBMS.updateQuantity(nBottleShop,wineOrder);
                         ModelDBMS.addSales(nBottleShop,wineOrder);
                         System.out.println(connectedClient.getFiscalCode());
-                        salesTot=ModelDBMS.listSaleDBMS();
+                        salesTot= listSaleDBMS();
                         order=new Sale(salesTot.size()+2, wineOrder.getWineId(), nBottleShop, false , false, connectedClient.getFiscalCode(), connectedClient.getAddress(), priceOrder);
                         ModelDBMS.newOrder(order);
                         break;
@@ -380,7 +380,7 @@ public class ServerThread implements Runnable
                         if (os == null) {
                             os = new ObjectOutputStream(this.socket.getOutputStream());
                         }
-                        salesTot=ModelDBMS.listSaleDBMS();
+                        salesTot= listSaleDBMS();
                         os.writeObject(salesTot);
                         os.flush();
                         break;
@@ -398,7 +398,7 @@ public class ServerThread implements Runnable
                         if (os == null) {
                             os = new ObjectOutputStream(this.socket.getOutputStream());
                         }
-                        purchaseTot=ModelDBMS.listPurchaseDBMS();
+                        purchaseTot= listPurchaseDBMS();
                         os.writeObject(purchaseTot);
                         os.flush();
                         break;
@@ -507,6 +507,49 @@ public class ServerThread implements Runnable
                         os.writeObject(salesTot);
                         os.flush();
                         break;
+
+                    case "SignIdSale":
+                        if (os == null) {
+                            os = new ObjectOutputStream(this.socket.getOutputStream());
+                        }
+                        rs = "OK";
+                        o1 = (Object) rs;
+                        os.writeObject(o1);
+                        os.flush();
+                        int ids = (Integer) is.readObject();
+                        int result= ModelDBMS.signSales(ids);
+                        if (os == null) {
+                            os = new ObjectOutputStream(this.socket.getOutputStream());
+                        }
+                        if (result==1){
+                            rs = "Updated";
+                            o1 = (Object) rs;
+                            os.writeObject(o1);
+                            os.flush();
+                            break;
+                        }
+                    case "SignIdPurchase":
+                        if (os == null) {
+                            os = new ObjectOutputStream(this.socket.getOutputStream());
+                        }
+                        rs = "OK";
+                        o1 = (Object) rs;
+                        os.writeObject(o1);
+                        os.flush();
+                        int idp = (Integer) is.readObject();
+                        int resultp= ModelDBMS.signPurchase(idp);
+                        if (os == null) {
+                            os = new ObjectOutputStream(this.socket.getOutputStream());
+                        }
+                        if (resultp==1){
+                            rs = "Updated";
+                            o1 = (Object) rs;
+                            os.writeObject(o1);
+                            os.flush();
+                            break;
+                        }
+
+
                 }
 
             }

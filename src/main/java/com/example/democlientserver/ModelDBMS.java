@@ -558,7 +558,41 @@ public class ModelDBMS
         return null;
     }
 
+    public static int signSales(int idsale) {
+        try (Connection conn = DriverManager.getConnection(
+                DBURL  , LOGIN, PASSWORD);
+             Statement stmt = conn.createStatement();) {
 
+            String strSelect="UPDATE sale SET Signature = true WHERE SaleId = ?";
+
+            PreparedStatement pstmt = conn.prepareStatement(strSelect);
+            pstmt.setInt(1, idsale);
+            pstmt.addBatch();
+            pstmt.executeBatch();
+            System.out.println(strSelect);
+            return 1;
+            } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static int signPurchase(int idpurchase) {
+        try (Connection conn = DriverManager.getConnection(
+                DBURL  , LOGIN, PASSWORD);
+             Statement stmt = conn.createStatement();) {
+
+            String strSelect="UPDATE purchase SET Signature = true WHERE PurchaseId = ?";
+
+            PreparedStatement pstmt = conn.prepareStatement(strSelect);
+            pstmt.setInt(1, idpurchase);
+            pstmt.addBatch();
+            pstmt.executeBatch();
+            System.out.println(strSelect);
+            return 1;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
     public static void SqlSelectDemo(int value) //il parametro è l'opzione da eseguire
@@ -693,8 +727,5 @@ public class ModelDBMS
             e.printStackTrace();
         }
     }
-
-
-
 }
 

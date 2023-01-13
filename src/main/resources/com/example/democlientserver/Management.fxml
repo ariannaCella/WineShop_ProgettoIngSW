@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="1008.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.democlientserver.Management">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="1008.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.democlientserver.Management">
     <children>
         <TabPane prefHeight="596.0" prefWidth="1006.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
@@ -31,8 +24,8 @@
                                         <TableColumn fx:id="consegnatoPurchase" prefWidth="83.0" text="consegnatoPurchase" />
                                     </columns>
                                 </TableView>
-                                <TextField fx:id="txtIdPurchase" layoutX="560.0" layoutY="494.0" onAction="#textIdPurchase" prefHeight="25.0" prefWidth="173.0" promptText="Modifica per Id" />
-                                <Button fx:id="modifyIdPurchase" layoutX="751.0" layoutY="494.0" mnemonicParsing="false" onAction="#modifyIdPurchase" text="Modifica" />
+                                <TextField fx:id="txtIdPurchase" layoutX="560.0" layoutY="494.0" onAction="#textIdPurchase" prefHeight="25.0" prefWidth="173.0" promptText="Id dell'ordine da firmare" />
+                                <Button fx:id="modifyIdPurchase" layoutX="751.0" layoutY="494.0" mnemonicParsing="false" onAction="#modifyIdPurchase" text="Firma" />
                                 <Label fx:id="error1" layoutX="633.0" layoutY="528.0" />
                             </children>
                         </AnchorPane>
@@ -55,8 +48,8 @@
                                         <TableColumn fx:id="acceptedSale" prefWidth="75.0" text="consSale" />
                                     </columns>
                                 </TableView>
-                                <TextField fx:id="txtIdSale" layoutX="553.0" layoutY="491.0" onAction="#textIdSale" prefHeight="25.0" prefWidth="167.0" promptText="Modifica per Id" />
-                                <Button fx:id="modifyIdSale" layoutX="747.0" layoutY="491.0" mnemonicParsing="false" onAction="#modifyIdSale" text="Modifica" />
+                                <TextField fx:id="txtIdSale" layoutX="553.0" layoutY="491.0" onAction="#textIdSale" prefHeight="25.0" prefWidth="167.0" promptText="Id dell'ordine da firmare" />
+                                <Button fx:id="modifyIdSale" layoutX="747.0" layoutY="491.0" mnemonicParsing="false" onAction="#modifyIdSale" text="Firma" />
                                 <Label fx:id="error2" layoutX="623.0" layoutY="529.0" />
                             </children>
                         </AnchorPane>
