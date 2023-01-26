@@ -4,7 +4,9 @@ package com.example.democlientserver;
 
 import Actors.*;
 import RequestResponse.RequestChangePassword;
+import RequestResponse.RequestModifyWine;
 
+import java.math.BigInteger;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -463,17 +465,28 @@ public class ModelDBMS
 
 
 //per modificare il vino tramite id, funzione dell'impiegato
-    public static void modifyWine(int txtId) {
+    public static void modifyWine(int txtId, RequestModifyWine reqModifyWine) {
         try (Connection conn = DriverManager.getConnection(
                 DBURL , LOGIN, PASSWORD);
              Statement stmt = conn.createStatement();)
         {
+            if (reqModifyWine.getQuantity()!=0){
+                String strUpdate="UPDATE wine SET Quantity=Quantity+"+reqModifyWine.getQuantity()+ "WHERE WineId="+ txtId;
+                stmt.executeUpdate(strUpdate);
+            }
+            if (reqModifyWine.getPrice()!=0){
+                String strUpdate="UPDATE wine SET Price="+reqModifyWine.getPrice()+ "WHERE WineId="+ txtId;
+                stmt.executeUpdate(strUpdate);
+            }
+            if (reqModifyWine.getNote()!=null){
+                String strUpdate="UPDATE wine SET Notes="+reqModifyWine.getNote()+ "WHERE WineId="+ txtId;
+                stmt.executeUpdate(strUpdate);
+            }
+            if (reqModifyWine.getYear()!=0){
+                String strUpdate="UPDATE wine SET Year="+reqModifyWine.getYear()+ "WHERE WineId="+ txtId;
+                stmt.executeUpdate(strUpdate);
+            }
 
-            String strUpdate="UPDATE wine " +
-                    "SET NSales= (SELECT w.NSales+"+nSales+" FROM wine w WHERE w.WineId="+wineOrder.getWineId()+")"+
-                    ", Quality = (SELECT w.Quality+0.05*"+nSales+" FROM wine w WHERE w.WineId="+wineOrder.getWineId()+")"+
-                    "WHERE wine.WineId="+ txtId;
-            stmt.executeUpdate(strUpdate);
         }
         catch (SQLException e)
         {

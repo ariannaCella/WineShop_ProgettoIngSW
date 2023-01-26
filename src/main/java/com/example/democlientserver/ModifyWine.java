@@ -1,5 +1,6 @@
 package com.example.democlientserver;
 
+import RequestResponse.RequestModifyWine;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -65,10 +66,10 @@ public class ModifyWine {
     @FXML
     void modify(ActionEvent event) throws IOException, ClassNotFoundException  {
         String q=txtQuantity.getText();
-        int quantity=0, year=null;
-        double price = null;
+        int quantity=0, year= 0;
+        double price = 0;
         String y=txtyear.getText();
-        String n=txtNote.getText();
+        String note=txtNote.getText();
         String p = txtPriice.getText();
         os.writeObject("ModifyWineById");
         os.flush();
@@ -79,20 +80,29 @@ public class ModifyWine {
         }
         String o = (String) is.readObject();
         if(o.equals("OK")) {
-            if(quantity.isBlank()){
-                int quantity=Integer.parseInt(q);
+            if(!q.isBlank()){
+                quantity=Integer.parseInt(q); //se è compilato abbiamo il valore, altrimenti è 0
             }
-            if(quantity.isBlank()){ quantity=null;}
-            os.writeObject(txtId);
+            if(note.isBlank()){
+                note=null; //se è compilato abbiamo il valore, altrimenti è nullo
+            }
+            if(!p.isBlank()){
+                price=Double.parseDouble(p); //se è compilato abbiamo il valore, altrimenti è 0
+            }
+            if(!y.isBlank()){
+                year=Integer.parseInt(y); //se è compilato abbiamo il valore, altrimenti è 0
+            }
+            RequestModifyWine reqModifyWine= new RequestModifyWine(quantity,price,note,year);
+            os.writeObject(reqModifyWine);
             os.flush();
-            Parent rootEmployee = FXMLLoader.load(getClass().getResource("ModifyWine.fxml"));
-            Stage stageEmployee = new Stage();
-            stageEmployee.setTitle("Modify Wine");
-            stageEmployee.setScene(new Scene(rootEmployee, 600, 401));
-            stageEmployee.setResizable(false);
-            stageEmployee.show();
-            Stage thisStageEmployee = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            thisStageEmployee.hide();
+            Parent root = FXMLLoader.load(getClass().getResource("Management.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Management");
+            stage.setScene(new Scene(root, 1008, 665));
+            stage.setResizable(false);
+            stage.show();
+            Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            thisStage.hide();
         }
 
     }
