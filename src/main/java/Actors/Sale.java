@@ -11,10 +11,10 @@ public class Sale implements Serializable {
     private double price;
     private java.sql.Date d; //contiene la data corrente
 
-    public Sale(int saleId, int wineId, int nBottles, boolean signature, boolean accepted, String fiscalCode, String address, double price, java.sql.Date d) {
+    public Sale(int saleId, int wineId, int nBott, boolean signature, boolean accepted, String fiscalCode, String address, double price, java.sql.Date d) {
         this.saleId = saleId;
         this.wineId = wineId;
-        this.nBottles = nBottles;
+        this.nBottles = nBott;
         this.signature = signature;
         this.accepted = accepted;
         this.fiscalCode = fiscalCode;

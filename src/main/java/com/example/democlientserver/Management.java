@@ -383,7 +383,7 @@ public class Management implements Initializable{
             idWineSale.setCellValueFactory(new PropertyValueFactory<Sale,Integer>("wineId"));
             nBottlesSale.setCellValueFactory(new PropertyValueFactory<Sale,Integer>("nBottles"));
             priceSale.setCellValueFactory(new PropertyValueFactory<Sale,Float>("price"));
-            dateSale.setCellValueFactory(new PropertyValueFactory<Sale, Date>("date"));
+            dateSale.setCellValueFactory(new PropertyValueFactory<Sale, Date>("d"));
             signSale.setCellValueFactory(new PropertyValueFactory<Sale,Boolean>("signature"));
             acceptedSale.setCellValueFactory(new PropertyValueFactory<Sale,Boolean>("accepted"));
             tabSale.setItems(obsSale);
