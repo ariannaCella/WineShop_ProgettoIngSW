@@ -380,6 +380,35 @@ public class ModelDBMS
         return null;
     }
 
+    public static ArrayList<Purchase> listPurchaseClientDBMS(String cf) {
+        try (Connection conn = DriverManager.getConnection(
+                DBURL  , LOGIN, PASSWORD);
+             Statement stmt = conn.createStatement();) {
+
+            String strSelect="SELECT  p.Address, p.WineId, p.Nbottles, p.Price, p.Signature, p.Accepted " +
+                    "FROM purchase AS p WHERE p.FiscClient = "+cf+" ";
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            ArrayList<Purchase> arrayPurchase = new ArrayList<Purchase>();
+            while (rset.next()) {
+                String addr = rset.getString("Address");
+                int wid = rset.getInt("WineId");
+                int nbott = rset.getInt("Nbottles");
+                float price = rset.getFloat("Price");
+                boolean sign=rset.getBoolean("Signature");
+                boolean acc=rset.getBoolean("Accepted");
+                Purchase s= new Purchase(addr,wid,nbott,price,sign,acc);
+                arrayPurchase.add(s);
+                System.out.println(s.infoPurchase());
+            }
+            return arrayPurchase;
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 
     public static ArrayList<Client> listClientDBMS() {
@@ -434,7 +463,22 @@ public class ModelDBMS
 
 
 //per modificare il vino tramite id, funzione dell'impiegato
-    public static void modifyWine(String txtId) {
+    public static void modifyWine(int txtId) {
+        try (Connection conn = DriverManager.getConnection(
+                DBURL , LOGIN, PASSWORD);
+             Statement stmt = conn.createStatement();)
+        {
+
+            String strUpdate="UPDATE wine " +
+                    "SET NSales= (SELECT w.NSales+"+nSales+" FROM wine w WHERE w.WineId="+wineOrder.getWineId()+")"+
+                    ", Quality = (SELECT w.Quality+0.05*"+nSales+" FROM wine w WHERE w.WineId="+wineOrder.getWineId()+")"+
+                    "WHERE wine.WineId="+ txtId;
+            stmt.executeUpdate(strUpdate);
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public static void addSales(int nSales, Wine wineOrder) {

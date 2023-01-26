@@ -320,9 +320,9 @@ public class HomeClient implements Initializable {
 
 
     public void proposalPurchaseView(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("PurchaseProposal.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ViewProposalPurchase.fxml"));
         Stage stage = new Stage();
-        stage.setTitle("Login ONLINE WINE SHOP");
+        stage.setTitle("Purchases");
         stage.setScene(new Scene(root, 500, 400));
         stage.setResizable(false);
         stage.show();

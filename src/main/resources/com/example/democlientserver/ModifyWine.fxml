@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.democlientserver.ModifyWine">
+   <children>
+      <Label layoutX="54.0" layoutY="41.0" text="Modifica dati Vino">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtNote" layoutX="56.0" layoutY="119.0" promptText="Note" />
+      <TextField fx:id="txtyear" layoutX="56.0" layoutY="167.0" promptText="Annata" />
+      <TextField fx:id="txtQuantity" layoutX="56.0" layoutY="218.0" promptText="Quantità" />
+      <TextField fx:id="txtPriice" layoutX="56.0" layoutY="270.0" promptText="Prezzo" />
+      <CheckBox fx:id="okNote" layoutX="234.0" layoutY="123.0" mnemonicParsing="false" onAction="#okNote" />
+      <CheckBox fx:id="okYear" layoutX="234.0" layoutY="171.0" mnemonicParsing="false" onAction="#okYear" />
+      <CheckBox fx:id="okQuantity" layoutX="234.0" layoutY="222.0" mnemonicParsing="false" onAction="#okQuantity" />
+      <CheckBox fx:id="okPrice" layoutX="234.0" layoutY="274.0" mnemonicParsing="false" onAction="#okPrice" />
+      <Button fx:id="modify" layoutX="355.0" layoutY="336.0" mnemonicParsing="false" onAction="#modify" text="Conferma Modifiche" />
+      <Button fx:id="back" layoutX="480.0" layoutY="43.0" mnemonicParsing="false" onAction="#back" text="Gestione" />
+   </children>
+</Pane>

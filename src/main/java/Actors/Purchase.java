@@ -30,6 +30,15 @@ public class Purchase implements Serializable {
         this.accepted=acc;
     }
 
+    public Purchase( String addr, int wid, int nbott, float price, boolean sign, boolean acc) {
+        this.address=addr;
+        this.wineId=wid;
+        this.nBottles=nbott;
+        this.price=price;
+        this.signature=sign;
+        this.accepted=acc;
+    }
+
     public String infoPurchase(){
         return "Id:"+purchaseId +"\nCodice Fiscale fornitore: "+ fiscalCode +"\nCodice Fiscale cliente:"+fiscClient+"  indirizzo:"+address+"\nwineId:"+wineId+", numero bottiglie:"+nBottles+"Prezzo di vendita:"+price+"$\n\npresa visione impiegato:"+signature+"\nconsegnato:"+accepted+"\n";
     }

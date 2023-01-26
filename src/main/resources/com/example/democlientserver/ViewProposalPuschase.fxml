@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="565.0" prefWidth="893.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.democlientserver.ViewProposalPurchase">
+   <children>
+      <TableView fx:id="tabPurchase" layoutX="45.0" layoutY="154.0" prefHeight="324.0" prefWidth="803.0">
+         <columns>
+            <TableColumn fx:id="address" prefWidth="146.0" text="address" />
+            <TableColumn fx:id="id" minWidth="0.0" prefWidth="98.0" text="id" />
+            <TableColumn fx:id="nBottles" prefWidth="84.0" text="nBottles" />
+            <TableColumn fx:id="price" prefWidth="121.0" text="price" />
+            <TableColumn fx:id="signature" prefWidth="194.0" text="signature" />
+            <TableColumn fx:id="delivered" prefWidth="159.0" text="delivered" />
+         </columns>
+      </TableView>
+      <Label layoutX="266.0" layoutY="72.0" text="Le tue proposte di acquisto">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Button fx:id="goHome" layoutX="45.0" layoutY="40.0" mnemonicParsing="false" onAction="#goHome" text="HOME" />
+   </children>
+</AnchorPane>

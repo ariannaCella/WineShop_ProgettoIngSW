@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="584.0" prefWidth="934.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.democlientserver.HomeShipper">
+   <children>
+      <TableView fx:id="tabSale" layoutX="67.0" layoutY="146.0" prefHeight="293.0" prefWidth="810.0">
+         <columns>
+            <TableColumn fx:id="id" prefWidth="51.0" text="id" />
+            <TableColumn fx:id="address" prefWidth="192.0" text="address" />
+            <TableColumn fx:id="idWine" prefWidth="79.0" text="idWine" />
+            <TableColumn fx:id="nBottles" prefWidth="67.0" text="nBottles" />
+            <TableColumn fx:id="price" prefWidth="109.0" text="price" />
+            <TableColumn fx:id="date" prefWidth="120.0" text="date" />
+            <TableColumn fx:id="signature" prefWidth="100.0" text="signature" />
+            <TableColumn fx:id="delivered" prefWidth="91.0" text="delivered" />
+         </columns>
+      </TableView>
+      <TextField fx:id="txtIdSale" layoutX="621.0" layoutY="466.0" onAction="#textIdSale" prefHeight="25.0" prefWidth="167.0" promptText="Id dell'ordine consegnato" />
+      <Button fx:id="okDelivered" layoutX="809.0" layoutY="466.0" mnemonicParsing="false" onAction="#okDelivered" text="Conferma" />
+      <Label layoutX="377.0" layoutY="67.0" prefHeight="25.0" prefWidth="180.0" text="CONSEGNARE!">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

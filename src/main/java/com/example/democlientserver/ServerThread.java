@@ -8,8 +8,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static com.example.democlientserver.ModelDBMS.listPurchaseDBMS;
-import static com.example.democlientserver.ModelDBMS.listSaleDBMS;
+import static com.example.democlientserver.ModelDBMS.*;
 
 /**
  *
@@ -403,6 +402,16 @@ public class ServerThread implements Runnable
                         os.flush();
                         break;
 
+                    case "getListPurchaseClient":
+                        if (os == null) {
+                            os = new ObjectOutputStream(this.socket.getOutputStream());
+                        }
+                        String cfclient=connectedClient.getFiscalCode();
+                        purchaseTot=listPurchaseClientDBMS(cfclient);
+                        os.writeObject(purchaseTot);
+                        os.flush();
+                        break;
+
                     case "modifyWine":
                         if (os == null) {
                             os = new ObjectOutputStream(this.socket.getOutputStream());
@@ -411,8 +420,19 @@ public class ServerThread implements Runnable
                         o1 = (Object) rs;
                         os.writeObject(o1);
                         os.flush();
-                        String txtId=(String) is.readObject();
-                        ModelDBMS.modifyWine(txtId);
+                        wineIdModify=(Integer) is.readObject();
+                       // ModelDBMS.modifyWine(txtId);
+
+                    case "ModifyWineById":
+                        if (os == null) {
+                            os = new ObjectOutputStream(this.socket.getOutputStream());
+                        }
+                        rs = "OK";
+                        o1 = (Object) rs;
+                        os.writeObject(o1);
+                        os.flush();
+                        wineIdModify=(Integer) is.readObject();
+                        // ModelDBMS.modifyWine(txtId);
 
                     case "searchWineId":
                         if (os == null) {
