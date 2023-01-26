@@ -89,14 +89,6 @@ public class Login {
                         thisStageClient.hide();
                         break;
                     case "employee":
-                        //if dipendente
-                        /*if (is == null) {
-                            is = new ObjectInputStream(new BufferedInputStream(
-                                    client.getInputStream()));
-                        }
-
-                        message = (String) is.readObject();
-                        if(message.equals("Employee")) {*/
                             Parent rootEmployee = FXMLLoader.load(getClass().getResource("HomeEmployee.fxml"));
                             Stage stageEmployee = new Stage();
                             stageEmployee.setTitle("Home Employee");
@@ -104,8 +96,8 @@ public class Login {
                             stageEmployee.setResizable(false);
                             stageEmployee.show();
                             Stage thisStageEmployee = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                            thisStageEmployee.hide();/*
-                        }
+                            thisStageEmployee.hide();
+                        /*
                         else if(message.equals("Administrator")){
                             Parent rootEmployee = FXMLLoader.load(getClass().getResource("HomeAdministrator.fxml"));
                             Stage stageEmployee = new Stage();
@@ -117,13 +109,26 @@ public class Login {
                             thisStageEmployee.hide();
                         }*/
                         break;
-                    /*
-                    case "supplier":
-                        Parent root = FXMLLoader.load(getClass().getResource("HomeSupplier.fxml"));
-                        break;
                     case "shipper":
                         Parent root = FXMLLoader.load(getClass().getResource("HomeShipper.fxml"));
-                        break; */
+                        Stage stageShipper = new Stage();
+                        stageShipper.setTitle("Home Shipper");
+                        stageShipper.setScene(new Scene(root, 934, 584));
+                        stageShipper.setResizable(false);
+                        stageShipper.show();
+                        Stage thisStageShipper = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        thisStageShipper.hide();
+                        break;
+                    case "supplier":
+                        Parent rootSupplier = FXMLLoader.load(getClass().getResource("HomeSupplier.fxml"));
+                        Stage stageSupplier = new Stage();
+                        stageSupplier.setTitle("Home Supplier");
+                        stageSupplier.setScene(new Scene(rootSupplier, 600, 400));
+                        stageSupplier.setResizable(false);
+                        stageSupplier.show();
+                        Stage thisStageSupplier = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        thisStageSupplier.hide();
+                        break;
                 }
             }
         }

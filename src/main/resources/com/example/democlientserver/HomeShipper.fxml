@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="584.0" prefWidth="934.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.democlientserver.HomeShipper">
+<AnchorPane fx:id="error" prefHeight="584.0" prefWidth="934.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.democlientserver.HomeShipper">
    <children>
       <TableView fx:id="tabSale" layoutX="67.0" layoutY="146.0" prefHeight="293.0" prefWidth="810.0">
          <columns>
@@ -30,5 +30,7 @@
             <Font size="26.0" />
          </font>
       </Label>
+      <Button fx:id="logout" layoutX="74.0" layoutY="55.0" mnemonicParsing="false" onAction="#logout" text="LOGOUT" />
+      <Label fx:id="error" alignment="CENTER" layoutX="621.0" layoutY="499.0" prefHeight="17.0" prefWidth="167.0" text="Inserire Id prima di confermare" textFill="#eb0a0a" visible="false" />
    </children>
 </AnchorPane>

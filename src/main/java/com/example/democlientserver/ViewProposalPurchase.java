@@ -86,12 +86,12 @@ public class ViewProposalPurchase implements Initializable {
                 obsPurchase.add(temp);}
 
 
-            address.setCellValueFactory(new PropertyValueFactory<Purchase,String>("address"));
-            id.setCellValueFactory(new PropertyValueFactory<Purchase,Integer>("id"));
-            nBottles.setCellValueFactory(new PropertyValueFactory<Purchase,Integer>("nBottles"));
-            price.setCellValueFactory(new PropertyValueFactory<Purchase,Float>("price"));
-            signature.setCellValueFactory(new PropertyValueFactory<Purchase,Boolean>("signature"));
-            delivered.setCellValueFactory(new PropertyValueFactory<Purchase,Boolean>("accepted"));
+            address.setCellValueFactory(new PropertyValueFactory<Purchase,String>("Address"));
+            id.setCellValueFactory(new PropertyValueFactory<Purchase,Integer>("WineId"));
+            nBottles.setCellValueFactory(new PropertyValueFactory<Purchase,Integer>("Nbottles"));
+            price.setCellValueFactory(new PropertyValueFactory<Purchase,Float>("Price"));
+            signature.setCellValueFactory(new PropertyValueFactory<Purchase,Boolean>("Signature"));
+            delivered.setCellValueFactory(new PropertyValueFactory<Purchase,Boolean>("Accepted"));
 
             tabPurchase.setItems(obsPurchase);
 

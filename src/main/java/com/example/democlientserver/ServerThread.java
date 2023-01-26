@@ -385,6 +385,15 @@ public class ServerThread implements Runnable
                         os.flush();
                         break;
 
+                    case "getListSalesShipper":
+                        if (os == null) {
+                            os = new ObjectOutputStream(this.socket.getOutputStream());
+                        }
+                        salesTot= listSaleShipperDBMS();
+                        os.writeObject(salesTot);
+                        os.flush();
+                        break;
+
                     case "getListClient":
                         if (os == null) {
                             os = new ObjectOutputStream(this.socket.getOutputStream());
@@ -408,8 +417,9 @@ public class ServerThread implements Runnable
                             os = new ObjectOutputStream(this.socket.getOutputStream());
                         }
                         String cfclient=connectedClient.getFiscalCode();
-                        purchaseTot=listPurchaseClientDBMS(cfclient);
-                        os.writeObject(purchaseTot);
+                        System.out.println(cfclient+"\n");
+                        ArrayList<Purchase> purchaseT = listPurchaseClientDBMS(cfclient);
+                        os.writeObject(purchaseT);
                         os.flush();
                         break;
 

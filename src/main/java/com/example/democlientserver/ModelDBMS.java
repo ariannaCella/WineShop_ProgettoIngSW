@@ -19,6 +19,7 @@ public class ModelDBMS
     private static final String PASSWORD = "";
 
 
+
     //dato l'utente restituisce la sua password
     public static String returnPassword(String user,String table){
         try (Connection conn = DriverManager.getConnection(
@@ -97,7 +98,7 @@ public class ModelDBMS
         try (Connection conn = DriverManager.getConnection(
                 DBURL  , LOGIN, PASSWORD);
              Statement stmt = conn.createStatement();) {
-            String strSelect= "select * from "+table + " where u.Username='"+ username+ "' and u.Password='"+password+"'";
+            String strSelect= "select * from "+table + "AS u where u.Username='"+username+ "' and u.Password='"+password+"'";
             ResultSet rset = stmt.executeQuery(strSelect);
             rset.next();
             String name = rset.getString("Name");
@@ -349,6 +350,38 @@ public class ModelDBMS
         return null;
     }
 
+    public static ArrayList<Sale> listSaleShipperDBMS() {
+        try (Connection conn = DriverManager.getConnection(
+                DBURL  , LOGIN, PASSWORD);
+             Statement stmt = conn.createStatement();) {
+
+            String strSelect="SELECT s.SaleId, s.Address, s.WineId, s.Nbottles, s.Price, s.Date, s.Signature, s.Accepted " +
+                    "FROM sale AS s ";
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            ArrayList<Sale> arraySale = new ArrayList<Sale>();
+            while (rset.next()) {
+                int saleId = rset.getInt("SaleId");
+                String addr = rset.getString("Address");
+                int wid = rset.getInt("WineId");
+                int nbott = rset.getInt("Nbottles");
+                double price = rset.getDouble("Price");
+                Date date= rset.getDate("Date");
+                boolean sign=rset.getBoolean("Signature");
+                boolean acc=rset.getBoolean("Accepted");
+                Sale s= new Sale(saleId,addr,wid,nbott,price,date,sign,acc);
+                arraySale.add(s);
+                System.out.println(s.infoSale());
+            }
+            return arraySale;
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static ArrayList<Purchase> listPurchaseDBMS() {
         try (Connection conn = DriverManager.getConnection(
                 DBURL  , LOGIN, PASSWORD);
@@ -387,8 +420,8 @@ public class ModelDBMS
                 DBURL  , LOGIN, PASSWORD);
              Statement stmt = conn.createStatement();) {
 
-            String strSelect="SELECT  p.Address, p.WineId, p.Nbottles, p.Price, p.Signature, p.Accepted " +
-                    "FROM purchase AS p WHERE p.FiscClient = "+cf+" ";
+            String strSelect="SELECT p.Address, p.WineId, p.Nbottles, p.Price, p.Signature, p.Accepted " +
+                    "FROM purchase AS p WHERE p.FiscClient = '"+cf+"' ";
             ResultSet rset = stmt.executeQuery(strSelect);
 
             ArrayList<Purchase> arrayPurchase = new ArrayList<Purchase>();
@@ -400,8 +433,9 @@ public class ModelDBMS
                 boolean sign=rset.getBoolean("Signature");
                 boolean acc=rset.getBoolean("Accepted");
                 Purchase s= new Purchase(addr,wid,nbott,price,sign,acc);
-                arrayPurchase.add(s);
                 System.out.println(s.infoPurchase());
+                arrayPurchase.add(s);
+
             }
             return arrayPurchase;
         }

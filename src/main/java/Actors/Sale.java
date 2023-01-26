@@ -49,6 +49,18 @@ public class Sale implements Serializable {
         this.price = priceOrder;
     }
 
+
+    public Sale(int saleId, String addr, int wid, int nbott, double price, java.sql.Date date, boolean sign, boolean acc) {
+        this.saleId = saleId;
+        this.address = addr;
+        this.wineId = wid;
+        this.nBottles = nbott;
+        this.price = price;
+        this.d=date;
+        this.signature = sign;
+        this.accepted = acc;
+    }
+
     public String infoSale() {
         return "Id:" + saleId + "\nCodice Fiscale: " + fiscalCode + "  indirizzo:" + address + "\nwineId:" + wineId + ", numero bottiglie:" + nBottles + "Prezzo di vendita:" + price + "$\nData: "+d+"\npresa visione impiegato:" + signature + "\nconsegnato:" + accepted + "\n";
     }
