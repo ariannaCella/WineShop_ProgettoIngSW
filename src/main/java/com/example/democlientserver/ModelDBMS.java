@@ -72,7 +72,7 @@ public class ModelDBMS
         try (Connection conn = DriverManager.getConnection(
                 DBURL  , LOGIN, PASSWORD);
              Statement stmt = conn.createStatement();) {
-            String strSelect= "select * from "+table + " where u.Username='"+ username+ "' and u.Password='"+password+"'";
+            String strSelect= "select * from "+table + " AS u where u.Username='"+ username+ "' and u.Password='"+password+"'";
             ResultSet rset = stmt.executeQuery(strSelect);
             rset.next();
             String name = rset.getString("Name");
@@ -81,10 +81,10 @@ public class ModelDBMS
             String email = rset.getString("Email");
             int phone = Integer.parseInt(rset.getString("Phone"));
             String address = rset.getString("Address");
-            int admin = Integer.parseInt(rset.getString("Admin"));
+            //int admin = Integer.parseInt(rset.getString("Admin"));
             String user = rset.getString("Username");
             String psw = rset.getString("Password");
-            Supplier c=new Supplier(name,surname,fc,email,phone,address,admin,user,psw);
+            Supplier c=new Supplier(name,surname,fc,email,phone,address,0,user,psw);
             return c;
         }
         catch (SQLException e)
@@ -414,6 +414,36 @@ public class ModelDBMS
         }
         return null;
     }
+    public static ArrayList<Purchase> listPurchaseSupplierDBMS(String fc) {
+        try (Connection conn = DriverManager.getConnection(
+                DBURL  , LOGIN, PASSWORD);
+             Statement stmt = conn.createStatement();) {
+
+            String strSelect="SELECT p.PurchaseId, p.WineId, p.Nbottles, p.Price, p.Signature, p.Accepted " +
+                    "FROM purchase AS p WHERE p.FiscalCode = '"+fc+"' AND p.Signature=1";
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            ArrayList<Purchase> arrayPurchase = new ArrayList<Purchase>();
+            while (rset.next()) {
+                int purchId = rset.getInt("PurchaseId");
+                int wid = rset.getInt("WineId");
+                int nbott = rset.getInt("Nbottles");
+                float price = rset.getFloat("Price");
+                boolean sign=rset.getBoolean("Signature");
+                boolean acc=rset.getBoolean("Accepted");
+                Purchase s= new Purchase(purchId,wid,nbott,price,sign,acc);
+
+                arrayPurchase.add(s);
+                System.out.println(s.infoPurchase());
+            }
+            return arrayPurchase;
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public static ArrayList<Purchase> listPurchaseClientDBMS(String cf) {
         try (Connection conn = DriverManager.getConnection(
@@ -692,6 +722,23 @@ public class ModelDBMS
 
             String strSelect="UPDATE purchase SET Signature = true WHERE PurchaseId = ?";
 
+            PreparedStatement pstmt = conn.prepareStatement(strSelect);
+            pstmt.setInt(1, idpurchase);
+            pstmt.addBatch();
+            pstmt.executeBatch();
+            System.out.println(strSelect);
+            return 1;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static int acceptPurchase(int idpurchase) {
+        try (Connection conn = DriverManager.getConnection(
+                DBURL  , LOGIN, PASSWORD);
+             Statement stmt = conn.createStatement();) {
+
+            String strSelect="UPDATE purchase SET Accepted = true WHERE PurchaseId = ?";
             PreparedStatement pstmt = conn.prepareStatement(strSelect);
             pstmt.setInt(1, idpurchase);
             pstmt.addBatch();

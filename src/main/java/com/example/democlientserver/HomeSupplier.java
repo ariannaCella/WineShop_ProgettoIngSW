@@ -32,6 +32,7 @@ import java.util.ResourceBundle;
 import static com.example.democlientserver.HelloApplication.*;
 import static com.example.democlientserver.HelloApplication.is;
 import static com.example.democlientserver.ModelDBMS.listWineDBMS;
+import static java.lang.Integer.parseInt;
 
 public class HomeSupplier implements Initializable {
 
@@ -80,8 +81,41 @@ public class HomeSupplier implements Initializable {
         thisStage.hide();
     }
     @FXML
-    void consegna(ActionEvent event) {
-
+    void consegna(ActionEvent event) throws IOException, ClassNotFoundException {
+        String txt1=txtId.getText();
+        int idpurchase=parseInt(txt1);
+        if(txt1.isBlank()){
+            error.setVisible(true);
+            error.setText("Compilare campo id");
+            return;
+        }
+        os.writeObject("AcceptIdPurchase");
+        os.flush();
+        if (is == null)
+        {
+            is = new ObjectInputStream(new BufferedInputStream(
+                    client.getInputStream()));
+        }
+        String o = (String) is.readObject();
+        if(o.equals("OK")) {
+            os.writeObject(idpurchase);
+            os.flush();
+            if (is == null) {
+                is = new ObjectInputStream(new BufferedInputStream(
+                        client.getInputStream()));
+            }
+            String message = (String) is.readObject();
+            if (message.equals("Updated")) {
+                Parent root = FXMLLoader.load(getClass().getResource("HomeSupplier.fxml"));
+                Stage stage = new Stage();
+                stage.setTitle("Management");
+                stage.setScene(new Scene(root, 1008, 665));
+                stage.setResizable(false);
+                stage.show();
+                Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                thisStage.hide();
+            }
+        }
     }
     ArrayList<Purchase> purchases=new ArrayList<>();
     ObservableList<Purchase> obsPurchase= FXCollections.observableArrayList();
@@ -89,7 +123,7 @@ public class HomeSupplier implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
 
-            os.writeObject("getListPurchase");
+            os.writeObject("getListPurchaseSupplier");
             os.flush();
             if (is == null)
             {

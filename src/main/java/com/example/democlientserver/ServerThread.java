@@ -412,6 +412,16 @@ public class ServerThread implements Runnable
                         os.flush();
                         break;
 
+                    case "getListPurchaseSupplier":
+                        if (os == null) {
+                            os = new ObjectOutputStream(this.socket.getOutputStream());
+                        }
+                        String fc= connectedSupplier.getFiscalCode();
+                        purchaseTot= listPurchaseSupplierDBMS(fc);
+                        os.writeObject(purchaseTot);
+                        os.flush();
+                        break;
+
                     case "getListPurchaseClient":
                         if (os == null) {
                             os = new ObjectOutputStream(this.socket.getOutputStream());
@@ -595,6 +605,27 @@ public class ServerThread implements Runnable
                             os = new ObjectOutputStream(this.socket.getOutputStream());
                         }
                         if (resultp==1){
+                            rs = "Updated";
+                            o1 = (Object) rs;
+                            os.writeObject(o1);
+                            os.flush();
+                            break;
+                        }
+
+                    case "AcceptIdPurchase":
+                        if (os == null) {
+                            os = new ObjectOutputStream(this.socket.getOutputStream());
+                        }
+                        rs = "OK";
+                        o1 = (Object) rs;
+                        os.writeObject(o1);
+                        os.flush();
+                        int idps = (Integer) is.readObject();
+                        int resultps= ModelDBMS.acceptPurchase(idps);
+                        if (os == null) {
+                            os = new ObjectOutputStream(this.socket.getOutputStream());
+                        }
+                        if (resultps==1){
                             rs = "Updated";
                             o1 = (Object) rs;
                             os.writeObject(o1);

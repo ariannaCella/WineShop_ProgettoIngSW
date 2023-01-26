@@ -25,7 +25,11 @@ import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
+/*
+* C:\Users\Elena\Desktop\VinoDefinitiva\ProgettoPoggi\src\main\resources\com\example\democlientserver\
+*
+*
+* */
 public class HomeClient implements Initializable {
 
     @FXML
@@ -125,7 +129,7 @@ public class HomeClient implements Initializable {
                 forShop.get(i).setVisible(true);
                 InputStream stream = null;
                 try {
-                    stream = new FileInputStream("C:\\Users\\huawei\\eclipse-workspace\\ele\\demoClient-server\\src\\main\\resources\\com\\example\\democlientserver\\"+winesPromo.get(i).getImgWine());
+                    stream = new FileInputStream("C:\\Users\\Elena\\Desktop\\VinoDefinitiva\\ProgettoPoggi\\src\\main\\resources\\com\\example\\democlientserver\\"+winesPromo.get(i).getImgWine());
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);
                 }
