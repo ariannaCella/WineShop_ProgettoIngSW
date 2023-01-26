@@ -98,7 +98,7 @@ public class ModelDBMS
         try (Connection conn = DriverManager.getConnection(
                 DBURL  , LOGIN, PASSWORD);
              Statement stmt = conn.createStatement();) {
-            String strSelect= "select * from "+table + "AS u where u.Username='"+username+ "' and u.Password='"+password+"'";
+            String strSelect= "select * from "+table + " AS u where u.Username='"+username+ "' and u.Password='"+password+"'";
             ResultSet rset = stmt.executeQuery(strSelect);
             rset.next();
             String name = rset.getString("Name");
@@ -107,10 +107,10 @@ public class ModelDBMS
             String email = rset.getString("Email");
             int phone = Integer.parseInt(rset.getString("Phone"));
             String address = rset.getString("Address");
-            int admin = Integer.parseInt(rset.getString("Admin"));
+            //int admin = Integer.parseInt(rset.getString("Admin"));
             String user = rset.getString("Username");
             String psw = rset.getString("Password");
-            Shipper c=new Shipper(name,surname,fc,email,phone,address,admin,user,psw);
+            Shipper c=new Shipper(name,surname,fc,email,phone,address,0,user,psw);
             return c;
         }
         catch (SQLException e)
@@ -663,6 +663,24 @@ public class ModelDBMS
             System.out.println(strSelect);
             return 1;
             } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static int acceptSales(int idsale) {
+        try (Connection conn = DriverManager.getConnection(
+                DBURL  , LOGIN, PASSWORD);
+             Statement stmt = conn.createStatement();) {
+
+            String strSelect="UPDATE sale SET Accepted = true WHERE SaleId = ?";
+
+            PreparedStatement pstmt = conn.prepareStatement(strSelect);
+            pstmt.setInt(1, idsale);
+            pstmt.addBatch();
+            pstmt.executeBatch();
+            System.out.println(strSelect);
+            return 1;
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }

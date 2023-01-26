@@ -83,15 +83,15 @@ public class HomeShipper implements Initializable {
     }
 
     @FXML
-    void okDelivered(ActionEvent event) {
+    void okDelivered(ActionEvent event) throws IOException, ClassNotFoundException {
         String txt1=txtIdSale.getText();
         int idsale=parseInt(txt1);
         if(txt1.isBlank()){
             error.setVisible(true);
-            error.setText("Compilare campo id");
+            //error.setText("Compilare campo id");
             return;
         }
-        os.writeObject("SignIdSale");
+        os.writeObject("AcceptIdSale");
         os.flush();
         if (is == null)
         {
@@ -108,10 +108,10 @@ public class HomeShipper implements Initializable {
             }
             String message = (String) is.readObject();
             if (message.equals("Updated")) {
-                Parent root = FXMLLoader.load(getClass().getResource("Management.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("HomeShipper.fxml"));
                 Stage stage = new Stage();
-                stage.setTitle("Management");
-                stage.setScene(new Scene(root, 1008, 665));
+                stage.setTitle("Shipper");
+                stage.setScene(new Scene(root, 934, 584));
                 stage.setResizable(false);
                 stage.show();
                 Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();

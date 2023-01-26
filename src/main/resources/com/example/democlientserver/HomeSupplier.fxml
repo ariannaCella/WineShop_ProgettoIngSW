@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="560.0" prefWidth="841.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.democlientserver.HomeSupplier">
+   <children>
+      <TableView fx:id="tabPurchase" layoutX="113.0" layoutY="128.0" prefHeight="305.0" prefWidth="621.0">
+         <columns>
+            <TableColumn fx:id="id" prefWidth="46.0" text="id" />
+            <TableColumn fx:id="idWine" minWidth="0.0" prefWidth="105.0" text="idWine" />
+            <TableColumn fx:id="nBottles" prefWidth="114.0" text="nBottles" />
+            <TableColumn fx:id="price" prefWidth="109.0" text="price" />
+            <TableColumn fx:id="signature" prefWidth="120.0" text="signature" />
+            <TableColumn fx:id="accepted" prefWidth="124.0" text="accepted" />
+         </columns>
+      </TableView>
+      <Button fx:id="consegna" layoutX="667.0" layoutY="462.0" mnemonicParsing="false" onAction="#consegna" text="consegna" />
+      <TextField fx:id="txtId" layoutX="496.0" layoutY="462.0" promptText="Inserire Id" />
+      <Label fx:id="error" layoutX="489.0" layoutY="496.0" text="Inserire Id prima di confermare" textFill="#e40d0d" visible="false" />
+      <Label layoutX="291.0" layoutY="69.0" text="Home Page Fornitore">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+      <Button fx:id="LogOut" layoutX="48.0" layoutY="44.0" mnemonicParsing="false" onAction="#LogOut" text="LOGOUT" />
+   </children>
+</AnchorPane>

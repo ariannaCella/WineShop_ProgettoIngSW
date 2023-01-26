@@ -123,7 +123,7 @@ public class Login {
                         Parent rootSupplier = FXMLLoader.load(getClass().getResource("HomeSupplier.fxml"));
                         Stage stageSupplier = new Stage();
                         stageSupplier.setTitle("Home Supplier");
-                        stageSupplier.setScene(new Scene(rootSupplier, 600, 400));
+                        stageSupplier.setScene(new Scene(rootSupplier, 841, 560));
                         stageSupplier.setResizable(false);
                         stageSupplier.show();
                         Stage thisStageSupplier = (Stage) ((Node) event.getSource()).getScene().getWindow();

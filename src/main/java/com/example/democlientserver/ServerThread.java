@@ -560,6 +560,27 @@ public class ServerThread implements Runnable
                             os.flush();
                             break;
                         }
+
+                    case "AcceptIdSale":
+                        if (os == null) {
+                            os = new ObjectOutputStream(this.socket.getOutputStream());
+                        }
+                        rs = "OK";
+                        o1 = (Object) rs;
+                        os.writeObject(o1);
+                        os.flush();
+                        int idas = (Integer) is.readObject();
+                        int results= ModelDBMS.acceptSales(idas);
+                        if (os == null) {
+                            os = new ObjectOutputStream(this.socket.getOutputStream());
+                        }
+                        if (results==1){
+                            rs = "Updated";
+                            o1 = (Object) rs;
+                            os.writeObject(o1);
+                            os.flush();
+                            break;
+                        }
                     case "SignIdPurchase":
                         if (os == null) {
                             os = new ObjectOutputStream(this.socket.getOutputStream());

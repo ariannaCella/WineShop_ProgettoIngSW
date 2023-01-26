@@ -29,6 +29,14 @@ public class Purchase implements Serializable {
         this.signature=sign;
         this.accepted=acc;
     }
+    public Purchase(int purchaseId,  int wid, int nbott, float price, boolean sign, boolean acc) {
+        this.purchaseId=purchaseId;
+        this.wineId=wid;
+        this.nBottles=nbott;
+        this.price=price;
+        this.signature=sign;
+        this.accepted=acc;
+    }
 
     public Purchase( String addr, int wid, int nbott, float price, boolean sign, boolean acc) {
         this.address=addr;
