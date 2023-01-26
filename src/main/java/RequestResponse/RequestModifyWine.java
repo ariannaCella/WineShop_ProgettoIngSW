@@ -3,32 +3,31 @@ package RequestResponse;
 import java.io.Serializable;
 
 public class RequestModifyWine  implements Serializable {
-
+    private static final long serialVersionUID = 1L;
     private final String note;
-    private final int quantity,year;
-    private final double price;
+    private final String quantity, year;
+    private final String price;
 
-    public RequestModifyWine(final int q, final double p, final String n, final int y )
-    {
+    public RequestModifyWine(final String q, final String p, final String n, final String y) {
         this.note = n;
         this.quantity = q;
         this.price = p;
-        this.year=y;
+        this.year = y;
     }
 
     public String getNote() {
         return note;
     }
-    public double getPrice()
-    {
+
+    public String getPrice() {
         return this.price;
     }
-    public int getQuantity()
-    {
+
+    public String getQuantity() {
         return this.quantity;
     }
-    public int getYear()
-    {
+
+    public String getYear() {
         return this.year;
     }
 }

@@ -470,20 +470,20 @@ public class ModelDBMS
                 DBURL , LOGIN, PASSWORD);
              Statement stmt = conn.createStatement();)
         {
-            if (reqModifyWine.getQuantity()!=0){
-                String strUpdate="UPDATE wine SET Quantity=Quantity+"+reqModifyWine.getQuantity()+ "WHERE WineId="+ txtId;
+            if (!reqModifyWine.getQuantity().isBlank()){
+                String strUpdate="UPDATE wine SET Quantity=Quantity+"+reqModifyWine.getQuantity()+ " WHERE WineId="+ txtId;
                 stmt.executeUpdate(strUpdate);
             }
-            if (reqModifyWine.getPrice()!=0){
-                String strUpdate="UPDATE wine SET Price="+reqModifyWine.getPrice()+ "WHERE WineId="+ txtId;
+            if (!reqModifyWine.getPrice().isBlank()){
+                String strUpdate="UPDATE wine SET Price="+reqModifyWine.getPrice()+ " WHERE WineId="+ txtId;
                 stmt.executeUpdate(strUpdate);
             }
-            if (reqModifyWine.getNote()!=null){
-                String strUpdate="UPDATE wine SET Notes="+reqModifyWine.getNote()+ "WHERE WineId="+ txtId;
+            if (!reqModifyWine.getNote().isBlank()){
+                String strUpdate="UPDATE wine SET Notes='"+reqModifyWine.getNote()+ "' WHERE WineId="+ txtId;
                 stmt.executeUpdate(strUpdate);
             }
-            if (reqModifyWine.getYear()!=0){
-                String strUpdate="UPDATE wine SET Year="+reqModifyWine.getYear()+ "WHERE WineId="+ txtId;
+            if (!reqModifyWine.getYear().isBlank()){
+                String strUpdate="UPDATE wine SET Year="+reqModifyWine.getYear()+ " WHERE WineId="+ txtId;
                 stmt.executeUpdate(strUpdate);
             }
 

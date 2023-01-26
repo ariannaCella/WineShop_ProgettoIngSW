@@ -421,9 +421,8 @@ public class ServerThread implements Runnable
                         o1 = (Object) rs;
                         os.writeObject(o1);
                         os.flush();
-                        String s = (String) is.readObject();
-                        wineIdModify=Integer.parseInt(s);
-
+                        wineIdModify= Integer.parseInt((String) is.readObject());
+                        break;
 
                     case "ModifyWineById":
                         if (os == null) {
@@ -435,6 +434,7 @@ public class ServerThread implements Runnable
                         os.flush();
                         RequestModifyWine reqModifyWine= (RequestModifyWine) is.readObject();
                         ModelDBMS.modifyWine(wineIdModify,reqModifyWine);
+                        break;
 
                     case "searchWineId":
                         if (os == null) {

@@ -65,7 +65,33 @@ public class ModifyWine {
 
     @FXML
     void modify(ActionEvent event) throws IOException, ClassNotFoundException  {
-        String q=txtQuantity.getText();
+        String quantity=txtQuantity.getText();
+        String year=txtyear.getText();
+        String note=txtNote.getText();
+        String price = txtPriice.getText();
+        os.writeObject("ModifyWineById");
+        os.flush();
+        if (is == null)
+        {
+            is = new ObjectInputStream(new BufferedInputStream(
+                    client.getInputStream()));
+        }
+        String o = (String) is.readObject();
+        if(o.equals("OK")) {
+            RequestModifyWine reqModifyWine= new RequestModifyWine(quantity,price,note,year);
+            System.out.println(reqModifyWine.getNote()+" "+ reqModifyWine.getQuantity()+" "+reqModifyWine.getYear()+" "+reqModifyWine.getPrice());
+            os.writeObject(reqModifyWine);
+            os.flush();
+            Parent root = FXMLLoader.load(getClass().getResource("Management.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Management");
+            stage.setScene(new Scene(root, 1008, 665));
+            stage.setResizable(false);
+            stage.show();
+            Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            thisStage.hide();
+        }
+        /*String q=txtQuantity.getText();
         int quantity=0, year= 0;
         double price = 0;
         String y=txtyear.getText();
@@ -80,19 +106,20 @@ public class ModifyWine {
         }
         String o = (String) is.readObject();
         if(o.equals("OK")) {
-            if(!q.isBlank()){
+            if(!(q.isBlank())){
                 quantity=Integer.parseInt(q); //se è compilato abbiamo il valore, altrimenti è 0
             }
             if(note.isBlank()){
                 note=null; //se è compilato abbiamo il valore, altrimenti è nullo
             }
-            if(!p.isBlank()){
+            if(!(p.isBlank())){
                 price=Double.parseDouble(p); //se è compilato abbiamo il valore, altrimenti è 0
             }
-            if(!y.isBlank()){
+            if(!(y.isBlank())){
                 year=Integer.parseInt(y); //se è compilato abbiamo il valore, altrimenti è 0
             }
             RequestModifyWine reqModifyWine= new RequestModifyWine(quantity,price,note,year);
+            System.out.println(reqModifyWine.getNote()+" "+ reqModifyWine.getQuantity()+" "+reqModifyWine.getYear()+" "+reqModifyWine.getPrice());
             os.writeObject(reqModifyWine);
             os.flush();
             Parent root = FXMLLoader.load(getClass().getResource("Management.fxml"));
@@ -104,7 +131,7 @@ public class ModifyWine {
             Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
             thisStage.hide();
         }
-
+*/
     }
 
     @FXML

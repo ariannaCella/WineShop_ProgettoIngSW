@@ -281,7 +281,8 @@ public class Management implements Initializable{
         }
         String o = (String) is.readObject();
         if(o.equals("OK")) {
-            os.writeObject(txtId);
+            Object o2=(Object) txtId;
+            os.writeObject(o2);
             os.flush();
             Parent rootEmployee = FXMLLoader.load(getClass().getResource("ModifyWine.fxml"));
             Stage stageEmployee = new Stage();
@@ -349,6 +350,8 @@ public class Management implements Initializable{
                 }
             }
     }
+
+
     ArrayList<Sale> sales= new ArrayList<>();
     ArrayList<Client> clients=new ArrayList<>();
     ArrayList<Purchase> purchases=new ArrayList<>();
