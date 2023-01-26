@@ -267,10 +267,13 @@ public class Management implements Initializable{
 
     @FXML
     protected void modifyIdWine(ActionEvent event) throws IOException, ClassNotFoundException {
-        os.writeObject("modifyWine");
+        os.writeObject("ReqModifyWineId");
         os.flush();
         String txtId=txtIdWine.getText();
-        if(txtId.isBlank()){}
+        if(txtId.isBlank()){
+            error.setVisible(true);
+            return;
+        }
         if (is == null)
         {
             is = new ObjectInputStream(new BufferedInputStream(
@@ -280,8 +283,15 @@ public class Management implements Initializable{
         if(o.equals("OK")) {
             os.writeObject(txtId);
             os.flush();
+            Parent rootEmployee = FXMLLoader.load(getClass().getResource("ModifyWine.fxml"));
+            Stage stageEmployee = new Stage();
+            stageEmployee.setTitle("Modify Wine");
+            stageEmployee.setScene(new Scene(rootEmployee, 600, 401));
+            stageEmployee.setResizable(false);
+            stageEmployee.show();
+            Stage thisStageEmployee = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            thisStageEmployee.hide();
         }
-
     }
 
     @FXML

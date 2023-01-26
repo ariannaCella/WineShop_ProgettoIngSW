@@ -81,6 +81,7 @@ public class ServerThread implements Runnable
             double priceOrder=0;
             Sale order=new Sale();
             int nBottleShop=0;
+            int wineIdModify=0;
             while(true){
                 cmd = (String) is.readObject();
                 Thread.sleep(1000);
@@ -412,7 +413,7 @@ public class ServerThread implements Runnable
                         os.flush();
                         break;
 
-                    case "modifyWine":
+                    case "ReqModifyWineId":
                         if (os == null) {
                             os = new ObjectOutputStream(this.socket.getOutputStream());
                         }
