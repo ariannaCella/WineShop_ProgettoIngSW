@@ -89,6 +89,12 @@ public class Login {
                         thisStageClient.hide();
                         break;
                     case "employee":
+                        if (is == null) {
+                            is = new ObjectInputStream(new BufferedInputStream(
+                                    client.getInputStream()));
+                        }
+                        message = (String) is.readObject();
+                        if(message.equals("Employee")) {
                             Parent rootEmployee = FXMLLoader.load(getClass().getResource("HomeEmployee.fxml"));
                             Stage stageEmployee = new Stage();
                             stageEmployee.setTitle("Home Employee");
@@ -97,7 +103,7 @@ public class Login {
                             stageEmployee.show();
                             Stage thisStageEmployee = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             thisStageEmployee.hide();
-                        /*
+                        }
                         else if(message.equals("Administrator")){
                             Parent rootEmployee = FXMLLoader.load(getClass().getResource("HomeAdministrator.fxml"));
                             Stage stageEmployee = new Stage();
@@ -107,7 +113,7 @@ public class Login {
                             stageEmployee.show();
                             Stage thisStageEmployee = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             thisStageEmployee.hide();
-                        }*/
+                        }
                         break;
                     case "shipper":
                         Parent root = FXMLLoader.load(getClass().getResource("HomeShipper.fxml"));

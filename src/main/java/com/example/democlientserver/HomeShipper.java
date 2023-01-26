@@ -29,7 +29,7 @@ import static com.example.democlientserver.HelloApplication.*;
 import static com.example.democlientserver.HelloApplication.is;
 import static com.example.democlientserver.ModelDBMS.listWineDBMS;
 import static java.lang.Integer.parseInt;
-
+/*
 public class HomeShipper implements Initializable {
 
     @FXML
@@ -162,5 +162,5 @@ public class HomeShipper implements Initializable {
 
 
     }
-
 }
+*/
