@@ -652,7 +652,7 @@ public class ModelDBMS
              Statement stmt = conn.createStatement();) {
 
             String strSelect="SELECT s.SaleId, s.FiscalCode, s.Address, s.WineId, s.Nbottles, s.Price, s.Date, s.Signature, s.Accepted " +
-                    "FROM sale AS s WHERE s.Date> '"+d1+"' AND s.Date < '"+d2+"'";
+                    "FROM sale AS s WHERE s.Date> '"+d1+ "' AND s.Date < '"+d2+"' ";
             ResultSet rset = stmt.executeQuery(strSelect);
 
             ArrayList<Sale> arraySale = new ArrayList<Sale>();
@@ -668,7 +668,6 @@ public class ModelDBMS
                 boolean acc=rset.getBoolean("Accepted");
                 Sale s= new Sale(saleId,wid,nbott,sign,acc, fc,addr,price,date);
                 arraySale.add(s);
-                System.out.println(s.infoSale());
             }
             return arraySale;
         }
@@ -677,6 +676,7 @@ public class ModelDBMS
             e.printStackTrace();
         }
         return null;
+
     }
 
     public static int signSales(int idsale) {
