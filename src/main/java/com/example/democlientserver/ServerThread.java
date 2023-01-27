@@ -542,9 +542,26 @@ public class ServerThread implements Runnable
                         Date d1 =reqd.getBegin();
                         Date d2=reqd.getEnd();
                         SaleDate=ModelDBMS.SaleDateDBMS(d1,d2);
-                        os.writeObject(salesTot);
+                        os.writeObject(SaleDate);
                         os.flush();
                         break;
+
+                   /* case "SearchDateGetSales":
+                        if (os == null) {
+                            os = new ObjectOutputStream(this.socket.getOutputStream());
+                        }
+                        rs = "OK";
+                        o1 = (Object) rs;
+                        os.writeObject(o1);
+                        os.flush();
+                        RequestDate reqd;
+                        reqd = (RequestDate) is.readObject();
+                        Date d1 =reqd.getBegin();
+                        Date d2=reqd.getEnd();
+                        SaleDate=ModelDBMS.SaleDateDBMS(d1,d2);
+                        os.writeObject(SaleDate);
+                        os.flush();
+                        break;*/
 
                     case "SignIdSale":
                         if (os == null) {
