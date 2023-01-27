@@ -29,6 +29,18 @@ public abstract class User implements Serializable {
 		this.username=user;
 		this.password=passw;
 	}
+
+	public User(String name, String surname, String fiscalCode, String email, int phone, String address, int adm, String username) {
+		this.name=name;
+		this.surname=surname;
+		this.fiscalCode=fiscalCode;
+		this.address=address;
+		this.email=email;
+		this.phone=phone;
+		this.admin=adm;
+		this.username=username;
+	}
+
 	public String infoUser(){
 		return name +" "+ surname +", \nCodice Fiscale:"+fiscalCode+"\nIndirizzo: "+address+",  Cell:"+phone+"\n";
 	}

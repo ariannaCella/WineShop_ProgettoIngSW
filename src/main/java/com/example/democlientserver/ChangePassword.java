@@ -82,15 +82,30 @@ public class ChangePassword {
 
 
     @FXML
-    void returnHome(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("HomeEmployee.fxml"));
-        Stage stage = new Stage();
-        stage.setTitle("Home Employee");
-        stage.setScene(new Scene(root, 600, 600));
-        stage.setResizable(false);
-        stage.show();
-        Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        thisStage.hide();
+    void returnHome(ActionEvent event) throws IOException, ClassNotFoundException {
+        os.writeObject("isAdministrator");
+        os.flush();
+        int admin= (int) is.readObject();
+        if(admin==0) {
+            Parent rootEmployee = FXMLLoader.load(getClass().getResource("HomeEmployee.fxml"));
+            Stage stageEmployee = new Stage();
+            stageEmployee.setTitle("Home Employee");
+            stageEmployee.setScene(new Scene(rootEmployee, 600, 400));
+            stageEmployee.setResizable(false);
+            stageEmployee.show();
+            Stage thisStageEmployee = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            thisStageEmployee.hide();
+        }
+        else if(admin==1){
+            Parent rootEmployee = FXMLLoader.load(getClass().getResource("HomeAdministrator.fxml"));
+            Stage stageEmployee = new Stage();
+            stageEmployee.setTitle("Home Administrator");
+            stageEmployee.setScene(new Scene(rootEmployee, 800, 647));
+            stageEmployee.setResizable(false);
+            stageEmployee.show();
+            Stage thisStageEmployee = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            thisStageEmployee.hide();
+        }
     }
 
     @FXML

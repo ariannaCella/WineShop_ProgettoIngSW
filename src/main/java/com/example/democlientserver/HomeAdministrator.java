@@ -1,24 +1,32 @@
 package com.example.democlientserver;
 
-import Actors.Employee;
+import Actors.*;
 import RequestResponse.RequestSearchWine;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.net.URL;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import static com.example.democlientserver.HelloApplication.*;
 import static com.example.democlientserver.HelloApplication.is;
 
-public class HomeAdministrator {
+public class HomeAdministrator implements Initializable {
     @FXML
     private Button LogOut;
     @FXML
@@ -66,8 +74,15 @@ public class HomeAdministrator {
     @FXML
     private TableColumn<Employee,String> username;
     @FXML
-    void newEmployee(ActionEvent event) {
-
+    void newEmployee(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("SignInEmployee.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("SignIn!");
+        stage.setScene(new Scene(root, 335, 500));
+        stage.setResizable(false);
+        stage.show();
+        Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        thisStage.hide();
     }
     @FXML
     void removeEmployee(ActionEvent event) {
@@ -216,5 +231,40 @@ public class HomeAdministrator {
     @FXML
     void textWineYear(ActionEvent event) {
 
+    }
+    ArrayList<Employee> employees=new ArrayList<>();
+    ObservableList<Employee> obsEmployee = FXCollections.observableArrayList();
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            System.out.println("\nciao non è ancora arrivato\n");
+            os.writeObject("getListEmployee");
+            os.flush();
+            //System.out.println("\nciao non è ancora arrivato\n");
+            if (is == null)
+            {
+                is = new ObjectInputStream(new BufferedInputStream(
+                        client.getInputStream()));
+            }
+
+            ArrayList<Employee> employees;
+            employees= (ArrayList<Employee>) is.readObject();
+            System.out.println("\nè arrivato l'array\nla sua grandezza è: "+employees.size());
+
+            for(int i=0; i<employees.size(); i++){
+                Employee temp= employees.get(i);
+                obsEmployee.add(temp);}
+
+            name.setCellValueFactory(new PropertyValueFactory<Employee,String>("name"));
+            surname.setCellValueFactory(new PropertyValueFactory<Employee,String>("surname"));
+            username.setCellValueFactory(new PropertyValueFactory<Employee,String>("username"));
+            tabEmployee.setItems(obsEmployee);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

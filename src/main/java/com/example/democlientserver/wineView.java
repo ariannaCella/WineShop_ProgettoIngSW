@@ -71,15 +71,30 @@ public class wineView implements Initializable {
     private TableColumn<Wine, Integer> yearWine;
 
     @FXML
-    void goHome(ActionEvent event) throws IOException {
-        Parent rootEmployee = FXMLLoader.load(getClass().getResource("HomeEmployee.fxml"));
-        Stage stageEmployee = new Stage();
-        stageEmployee.setTitle("Home Employee");
-        stageEmployee.setScene(new Scene(rootEmployee, 600, 400));
-        stageEmployee.setResizable(false);
-        stageEmployee.show();
-        Stage thisStageEmployee = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        thisStageEmployee.hide();
+    void goHome(ActionEvent event) throws IOException, ClassNotFoundException {
+        os.writeObject("isAdministrator");
+        os.flush();
+        int admin= (int) is.readObject();
+        if(admin==0) {
+            Parent rootEmployee = FXMLLoader.load(getClass().getResource("HomeEmployee.fxml"));
+            Stage stageEmployee = new Stage();
+            stageEmployee.setTitle("Home Employee");
+            stageEmployee.setScene(new Scene(rootEmployee, 600, 400));
+            stageEmployee.setResizable(false);
+            stageEmployee.show();
+            Stage thisStageEmployee = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            thisStageEmployee.hide();
+        }
+        else if(admin==1){
+            Parent rootEmployee = FXMLLoader.load(getClass().getResource("HomeAdministrator.fxml"));
+            Stage stageEmployee = new Stage();
+            stageEmployee.setTitle("Home Administrator");
+            stageEmployee.setScene(new Scene(rootEmployee, 800, 647));
+            stageEmployee.setResizable(false);
+            stageEmployee.show();
+            Stage thisStageEmployee = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            thisStageEmployee.hide();
+        }
     }
 
     ArrayList<Wine> wines=new ArrayList<>();

@@ -76,6 +76,7 @@ public class ServerThread implements Runnable
             ArrayList<Sale> salesTot=new ArrayList<Sale>();
             ArrayList<Sale> SaleDate=new ArrayList<Sale>();
             ArrayList<Client> clientTot=new ArrayList<Client>();
+            ArrayList<Employee> employeeTot=new ArrayList<Employee>();
             ArrayList<Purchase> purchaseTot=new ArrayList<Purchase>();
             Wine wineOrder=new Wine();
             ArrayList<Wine> listWinesEmployee=new ArrayList<Wine>();
@@ -182,6 +183,22 @@ public class ServerThread implements Runnable
                         String mes = "Add new client";
                         Object m = (Object) mes;
                         os.writeObject(m);
+                        os.flush();
+                        break;
+
+                    case "newEmployee":
+                        if (os == null) {
+                            os = new ObjectOutputStream(this.socket.getOutputStream());
+                        }
+                        rs = "OK";
+                        o1 = (Object) rs;
+                        os.writeObject(o1);
+                        os.flush();
+                        Employee newEmployee= (Employee) is.readObject();
+                        ModelDBMS.newEmployee(newEmployee);
+                        String mess = "Add new employee";
+                        Object me = (Object) mess;
+                        os.writeObject(me);
                         os.flush();
                         break;
 
@@ -419,6 +436,16 @@ public class ServerThread implements Runnable
                         os.flush();
                         break;
 
+                    case "getListEmployee":
+                        if (os == null) {
+                            os = new ObjectOutputStream(this.socket.getOutputStream());
+                        }
+                        ArrayList<Employee> employeeT=ModelDBMS.listEmployeeDBMS();
+                        os.writeObject(employeeT);
+                        os.flush();
+                        break;
+
+
                     case "getListPurchase":
                         if (os == null) {
                             os = new ObjectOutputStream(this.socket.getOutputStream());
@@ -503,9 +530,9 @@ public class ServerThread implements Runnable
                         os.flush();
                         RequestChangePassword newreq= (RequestChangePassword) is.readObject();
                         ModelDBMS.ChangePassword(newreq);
-                        String mess = "Change Password";
-                        Object me = (Object) mess;
-                        os.writeObject(me);
+                        String message = "Change Password";
+                        Object mex = (Object) message;
+                        os.writeObject(mex);
                         os.flush();
                         break;
 

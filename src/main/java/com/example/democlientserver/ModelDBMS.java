@@ -178,6 +178,31 @@ public class ModelDBMS
         }
 
     }
+    public static void newEmployee(Employee newEmployee){
+        try (Connection conn = DriverManager.getConnection(
+                DBURL  , LOGIN, PASSWORD);
+             Statement stmt = conn.createStatement();) {
+
+            String insertSql = "insert into employee values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement pstmt = conn.prepareStatement(insertSql);
+            pstmt.setString(1, newEmployee.getName());
+            pstmt.setString(2, newEmployee.getSurname());
+            pstmt.setString(3, newEmployee.getFiscalCode());
+            pstmt.setString(4, newEmployee.getEmail());
+            pstmt.setInt(5, newEmployee.getPhone());
+            pstmt.setString(6, newEmployee.getAddress());
+            pstmt.setBoolean(7,false);
+            pstmt.setString(8, newEmployee.getUsername());
+            pstmt.setString(9, newEmployee.getPassword());
+            pstmt.addBatch();
+            pstmt.executeBatch();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+    }
 
     public static ArrayList searchWineDBMS(String txt, String attribute){
         try (Connection conn = DriverManager.getConnection(
@@ -536,6 +561,36 @@ public class ModelDBMS
                 tableClient.add(v);
             }
             return tableClient;
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public static ArrayList<Employee> listEmployeeDBMS() {
+        try (Connection conn = DriverManager.getConnection(DBURL,LOGIN,PASSWORD);
+             Statement stmt = conn.createStatement();) {
+
+            String strSelect="SELECT e.Name, e.Surname, e.FiscalCode, e.Email, e.Phone, e.Address, e.Username " +
+                    "FROM employee AS e";
+            ResultSet rse = stmt.executeQuery(strSelect);
+
+            ArrayList<Employee> tableEmployee =new ArrayList<>();
+            while (rse.next()) {
+                String name = rse.getString("Name");
+                String surname = rse.getString("Surname");
+                String fiscalCode = rse.getString("FiscalCode");
+                String email = rse.getString("Email");
+                int phone = rse.getInt("Phone");
+                String address = rse.getString("Address");
+                String username = rse.getString("Username");
+
+                Employee v=new Employee(name,surname,fiscalCode,email,phone,address,0,username);
+                System.out.println(v.getName());
+                tableEmployee.add(v);
+            }
+            return tableEmployee;
         }
         catch (SQLException e)
         {
