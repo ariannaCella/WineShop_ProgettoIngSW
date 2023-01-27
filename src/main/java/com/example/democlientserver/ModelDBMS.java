@@ -668,7 +668,6 @@ public class ModelDBMS
                 boolean acc=rset.getBoolean("Accepted");
                 Sale s= new Sale(saleId,wid,nbott,sign,acc, fc,addr,price,date);
                 arraySale.add(s);
-                System.out.println(s.infoSale());
             }
             return arraySale;
         }
@@ -677,6 +676,7 @@ public class ModelDBMS
             e.printStackTrace();
         }
         return null;
+
     }
 
     public static int signSales(int idsale) {
