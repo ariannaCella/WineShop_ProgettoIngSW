@@ -548,17 +548,13 @@ public class ServerThread implements Runnable
                         os.flush();
                         RequestDate reqd;
                         reqd = (RequestDate) is.readObject();
-                        System.out.println("ciao1\n");
                         Date d1 =reqd.getBegin();
                         Date d2=reqd.getEnd();
-                        System.out.println("ciao\n");
-                        ArrayList<Sale> SaleDates=ModelDBMS.SaleDateDBMS(d1,d2);
-                        for (int i=0; i<SaleDates.size(); i++){
-                            System.out.println(SaleDates.get(i).infoSale());
-                        }
-                        os.writeObject(SaleDates);
+                        SaleDate=ModelDBMS.SaleDateDBMS(d1,d2);
+                        os.writeObject(SaleDate);
                         os.flush();
                         break;
+
 
                     case "SignIdSale":
                         if (os == null) {
