@@ -118,6 +118,10 @@ public class ServerThread implements Runnable
                         }
                         else{
                             if(pswUser.equals(pswInput)){
+                                String mes = "OK";
+                                Object m = (Object) mes;
+                                os.writeObject(m);
+                                os.flush();
                                 switch (tab){
                                     case "client":
                                         connectedClient=ModelDBMS.returnClientConnected(txtInput,pswInput,tab);
@@ -130,24 +134,17 @@ public class ServerThread implements Runnable
                                         break;
                                     case "employee":
                                         connectedEmployee=ModelDBMS.returnEmployeeConnected(txtInput,pswInput,tab);
+                                        String mess;
+                                        if(connectedEmployee.getAdmin()==0){
+                                             mess="Employee";
+                                        }
+                                        else{
+                                             mess="Administrator";
+                                        }
+                                        os.writeObject(mess);
+                                        os.flush();
                                         break;
                                 }
-                                String mes = "OK";
-                                Object m = (Object) mes;
-                                os.writeObject(m);
-                                os.flush();
-                                String mess=null;
-                                if(tab.equals("Employee")){
-                                    if(connectedEmployee.getAdmin()==0){
-                                        mess="Employee";
-                                    }
-                                    else{
-                                        mess="Administrator";
-                                    }
-                                    os.writeObject(mess);
-                                    os.flush();
-                                }
-
                             }
                             else{
                                 String mes = "Password errata, riprova";
@@ -156,6 +153,18 @@ public class ServerThread implements Runnable
                                 os.flush();
                             }
                         }
+                        break;
+
+                    case "isAdministrator":
+                        /*if (os == null) {
+                            os = new ObjectOutputStream(this.socket.getOutputStream());
+                        }*/
+                        if(connectedEmployee.getAdmin()==1){
+                            os.writeObject(1);
+                            os.flush();
+                        }
+                        else{os.writeObject(0);
+                        os.flush();}
                         break;
 
                     case "newUser":

@@ -1,6 +1,7 @@
 package Actors;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 public class Purchase implements Serializable {
     private int purchaseId, wineId, nBottles;
@@ -28,6 +29,7 @@ public class Purchase implements Serializable {
         this.price=price;
         this.signature=sign;
         this.accepted=acc;
+        this.data=data;
     }
     public Purchase(int purchaseId,  int wid, int nbott, float price, boolean sign, boolean acc) {
         this.purchaseId=purchaseId;
@@ -36,6 +38,16 @@ public class Purchase implements Serializable {
         this.price=price;
         this.signature=sign;
         this.accepted=acc;
+        this.data=data;
+    }
+    public Purchase(int purchaseId,  int wid, int nbott, double price, boolean sign, boolean acc) {
+        this.purchaseId=purchaseId;
+        this.wineId=wid;
+        this.nBottles=nbott;
+        this.price=price;
+        this.signature=sign;
+        this.accepted=acc;
+
     }
 
     public Purchase( String addr, int wid, int nbott, float price, boolean sign, boolean acc) {
@@ -84,5 +96,13 @@ public class Purchase implements Serializable {
 
     public float getPrice() {return price;}
 
-    public void setPrice(float price) {this.price = price;}
+    public void setPrice(double price) {this.price = price;}
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
 }
