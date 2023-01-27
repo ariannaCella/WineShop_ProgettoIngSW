@@ -200,7 +200,7 @@ public class ModelDBMS
                 int nsales = rset.getInt("NSales");
                 int qnt = rset.getInt("Quantity");
                 int quality = rset.getInt("Quality");
-                int price = rset.getInt("Price");
+                double price = rset.getDouble("Price");
                 String img = rset.getString("Image");
                 Wine v=new Wine(id,name,producer,origin,notes,vines,year,nsales,qnt,quality,price,img);
                 wines.add(v);
@@ -235,9 +235,41 @@ public class ModelDBMS
             int nsales = rset.getInt("NSales");
             int qnt = rset.getInt("Quantity");
             int quality = rset.getInt("Quality");
-            int price = rset.getInt("Price");
+            double price = rset.getDouble("Price");
             String img = rset.getString("Image");
             v = new Wine(id,name,producer,origin,notes,vines,year,nsales,qnt,quality,price,img);
+
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        return v;
+    }
+
+    public static Wine searchPriceCFSupWineDBMS(int ID){
+        Wine v;
+        try (Connection conn = DriverManager.getConnection(
+                DBURL  , LOGIN, PASSWORD);
+             Statement stmt = conn.createStatement();) {
+
+            String strSelect="SELECT w.WineId, w.Name, w.Producer, w.Origin, w.Notes, w.Vines, w.Year, w.NSales, w.Quantity, w.Quality, w.Price, w.Image, w.CfSupplier " +
+                    "FROM wine AS w WHERE w.WineId = "+ID+"";
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+
+            int id = rset.getInt("WineId");
+            String name = rset.getString("Name");
+            String producer = rset.getString("Producer");
+            String origin = rset.getString("Origin");
+            String notes = rset.getString("Notes");
+            String vines = rset.getString("Vines");
+            int year = rset.getInt("Year");
+            int nsales = rset.getInt("NSales");
+            int qnt = rset.getInt("Quantity");
+            int quality = rset.getInt("Quality");
+            double price = rset.getDouble("Price");
+            String img = rset.getString("Image");
+            String cfSup = rset.getString("CfSupplier");
+            v = new Wine(id,name,producer,origin,notes,vines,year,nsales,qnt,quality,price,img,cfSup);
 
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
@@ -621,6 +653,32 @@ public class ModelDBMS
             e.printStackTrace();
         }
     }
+
+    public static void newProposalPurchase(Purchase p) {
+        try (Connection conn = DriverManager.getConnection(
+                DBURL  , LOGIN, PASSWORD);
+             Statement stmt = conn.createStatement();) {
+
+            String insertSql = "insert into purchase values (?, ?, ?, ?, ?, ?, ?, ?,?)";
+            PreparedStatement pstmt = conn.prepareStatement(insertSql);
+            pstmt.setInt(1, p.getPurchaseId());
+            pstmt.setString(2, p.getFiscalCode());
+            pstmt.setString(3, p.getFiscClient());
+            pstmt.setString(4, p.getAddress());
+            pstmt.setInt(5, p.getWineId());
+            pstmt.setInt(6, p.getnBottles());
+            pstmt.setDouble(7, p.getPrice());
+            pstmt.setBoolean(8, p.getSignature());
+            pstmt.setBoolean(9, p.getAccepted());
+            pstmt.addBatch();
+            pstmt.executeBatch();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
     public static ArrayList searchClientSurname(String txt){
         try (Connection conn = DriverManager.getConnection(
                 DBURL  , LOGIN, PASSWORD);
@@ -887,5 +945,7 @@ public class ModelDBMS
             e.printStackTrace();
         }
     }
+
+
 }
 

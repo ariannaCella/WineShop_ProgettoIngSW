@@ -80,7 +80,6 @@ public class PurchaseProposal implements Initializable {
     @FXML
     void makeProposal(ActionEvent event){
         try {
-            String username=txtUser.getText();
             int idWine=Integer.parseInt(id.getText());
             String ad=address.getText();
             int num= Integer.parseInt(number.getText());
@@ -96,14 +95,9 @@ public class PurchaseProposal implements Initializable {
             }
             os.writeObject("Create Proposal Purchase");
             os.flush();
-            RequestProposalPurchase requestProp= new RequestProposalPurchase(username,idWine,num,ad);
+            RequestProposalPurchase requestProp= new RequestProposalPurchase(idWine,num,ad);
             os.writeObject(requestProp);
             os.flush();
-            if (is == null)
-            {
-                is = new ObjectInputStream(new BufferedInputStream(
-                        client.getInputStream()));
-            }
 
         } catch (IOException e) {
             throw new RuntimeException(e);
