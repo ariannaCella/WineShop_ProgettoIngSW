@@ -4,6 +4,7 @@ import Actors.Client;
 import Actors.Purchase;
 import Actors.Sale;
 import Actors.Wine;
+import RequestResponse.RequestProposalPurchase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,11 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import java.io.BufferedInputStream;
@@ -35,10 +32,15 @@ import static com.example.democlientserver.ModelDBMS.listWineDBMS;
 public class PurchaseProposal implements Initializable {
 
     @FXML
-    private TextField address;
+    private TextField address, id;
 
     @FXML
-    private CheckBox casse;
+    private CheckBox casse12;
+
+    @FXML
+    private CheckBox casse6;
+    @FXML
+    private Label error;
 
     @FXML
     private TableColumn<Wine,Integer> idWine;
@@ -53,7 +55,7 @@ public class PurchaseProposal implements Initializable {
     private TextField number;
 
     @FXML
-    private Button sandProposal;
+    private Button sendProposal;
     @FXML
     private TableColumn<Wine,Double> price;
 
@@ -76,16 +78,48 @@ public class PurchaseProposal implements Initializable {
     }
 
     @FXML
-    void makeProposal(ActionEvent event) {
+    void makeProposal(ActionEvent event){
+        try {
+            String username=txtUser.getText();
+            int idWine=Integer.parseInt(id.getText());
+            String ad=address.getText();
+            int num= Integer.parseInt(number.getText());
+            if (casse6.isSelected()){
+                num=num*6;
+            }
+            if (casse12.isSelected()){
+                num=num*12;
+            }
+            if (casse6.isSelected() & casse12.isSelected()) {
+                error.setVisible(true);
+                return;
+            }
+            os.writeObject("Create Proposal Purchase");
+            os.flush();
+            RequestProposalPurchase requestProp= new RequestProposalPurchase(username,idWine,num,ad);
+            os.writeObject(requestProp);
+            os.flush();
+            if (is == null)
+            {
+                is = new ObjectInputStream(new BufferedInputStream(
+                        client.getInputStream()));
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
 
     }
+
+
     ArrayList<Wine> wines=new ArrayList<>();
 
     ObservableList<Wine> obsWine=FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            os.writeObject("searchWineEmployee");
+            os.writeObject("getListWineTot");
             os.flush();
             if (is == null)
             {
@@ -103,7 +137,6 @@ public class PurchaseProposal implements Initializable {
             name.setCellValueFactory(new PropertyValueFactory<Wine,String>("name"));
             year.setCellValueFactory(new PropertyValueFactory<Wine,Integer>("year"));
             price.setCellValueFactory(new PropertyValueFactory<Wine,Double>("price"));
-
 
             listWine.setItems(obsWine);
 

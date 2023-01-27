@@ -433,7 +433,7 @@ public class Management implements Initializable{
 
             tabPurchase.setItems(obsPurchase);
 
-            os.writeObject("searchWineEmployee");
+            os.writeObject("getListWineTot");
             os.flush();
             if (is == null)
             {
@@ -451,6 +451,7 @@ public class Management implements Initializable{
             producerWine.setCellValueFactory(new PropertyValueFactory<Wine,String>("producer"));
             originWine.setCellValueFactory(new PropertyValueFactory<Wine,String>("origin"));
             noteWine.setCellValueFactory(new PropertyValueFactory<Wine,String>("notes"));
+            vinesWine.setCellValueFactory(new PropertyValueFactory<Wine,String>("vines"));
             yearWine.setCellValueFactory(new PropertyValueFactory<Wine,Integer>("year"));
             nSalesWine.setCellValueFactory(new PropertyValueFactory<Wine,Integer>("nSales"));
             quantityWine.setCellValueFactory(new PropertyValueFactory<Wine,Integer>("quantity"));
