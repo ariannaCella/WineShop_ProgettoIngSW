@@ -89,12 +89,14 @@ public class Login {
                         thisStageClient.hide();
                         break;
                     case "employee":
-                        /*if (is == null) {
+                        if (is == null) {
                             is = new ObjectInputStream(new BufferedInputStream(
                                     client.getInputStream()));
                         }
+                        System.out.println("ciao1");
                         message = (String) is.readObject();
-                        if(message.equals("Employee")) {*/
+                        System.out.println(message);
+                        if(message.equals("Employee")) {
                             Parent rootEmployee = FXMLLoader.load(getClass().getResource("HomeEmployee.fxml"));
                             Stage stageEmployee = new Stage();
                             stageEmployee.setTitle("Home Employee");
@@ -102,18 +104,18 @@ public class Login {
                             stageEmployee.setResizable(false);
                             stageEmployee.show();
                             Stage thisStageEmployee = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                            thisStageEmployee.hide();/*
+                            thisStageEmployee.hide();
                         }
                         else if(message.equals("Administrator")){
                             Parent rootEmployee = FXMLLoader.load(getClass().getResource("HomeAdministrator.fxml"));
                             Stage stageEmployee = new Stage();
                             stageEmployee.setTitle("Home Administrator");
-                            stageEmployee.setScene(new Scene(rootEmployee, 600, 400));
+                            stageEmployee.setScene(new Scene(rootEmployee, 800, 647));
                             stageEmployee.setResizable(false);
                             stageEmployee.show();
                             Stage thisStageEmployee = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             thisStageEmployee.hide();
-                        }*/
+                        }
                         break;
                     case "shipper":
                         Parent root = FXMLLoader.load(getClass().getResource("HomeShipper.fxml"));

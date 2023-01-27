@@ -18,9 +18,8 @@
             <Font name="Berlin Sans FB Demi Bold" size="15.0" />
         </font>
     </Label>
-    <VBox layoutX="46.0" layoutY="139.0" prefHeight="229.0" prefWidth="317.0" spacing="20.0">
+    <VBox layoutX="42.0" layoutY="142.0" prefHeight="234.0" prefWidth="316.0" spacing="30.0">
         <children>
-            <TextField fx:id="txtUser" promptText="Username" />
             <TextField fx:id="id" prefHeight="25.0" prefWidth="137.0" promptText="IdBottiglia" />
             <CheckBox fx:id="casse6" mnemonicParsing="false" onAction="#casse6" prefHeight="18.0" prefWidth="371.0" text="Selezionare se si vogliono acquistare casse da 6" />
             <CheckBox fx:id="casse12" mnemonicParsing="false" onAction="#casse12" text="Selezionare se si vogliono acquistare casse da 12" />

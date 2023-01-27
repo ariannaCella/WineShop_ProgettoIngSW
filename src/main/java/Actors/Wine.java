@@ -5,7 +5,7 @@ import com.example.democlientserver.ModelDBMS;
 import java.io.Serializable;
 
 public class Wine implements Serializable {
-	String name,producer,origin,notes,vines,img;
+	String name,producer,origin,notes,vines,img, fcSupplier;
 	int year,wineId, quantity;
 	int nSales;
 	int quality; //from one to ten stars
@@ -13,6 +13,21 @@ public class Wine implements Serializable {
 
 
 
+	public Wine(int wi, String n, String p, String o, String note, String v, int y, int nsale, int qn, int ql, double pr, String i, String fcSupplier) {
+		this.wineId=wi;
+		this.name=n;
+		this.producer=p;
+		this.origin=o;
+		this.notes=note;
+		this.vines=v;
+		this.year=y;
+		this.nSales=nsale;
+		this.quantity=qn;
+		this.quality=ql;
+		this.price= pr;
+		this.img=i;
+		this.fcSupplier=fcSupplier;
+	}
 	public Wine(int wi, String n, String p, String o, String note, String v, int y, int nsale, int qn, int ql, double pr, String i) {
 		this.wineId=wi;
 		this.name=n;
@@ -26,6 +41,7 @@ public class Wine implements Serializable {
 		this.quality=ql;
 		this.price= pr;
 		this.img=i;
+		this.fcSupplier="";
 	}
 
     public Wine() {
@@ -41,6 +57,7 @@ public class Wine implements Serializable {
 		this.quality=0;
 		this.price= 0;
 		this.img=null;
+		this.fcSupplier="";
     }
 
     public void updatePrice() { // ci sarà da chiamare quando verrà venduto il vino
@@ -72,6 +89,14 @@ public class Wine implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getFcSupplier() {
+		return fcSupplier;
+	}
+
+	public void setFcSupplier(String fcSupplier) {
+		this.fcSupplier = fcSupplier;
 	}
 
 	public String getProducer() {
@@ -150,7 +175,7 @@ public class Wine implements Serializable {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 }

@@ -1,5 +1,6 @@
 package com.example.democlientserver;
 
+import Actors.Employee;
 import RequestResponse.RequestSearchWine;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,10 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.BufferedInputStream;
@@ -20,9 +18,7 @@ import java.io.ObjectInputStream;
 import static com.example.democlientserver.HelloApplication.*;
 import static com.example.democlientserver.HelloApplication.is;
 
-
-public class HomeEmployee {
-
+public class HomeAdministrator {
     @FXML
     private Button LogOut;
     @FXML
@@ -52,7 +48,36 @@ public class HomeEmployee {
     private ChoiceBox<String> ChoiceWine;
     @FXML
     private Label error;
+    @FXML
+    private TableColumn<Employee,String> name;
 
+    @FXML
+    private Button newEmployee;
+
+    @FXML
+    private Button report;
+    @FXML
+    private TableColumn<Employee,String> surname;
+
+    @FXML
+    private TableView<Employee> tabEmployee;
+    @FXML
+    private TextField txtRemove;
+    @FXML
+    private TableColumn<Employee,String> username;
+    @FXML
+    void newEmployee(ActionEvent event) {
+
+    }
+    @FXML
+    void removeEmployee(ActionEvent event) {
+
+    }
+
+    @FXML
+    void report(ActionEvent event) {
+
+    }
     @FXML
     void LogOut(ActionEvent event) throws IOException, ClassNotFoundException {
         Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
@@ -191,14 +216,5 @@ public class HomeEmployee {
     @FXML
     void textWineYear(ActionEvent event) {
 
-    }
-
-    public void report(ActionEvent actionEvent) {
-    }
-
-    public void newEmployee(ActionEvent actionEvent) {
-    }
-
-    public void removeEmployee(ActionEvent actionEvent) {
     }
 }

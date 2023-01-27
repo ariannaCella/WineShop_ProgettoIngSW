@@ -1,14 +1,16 @@
 package Actors;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 public class Purchase implements Serializable {
     private int purchaseId, wineId, nBottles;
     private boolean signature=false, accepted=false;
     private String fiscalCode, fiscClient, address;
-    private float price;
+    private double price;
+    private Date data;
 
-    public Purchase(int pi, String fcode, String fclient, String addr, int wi, int nbott, float pr) {
+    public Purchase(int pi, String fcode, String fclient, String addr, int wi, int nbott, double pr) {
         this.purchaseId=pi;
         this.fiscalCode=fcode;
         this.fiscClient=fclient;
@@ -18,7 +20,7 @@ public class Purchase implements Serializable {
         this.price=pr;
     }
 
-    public Purchase(int purchaseId, String fc, String fClient, String addr, int wid, int nbott, float price, boolean sign, boolean acc) {
+    public Purchase(int purchaseId, String fc, String fClient, String addr, int wid, int nbott, double price, boolean sign, boolean acc, Date data) {
         this.purchaseId=purchaseId;
         this.fiscalCode=fc;
         this.fiscClient=fClient;
@@ -28,17 +30,40 @@ public class Purchase implements Serializable {
         this.price=price;
         this.signature=sign;
         this.accepted=acc;
+        this.data=data;
     }
-    public Purchase(int purchaseId,  int wid, int nbott, float price, boolean sign, boolean acc) {
+    public Purchase(int purchaseId, String fc, String fClient, String addr, int wid, int nbott, double price, boolean sign, boolean acc) {
+        this.purchaseId=purchaseId;
+        this.fiscalCode=fc;
+        this.fiscClient=fClient;
+        this.address=addr;
+        this.wineId=wid;
+        this.nBottles=nbott;
+        this.price=price;
+        this.signature=sign;
+        this.accepted=acc;
+        this.data=data;
+    }
+    public Purchase(int purchaseId,  int wid, int nbott, double price, boolean sign, boolean acc, Date data) {
         this.purchaseId=purchaseId;
         this.wineId=wid;
         this.nBottles=nbott;
         this.price=price;
         this.signature=sign;
         this.accepted=acc;
+        this.data=data;
+    }
+    public Purchase(int purchaseId,  int wid, int nbott, double price, boolean sign, boolean acc) {
+        this.purchaseId=purchaseId;
+        this.wineId=wid;
+        this.nBottles=nbott;
+        this.price=price;
+        this.signature=sign;
+        this.accepted=acc;
+
     }
 
-    public Purchase( String addr, int wid, int nbott, float price, boolean sign, boolean acc) {
+    public Purchase( String addr, int wid, int nbott, double price, boolean sign, boolean acc) {
         this.address=addr;
         this.wineId=wid;
         this.nBottles=nbott;
@@ -82,7 +107,15 @@ public class Purchase implements Serializable {
 
     public void setAddress(String address) {this.address = address;}
 
-    public float getPrice() {return price;}
+    public double getPrice() {return price;}
 
-    public void setPrice(float price) {this.price = price;}
+    public void setPrice(double price) {this.price = price;}
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
 }

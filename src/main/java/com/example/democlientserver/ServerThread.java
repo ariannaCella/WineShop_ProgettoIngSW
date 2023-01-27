@@ -78,6 +78,7 @@ public class ServerThread implements Runnable
             ArrayList<Purchase> purchaseTot=new ArrayList<Purchase>();
             Wine wineOrder=new Wine();
             ArrayList<Wine> listWinesEmployee=new ArrayList<Wine>();
+            ArrayList <Purchase> proposalPurchase=new ArrayList();
             double priceOrder=0;
             Sale order=new Sale();
             int nBottleShop=0;
@@ -118,6 +119,10 @@ public class ServerThread implements Runnable
                         }
                         else{
                             if(pswUser.equals(pswInput)){
+                                String mes = "OK";
+                                Object m = (Object) mes;
+                                os.writeObject(m);
+                                os.flush();
                                 switch (tab){
                                     case "client":
                                         connectedClient=ModelDBMS.returnClientConnected(txtInput,pswInput,tab);
@@ -130,24 +135,17 @@ public class ServerThread implements Runnable
                                         break;
                                     case "employee":
                                         connectedEmployee=ModelDBMS.returnEmployeeConnected(txtInput,pswInput,tab);
+                                        String mess;
+                                        if(connectedEmployee.getAdmin()==0){
+                                             mess="Employee";
+                                        }
+                                        else{
+                                             mess="Administrator";
+                                        }
+                                        os.writeObject(mess);
+                                        os.flush();
                                         break;
                                 }
-                                String mes = "OK";
-                                Object m = (Object) mes;
-                                os.writeObject(m);
-                                os.flush();
-                                String mess=null;
-                                if(tab.equals("Employee")){
-                                    if(connectedEmployee.getAdmin()==0){
-                                        mess="Employee";
-                                    }
-                                    else{
-                                        mess="Administrator";
-                                    }
-                                    os.writeObject(mess);
-                                    os.flush();
-                                }
-
                             }
                             else{
                                 String mes = "Password errata, riprova";
@@ -156,6 +154,18 @@ public class ServerThread implements Runnable
                                 os.flush();
                             }
                         }
+                        break;
+
+                    case "isAdministrator":
+                        /*if (os == null) {
+                            os = new ObjectOutputStream(this.socket.getOutputStream());
+                        }*/
+                        if(connectedEmployee.getAdmin()==1){
+                            os.writeObject(1);
+                            os.flush();
+                        }
+                        else{os.writeObject(0);
+                        os.flush();}
                         break;
 
                     case "newUser":
@@ -595,8 +605,9 @@ public class ServerThread implements Runnable
                             o1 = (Object) rs;
                             os.writeObject(o1);
                             os.flush();
-                            break;
                         }
+                        break;
+
                     case "SignIdPurchase":
                         if (os == null) {
                             os = new ObjectOutputStream(this.socket.getOutputStream());
@@ -615,8 +626,8 @@ public class ServerThread implements Runnable
                             o1 = (Object) rs;
                             os.writeObject(o1);
                             os.flush();
-                            break;
                         }
+                        break;
 
                     case "AcceptIdPurchase":
                         if (os == null) {
@@ -638,12 +649,19 @@ public class ServerThread implements Runnable
                             os.flush();
                         }
                         break;
+
                     case "Create Proposal Purchase":
                         if (os == null) {
                             os = new ObjectOutputStream(this.socket.getOutputStream());
                         }
                         RequestProposalPurchase reqProp= (RequestProposalPurchase) is.readObject();
-                        String username;
+                        String address=reqProp.getAddress();
+                        int idWine=reqProp.getIdWine();
+                        int num=reqProp.getNumberBottles();
+                        Wine wProp=searchPriceCFSupWineDBMS(idWine);
+                        Purchase p=new Purchase(proposalPurchase.size(), wProp.getFcSupplier(), connectedClient.getFiscalCode(),connectedClient.getAddress(),idWine,num, wProp.getPrice(), false,false);
+                        proposalPurchase.add(p);
+                        ModelDBMS.newProposalPurchase(p);
                         break;
                 }
 
