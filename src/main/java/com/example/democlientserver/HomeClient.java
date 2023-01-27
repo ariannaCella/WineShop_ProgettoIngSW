@@ -229,7 +229,7 @@ public class HomeClient implements Initializable {
                 Parent root = FXMLLoader.load(getClass().getResource("PurchaseProposal.fxml"));
                 Stage stage = new Stage();
                 stage.setTitle("Shop");
-                stage.setScene(new Scene(root, 600, 438));
+                stage.setScene(new Scene(root, 664, 527));
                 stage.setResizable(false);
                 stage.show();
                 Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();

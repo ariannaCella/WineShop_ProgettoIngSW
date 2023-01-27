@@ -205,6 +205,15 @@ public class ServerThread implements Runnable
                         //os.flush();
                         break;
 
+                    case "getListWineTot":
+                        if (os == null) {
+                            os = new ObjectOutputStream(this.socket.getOutputStream());
+                        }
+                        ArrayList<Wine> listWine=ModelDBMS.listWineDBMS();
+                        os.writeObject(listWine);
+                        os.flush();
+                        break;
+
                     case "viewPromoHome":
                         if (os == null) {
                             os = new ObjectOutputStream(this.socket.getOutputStream());
@@ -243,18 +252,18 @@ public class ServerThread implements Runnable
                         String txt1=re.getTxt();
                         String attribute1=re.getAttribute();
                         listWinesEmployee=ModelDBMS.searchWineDBMS(txt1,attribute1);
-                        if (os == null) {
-                            os = new ObjectOutputStream(this.socket.getOutputStream());
-                        }
+
+                        break;
+
+
+
+                    case "getListWinesEmployee":
                         if (os == null) {
                             os = new ObjectOutputStream(this.socket.getOutputStream());
                         }
                         os.writeObject(listWinesEmployee);
                         os.flush();
                         break;
-
-                    //case "getListWinesEmployee":
-
 
                     case "shopWine":
                         if (os == null) {
@@ -539,10 +548,15 @@ public class ServerThread implements Runnable
                         os.flush();
                         RequestDate reqd;
                         reqd = (RequestDate) is.readObject();
+                        System.out.println("ciao1\n");
                         Date d1 =reqd.getBegin();
                         Date d2=reqd.getEnd();
-                        SaleDate=ModelDBMS.SaleDateDBMS(d1,d2);
-                        os.writeObject(salesTot);
+                        System.out.println("ciao\n");
+                        ArrayList<Sale> SaleDates=ModelDBMS.SaleDateDBMS(d1,d2);
+                        for (int i=0; i<SaleDates.size(); i++){
+                            System.out.println(SaleDates.get(i).infoSale());
+                        }
+                        os.writeObject(SaleDates);
                         os.flush();
                         break;
 

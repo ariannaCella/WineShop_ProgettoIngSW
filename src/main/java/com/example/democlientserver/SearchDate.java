@@ -85,7 +85,7 @@ public class SearchDate implements Initializable {
     void dataInizio(ActionEvent event) {
         dataBegin= java.sql.Date.valueOf(dataInizio.getValue());
     }
-    int valore=0;
+    static int valore=0;
     //ciao prova
     @FXML
     void goHome(ActionEvent event) throws IOException {
@@ -99,27 +99,8 @@ public class SearchDate implements Initializable {
         thisStageEmployee.hide();
     }
     ObservableList<Sale> obsSale = FXCollections.observableArrayList();
-    ArrayList<Sale> sales=new ArrayList<>();
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        if (valore == 1) {
-            for (int i = 0; i < sales.size(); i++) {
-                Sale temp = sales.get(i);
-                obsSale.add(temp);
-            }
+    static ArrayList<Sale> salesDate=new ArrayList<>();
 
-            idSale.setCellValueFactory(new PropertyValueFactory<Sale, Integer>("saleId"));
-            cfSale.setCellValueFactory(new PropertyValueFactory<Sale, String>("fiscalCode"));
-            addressSale.setCellValueFactory(new PropertyValueFactory<Sale, String>("address"));
-            idWineSale.setCellValueFactory(new PropertyValueFactory<Sale, Integer>("wineId"));
-            nBottlesSale.setCellValueFactory(new PropertyValueFactory<Sale, Integer>("nBottles"));
-            priceSale.setCellValueFactory(new PropertyValueFactory<Sale, Float>("price"));
-            dateSale.setCellValueFactory(new PropertyValueFactory<Sale, Date>("d"));
-            signSale.setCellValueFactory(new PropertyValueFactory<Sale, Boolean>("signature"));
-            acceptedSale.setCellValueFactory(new PropertyValueFactory<Sale, Boolean>("accepted"));
-            tabSale.setItems(obsSale);
-        }
-    }
     @FXML
     void searchData(ActionEvent event) throws IOException, ClassNotFoundException {
 
@@ -142,32 +123,55 @@ public class SearchDate implements Initializable {
             os.writeObject(rd);
             os.flush();
             if (is == null) {
-                //is = new ObjectInputStream(client.getInputStream());
+                is = new ObjectInputStream(client.getInputStream());
             }
-            sales= (ArrayList<Sale>) is.readObject();
-            valore=1;
+            salesDate= (ArrayList<Sale>) is.readObject();
+            for (int i = 0; i < salesDate.size(); i++) {
+                Sale temp = salesDate.get(i);
+                System.out.println(temp.infoSale());
+                obsSale.add(temp);
+            }
+
+            idSale.setCellValueFactory(new PropertyValueFactory<Sale, Integer>("saleId"));
+            cfSale.setCellValueFactory(new PropertyValueFactory<Sale, String>("fiscalCode"));
+            addressSale.setCellValueFactory(new PropertyValueFactory<Sale, String>("address"));
+            idWineSale.setCellValueFactory(new PropertyValueFactory<Sale, Integer>("wineId"));
+            nBottlesSale.setCellValueFactory(new PropertyValueFactory<Sale, Integer>("nBottles"));
+            priceSale.setCellValueFactory(new PropertyValueFactory<Sale, Float>("price"));
+            dateSale.setCellValueFactory(new PropertyValueFactory<Sale, java.sql.Date>("d"));
+            signSale.setCellValueFactory(new PropertyValueFactory<Sale, Boolean>("signature"));
+            acceptedSale.setCellValueFactory(new PropertyValueFactory<Sale, Boolean>("accepted"));
+            tabSale.setItems(obsSale);
+
             //initialize();
-            if (valore == 1) {
-                for (int i = 0; i < sales.size(); i++) {
-                    Sale temp = sales.get(i);
-                    obsSale.add(temp);
-                }
 
-                idSale.setCellValueFactory(new PropertyValueFactory<Sale, Integer>("saleId"));
-                cfSale.setCellValueFactory(new PropertyValueFactory<Sale, String>("fiscalCode"));
-                addressSale.setCellValueFactory(new PropertyValueFactory<Sale, String>("address"));
-                idWineSale.setCellValueFactory(new PropertyValueFactory<Sale, Integer>("wineId"));
-                nBottlesSale.setCellValueFactory(new PropertyValueFactory<Sale, Integer>("nBottles"));
-                priceSale.setCellValueFactory(new PropertyValueFactory<Sale, Float>("price"));
-                dateSale.setCellValueFactory(new PropertyValueFactory<Sale, java.sql.Date>("date"));
-                signSale.setCellValueFactory(new PropertyValueFactory<Sale, Boolean>("signature"));
-                acceptedSale.setCellValueFactory(new PropertyValueFactory<Sale, Boolean>("accepted"));
-                tabSale.setItems(obsSale);
+        }
+
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        /*if (valore == 1) {
+            for (int i = 0; i < salesDate.size(); i++) {
+                Sale temp = salesDate.get(i);
+                obsSale.add(temp);
             }
 
-        }
-        }
+            idSale.setCellValueFactory(new PropertyValueFactory<Sale, Integer>("saleId"));
+            cfSale.setCellValueFactory(new PropertyValueFactory<Sale, String>("fiscalCode"));
+            addressSale.setCellValueFactory(new PropertyValueFactory<Sale, String>("address"));
+            idWineSale.setCellValueFactory(new PropertyValueFactory<Sale, Integer>("wineId"));
+            nBottlesSale.setCellValueFactory(new PropertyValueFactory<Sale, Integer>("nBottles"));
+            priceSale.setCellValueFactory(new PropertyValueFactory<Sale, Float>("price"));
+            dateSale.setCellValueFactory(new PropertyValueFactory<Sale, java.sql.Date>("d"));
+            signSale.setCellValueFactory(new PropertyValueFactory<Sale, Boolean>("signature"));
+            acceptedSale.setCellValueFactory(new PropertyValueFactory<Sale, Boolean>("accepted"));
+            tabSale.setItems(obsSale);
+        }*/
+    }
 
 }
+
+
+
 
 

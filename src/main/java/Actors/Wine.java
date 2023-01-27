@@ -7,7 +7,7 @@ import java.io.Serializable;
 public class Wine implements Serializable {
 	String name,producer,origin,notes,vines,img;
 	int year,wineId, quantity;
-	int nSales=0;
+	int nSales;
 	int quality; //from one to ten stars
 	double price;
 

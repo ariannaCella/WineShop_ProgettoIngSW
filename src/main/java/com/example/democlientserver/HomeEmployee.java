@@ -96,17 +96,16 @@ public class HomeEmployee {
                 is = new ObjectInputStream(new BufferedInputStream(
                         client.getInputStream()));
             }
-            String message = (String) is.readObject();
-            if (message.equals("View wines")) {
-                Parent root = FXMLLoader.load(getClass().getResource("wineView.fxml"));
-                Stage stage = new Stage();
-                stage.setTitle("wines!");
-                stage.setScene(new Scene(root, 1000, 800));
-                stage.setResizable(false);
-                stage.show();
-                Stage thisStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                thisStage.hide();
-            }
+
+            Parent root = FXMLLoader.load(getClass().getResource("wineView.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("wines!");
+            stage.setScene(new Scene(root, 1000, 800));
+            stage.setResizable(false);
+            stage.show();
+            Stage thisStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            thisStage.hide();
+
         }
 
     }
@@ -177,7 +176,7 @@ public class HomeEmployee {
         Parent root = FXMLLoader.load(getClass().getResource("SearchDate.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Search Date");
-        stage.setScene(new Scene(root, 800, 1000));
+        stage.setScene(new Scene(root, 883, 550));
         stage.setResizable(false);
         stage.show();
         Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();

@@ -18,27 +18,28 @@
             <Font name="Berlin Sans FB Demi Bold" size="15.0" />
         </font>
     </Label>
-    <VBox layoutX="46.0" layoutY="139.0" prefHeight="200.0" prefWidth="317.0" spacing="20.0">
+    <VBox layoutX="46.0" layoutY="139.0" prefHeight="229.0" prefWidth="317.0" spacing="20.0">
         <children>
             <TextField fx:id="txtUser" promptText="Username" />
             <TextField fx:id="id" prefHeight="25.0" prefWidth="137.0" promptText="IdBottiglia" />
-            <CheckBox fx:id="casse" mnemonicParsing="false" prefHeight="18.0" prefWidth="371.0" text="Selezionare se si vogliono acquistare casse" />
+            <CheckBox fx:id="casse6" mnemonicParsing="false" onAction="#casse6" prefHeight="18.0" prefWidth="371.0" text="Selezionare se si vogliono acquistare casse da 6" />
+            <CheckBox fx:id="casse12" mnemonicParsing="false" onAction="#casse12" text="Selezionare se si vogliono acquistare casse da 12" />
             <TextField fx:id="number" promptText="Numero di bottiglie/casse" />
             <TextField fx:id="address" promptText="indirizzo di consegna" />
         </children>
     </VBox>
-    <Button fx:id="sandProposal" layoutX="283.0" layoutY="377.0" mnemonicParsing="false" onAction="#makeProposal" text="CONFERMA" textFill="#1a0b7b">
+    <Button fx:id="sendProposal" layoutX="283.0" layoutY="433.0" mnemonicParsing="false" onAction="#makeProposal" text="CONFERMA" textFill="#1a0b7b">
         <font>
             <Font name="Berlin Sans FB Demi Bold" size="15.0" />
         </font>
     </Button>
-    <Hyperlink layoutX="308.0" layoutY="408.0" onAction="#goHome" text="Annulla" />
+    <Hyperlink layoutX="308.0" layoutY="464.0" onAction="#goHome" text="Annulla" />
     <Button layoutX="21.0" layoutY="14.0" mnemonicParsing="false" onAction="#goHome" text="Home" textFill="#0f085e">
         <font>
             <Font name="Berlin Sans FB Demi Bold" size="12.0" />
         </font>
     </Button>
-      <TableView fx:id="listWine" layoutX="385.0" layoutY="139.0" prefHeight="200.0" prefWidth="255.0">
+      <TableView fx:id="listWine" layoutX="385.0" layoutY="139.0" prefHeight="234.0" prefWidth="255.0">
         <columns>
           <TableColumn fx:id="idWine" prefWidth="35.0" text="idWine" />
           <TableColumn fx:id="name" prefWidth="107.0" text="name" />
@@ -46,5 +47,6 @@
             <TableColumn fx:id="price" prefWidth="56.0" text="price" />
         </columns>
       </TableView>
+      <Label fx:id="error" layoutX="215.0" layoutY="400.0" text="Seleziona solo uno tra casse da 6 e casse da 12" textFill="#da0909" visible="false" />
 </children>
 </AnchorPane>

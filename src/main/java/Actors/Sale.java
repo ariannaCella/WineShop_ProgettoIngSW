@@ -62,7 +62,7 @@ public class Sale implements Serializable {
     }
 
     public String infoSale() {
-        return "Id:" + saleId + "\nCodice Fiscale: " + fiscalCode + "  indirizzo:" + address + "\nwineId:" + wineId + ", numero bottiglie:" + nBottles + "Prezzo di vendita:" + price + "$\nData: "+d+"\npresa visione impiegato:" + signature + "\nconsegnato:" + accepted + "\n";
+        return "Id:" + saleId + "\nCodice Fiscale: " + fiscalCode + "  indirizzo:" + address + "\nwineId:" + wineId + ", numero bottiglie:" + nBottles + " Prezzo di vendita:" + price + "$\nData: "+d+"\npresa visione impiegato:" + signature + "\nconsegnato:" + accepted + "\n";
     }
 
     public int getSaleId() {
