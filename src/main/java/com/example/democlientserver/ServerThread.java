@@ -626,10 +626,15 @@ public class ServerThread implements Runnable
                             o1 = (Object) rs;
                             os.writeObject(o1);
                             os.flush();
-                            break;
                         }
-
-
+                        break;
+                    case "Create Proposal Purchase":
+                        if (os == null) {
+                            os = new ObjectOutputStream(this.socket.getOutputStream());
+                        }
+                        RequestProposalPurchase reqProp= (RequestProposalPurchase) is.readObject();
+                        String username;
+                        break;
                 }
 
             }

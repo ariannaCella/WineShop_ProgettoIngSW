@@ -4,6 +4,7 @@ import Actors.Client;
 import Actors.Purchase;
 import Actors.Sale;
 import Actors.Wine;
+import RequestResponse.RequestProposalPurchase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,7 +36,7 @@ import static com.example.democlientserver.ModelDBMS.listWineDBMS;
 public class PurchaseProposal implements Initializable {
 
     @FXML
-    private TextField address;
+    private TextField address, id;
 
     @FXML
     private CheckBox casse;
@@ -53,7 +54,7 @@ public class PurchaseProposal implements Initializable {
     private TextField number;
 
     @FXML
-    private Button sandProposal;
+    private Button sendProposal;
     @FXML
     private TableColumn<Wine,Double> price;
 
@@ -76,9 +77,41 @@ public class PurchaseProposal implements Initializable {
     }
 
     @FXML
-    void makeProposal(ActionEvent event) {
+    void makeProposal(ActionEvent event){
+        try {
+            String username=txtUser.getText();
+            int idWine=Integer.parseInt(id.getText());
+            String ad=address.getText();
+            int num= Integer.parseInt(number.getText());
+            if (casse6.isSelected()){
+                num=num*6;
+            }
+            if (casse12.isSelected()){
+                num=num*12;
+            }
+            if (casse6.isSelected() & casse12.isSelected()) {
+                error.setVisible(true);
+                return;
+            }
+            os.writeObject("Create Proposal Purchase");
+            os.flush();
+            RequestProposalPurchase requestProp= new RequestProposalPurchase(username,idWine,num,ad);
+            os.writeObject(requestProp);
+            os.flush();
+            if (is == null)
+            {
+                is = new ObjectInputStream(new BufferedInputStream(
+                        client.getInputStream()));
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
 
     }
+
+
     ArrayList<Wine> wines=new ArrayList<>();
 
     ObservableList<Wine> obsWine=FXCollections.observableArrayList();
