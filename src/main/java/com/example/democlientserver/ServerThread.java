@@ -5,6 +5,7 @@ import RequestResponse.*;
 import java.io.*;
 import java.net.Socket;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -290,7 +291,7 @@ public class ServerThread implements Runnable
                         String type=rq.getType();
                         int nButton=rq.getButton();
                         double sconto=0;
-                        if(type.equals("Bottiglie")){
+                        if(type.equals("Bottiglia")){
                             priceOrder=listWines.get(nButton).getPrice()*n;
                         }
                         else if (type.equals("Cassa da 6")){
@@ -339,7 +340,7 @@ public class ServerThread implements Runnable
                         String typepromo=request.getType();
                         int nButtonPromo=request.getButton();
                         double scontoPromo=0;
-                        if(typepromo.equals("Bottiglie")){
+                        if(typepromo.equals("Bottiglia")){
                             priceOrder=winesInPromo.get(nButtonPromo).getPrice()* nu;
                         }
                         else if (typepromo.equals("Cassa da 6")){
@@ -659,7 +660,8 @@ public class ServerThread implements Runnable
                         int idWine=reqProp.getIdWine();
                         int num=reqProp.getNumberBottles();
                         Wine wProp=searchPriceCFSupWineDBMS(idWine);
-                        Purchase p=new Purchase(proposalPurchase.size(), wProp.getFcSupplier(), connectedClient.getFiscalCode(),connectedClient.getAddress(),idWine,num, wProp.getPrice(), false,false);
+                        Date date = new Date(System.currentTimeMillis());
+                        Purchase p=new Purchase(3+proposalPurchase.size(), wProp.getFcSupplier(), connectedClient.getFiscalCode(),address,idWine,num, wProp.getPrice()*num, false,false, date);
                         proposalPurchase.add(p);
                         ModelDBMS.newProposalPurchase(p);
                         break;

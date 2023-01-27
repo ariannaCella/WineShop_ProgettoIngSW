@@ -165,7 +165,7 @@ public class ListWines implements Initializable{
                     forShop.get(i).setVisible(true);
                     InputStream stream = null;
                     try {
-                        stream = new FileInputStream("C:\\Users\\Elena\\Desktop\\VinoDefinitiva\\ProgettoPoggi\\src\\main\\resources\\com\\example\\democlientserver\\"+winesList.get(i).getImgWine());
+                        stream = new FileInputStream("C:\\Users\\huawei\\eclipse-workspace\\ele\\demoClient-server\\src\\main\\resources\\com\\example\\democlientserver\\"+winesList.get(i).getImgWine());
                     } catch (FileNotFoundException e) {
                         throw new RuntimeException(e);
                     }
@@ -238,7 +238,7 @@ public class ListWines implements Initializable{
                 Parent root = FXMLLoader.load(getClass().getResource("PurchaseProposal.fxml"));
                 Stage stage = new Stage();
                 stage.setTitle("Shop");
-                stage.setScene(new Scene(root, 600, 438));
+                stage.setScene(new Scene(root, 664, 527));
                 stage.setResizable(false);
                 stage.show();
                 Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();

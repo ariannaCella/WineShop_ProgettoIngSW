@@ -80,6 +80,11 @@ public class PurchaseProposal implements Initializable {
     @FXML
     void makeProposal(ActionEvent event){
         try {
+            if(id.getText().isBlank()||number.getText().isBlank()||address.getText().isBlank()) {
+            error.setText("Inserire valori mancanti");
+            error.setVisible(true);
+            return;
+            }
             int idWine=Integer.parseInt(id.getText());
             String ad=address.getText();
             int num= Integer.parseInt(number.getText());
@@ -90,14 +95,24 @@ public class PurchaseProposal implements Initializable {
                 num=num*12;
             }
             if (casse6.isSelected() & casse12.isSelected()) {
+                error.setText("Inserire solo uno tra casse da 6 e casse da 12");
                 error.setVisible(true);
                 return;
             }
+
             os.writeObject("Create Proposal Purchase");
             os.flush();
             RequestProposalPurchase requestProp= new RequestProposalPurchase(idWine,num,ad);
             os.writeObject(requestProp);
             os.flush();
+            Parent root = FXMLLoader.load(getClass().getResource("ViewProposalPurchase.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Purchases");
+            stage.setScene(new Scene(root, 893, 565));
+            stage.setResizable(false);
+            stage.show();
+            Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            thisStage.hide();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
