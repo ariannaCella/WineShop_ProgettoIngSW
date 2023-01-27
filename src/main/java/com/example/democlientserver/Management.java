@@ -433,8 +433,15 @@ public class Management implements Initializable{
 
             tabPurchase.setItems(obsPurchase);
 
+            os.writeObject("searchWineEmployee");
+            os.flush();
+            if (is == null)
+            {
+                is = new ObjectInputStream(new BufferedInputStream(
+                        client.getInputStream()));
+            }
 
-            wines=listWineDBMS();
+            ArrayList<Wine> wines= (ArrayList<Wine>) is.readObject();
             for(int i=0; i<wines.size(); i++){
                 Wine temp= wines.get(i);
                 obsWine.add(temp);}

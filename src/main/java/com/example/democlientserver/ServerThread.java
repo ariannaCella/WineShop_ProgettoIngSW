@@ -246,19 +246,15 @@ public class ServerThread implements Runnable
                         if (os == null) {
                             os = new ObjectOutputStream(this.socket.getOutputStream());
                         }
-                        rs = "View wines";
-                        o1 = (Object) rs;
-                        os.writeObject(o1);
-                        os.flush();
-                        break;
-
-                    case "getListWinesEmployee":
                         if (os == null) {
                             os = new ObjectOutputStream(this.socket.getOutputStream());
                         }
                         os.writeObject(listWinesEmployee);
                         os.flush();
                         break;
+
+                    //case "getListWinesEmployee":
+
 
                     case "shopWine":
                         if (os == null) {
