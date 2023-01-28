@@ -1,7 +1,6 @@
 package com.example.democlientserver;
 
 import Actors.Purchase;
-import Actors.Wine;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -44,7 +43,7 @@ public class ViewProposalPurchase implements Initializable {
     private TableColumn<Purchase, Integer> id;
 
     @FXML
-    private TableColumn<Purchase, Float> price;
+    private TableColumn<Purchase, Double> price;
 
     @FXML
     private TableColumn<Purchase, Boolean> signature;
@@ -89,7 +88,7 @@ public class ViewProposalPurchase implements Initializable {
             address.setCellValueFactory(new PropertyValueFactory<Purchase,String>("Address"));
             id.setCellValueFactory(new PropertyValueFactory<Purchase,Integer>("WineId"));
             nBottles.setCellValueFactory(new PropertyValueFactory<Purchase,Integer>("Nbottles"));
-            price.setCellValueFactory(new PropertyValueFactory<Purchase,Float>("Price"));
+            price.setCellValueFactory(new PropertyValueFactory<Purchase, Double>("Price"));
             signature.setCellValueFactory(new PropertyValueFactory<Purchase,Boolean>("Signature"));
             delivered.setCellValueFactory(new PropertyValueFactory<Purchase,Boolean>("Accepted"));
 

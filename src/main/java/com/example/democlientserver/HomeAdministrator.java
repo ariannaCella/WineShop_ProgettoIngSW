@@ -122,8 +122,15 @@ public class HomeAdministrator implements Initializable {
     }
 
     @FXML
-    void report(ActionEvent event) {
-
+    void report(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Report.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("Monthly Report");
+        stage.setScene(new Scene(root, 500, 400));
+        stage.setResizable(false);
+        stage.show();
+        Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        thisStage.hide();
     }
     @FXML
     void LogOut(ActionEvent event) throws IOException, ClassNotFoundException {

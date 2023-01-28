@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.democlientserver.Report">
+   <children>
+      <VBox layoutY="2.0" prefHeight="400.0" prefWidth="600.0" spacing="20.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="607.0" text="REPORT MENSILE " textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </Label>
+            <HBox prefHeight="29.0" prefWidth="600.0">
+               <children>
+                  <Label prefHeight="30.0" prefWidth="70.0" text="INTROITI: " />
+                  <Label fx:id="introiti" prefHeight="30.0" prefWidth="514.0" />
+               </children>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="29.0" prefWidth="600.0">
+               <children>
+                  <Label prefHeight="30.0" prefWidth="49.0" text="SPESE:" />
+                  <Label fx:id="spese" prefHeight="30.0" prefWidth="514.0" />
+               </children>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="29.0" prefWidth="600.0">
+               <children>
+                  <Label prefHeight="30.0" prefWidth="237.0" text="N° BOTTIGLIE VENDUTE: " />
+                  <Label fx:id="nVendute" prefHeight="30.0" prefWidth="514.0" />
+               </children>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="29.0" prefWidth="600.0">
+               <children>
+                  <Label prefHeight="30.0" prefWidth="255.0" text="N° BOTTIGLIE DISPONIBILI: " />
+                  <Label fx:id="nDisponibili" prefHeight="30.0" prefWidth="514.0" />
+               </children>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="29.0" prefWidth="600.0">
+               <children>
+                  <Label prefHeight="30.0" prefWidth="237.0" text="VENDITE PER VINO:" />
+                  <Label fx:id="venditeVino" prefHeight="30.0" prefWidth="514.0" />
+               </children>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="29.0" prefWidth="600.0">
+               <children>
+                  <Label prefHeight="30.0" prefWidth="272.0" text="VALUTAZIONE DIPENDENTI:">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="valutazione" prefHeight="30.0" prefWidth="514.0" />
+               </children>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

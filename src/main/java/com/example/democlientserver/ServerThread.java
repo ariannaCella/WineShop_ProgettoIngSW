@@ -706,9 +706,25 @@ public class ServerThread implements Runnable
                         String address=reqProp.getAddress();
                         int idWine=reqProp.getIdWine();
                         int num=reqProp.getNumberBottles();
+                        int cas=reqProp.getCasse();
                         Wine wProp=searchPriceCFSupWineDBMS(idWine);
+                        double priceProposal=0,scontoProm=0;
+                        if(cas==0){priceProposal=wProp.getPrice()*num;}
+                        else if(cas==6){
+                            if(num>1){scontoProm=0.93;}
+                            else{scontoProm=0.95;}
+                            num=num*6;
+                            priceProposal=wProp.getPrice()*num*scontoProm;
+                        }
+                        else if(cas==12){
+                            if(num>1){scontoProm=0.87;}
+                            else{scontoProm=0.90;}
+                            num=num*12;
+                            priceProposal=wProp.getPrice()*num*scontoProm;
+                        }
+
                         Date date = new Date(System.currentTimeMillis());
-                        Purchase p=new Purchase(3+proposalPurchase.size(), wProp.getFcSupplier(), connectedClient.getFiscalCode(),address,idWine,num, wProp.getPrice()*num, false,false, date);
+                        Purchase p=new Purchase(3+proposalPurchase.size(), wProp.getFcSupplier(), connectedClient.getFiscalCode(),address,idWine,num, priceProposal, false,false, date);
                         proposalPurchase.add(p);
                         ModelDBMS.newProposalPurchase(p);
                         break;

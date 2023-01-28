@@ -88,11 +88,12 @@ public class PurchaseProposal implements Initializable {
             int idWine=Integer.parseInt(id.getText());
             String ad=address.getText();
             int num= Integer.parseInt(number.getText());
+            int casse=0; //se rimane 0 si vogliono bottiglie, se diventa 6 si vogliono casse da 6 se diventa 12 casse da 12
             if (casse6.isSelected()){
-                num=num*6;
+                casse=6;
             }
             if (casse12.isSelected()){
-                num=num*12;
+                casse=12;
             }
             if (casse6.isSelected() & casse12.isSelected()) {
                 error.setText("Inserire solo uno tra casse da 6 e casse da 12");
@@ -102,7 +103,7 @@ public class PurchaseProposal implements Initializable {
 
             os.writeObject("Create Proposal Purchase");
             os.flush();
-            RequestProposalPurchase requestProp= new RequestProposalPurchase(idWine,num,ad);
+            RequestProposalPurchase requestProp= new RequestProposalPurchase(idWine,num,ad,casse);
             os.writeObject(requestProp);
             os.flush();
             Parent root = FXMLLoader.load(getClass().getResource("ViewProposalPurchase.fxml"));
