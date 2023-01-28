@@ -1,6 +1,7 @@
 package com.example.democlientserver;
 
 import Actors.*;
+import RequestResponse.RequestMonthYearReport;
 import RequestResponse.RequestSearchWine;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -54,6 +55,11 @@ public class HomeAdministrator implements Initializable {
     private Button searchPurchaseDate;
     @FXML
     private ChoiceBox<String> ChoiceWine;
+    @FXML
+    private ChoiceBox<?> ChoiceMonth;
+
+    @FXML
+    private TextField ChoiceYear;
     @FXML
     private Label error;
     @FXML
@@ -123,6 +129,13 @@ public class HomeAdministrator implements Initializable {
 
     @FXML
     void report(ActionEvent event) throws IOException {
+        os.writeObject("SaveReport");
+        os.flush();
+        int year=Integer.parseInt(ChoiceYear.getText());
+        int month= (int) ChoiceMonth.getValue();
+        RequestMonthYearReport monthYear=new RequestMonthYearReport (year,month);
+        os.writeObject(monthYear);
+        os.flush();
         Parent root = FXMLLoader.load(getClass().getResource("Report.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Monthly Report");
@@ -277,10 +290,8 @@ public class HomeAdministrator implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            System.out.println("\nciao non è ancora arrivato\n");
             os.writeObject("getListEmployee");
             os.flush();
-            //System.out.println("\nciao non è ancora arrivato\n");
             if (is == null)
             {
                 is = new ObjectInputStream(new BufferedInputStream(
@@ -289,7 +300,6 @@ public class HomeAdministrator implements Initializable {
 
             ArrayList<Employee> employees;
             employees= (ArrayList<Employee>) is.readObject();
-            System.out.println("\nè arrivato l'array\nla sua grandezza è: "+employees.size());
 
             for(int i=0; i<employees.size(); i++){
                 Employee temp= employees.get(i);

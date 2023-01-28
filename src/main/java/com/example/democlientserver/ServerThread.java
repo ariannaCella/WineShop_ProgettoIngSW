@@ -85,6 +85,8 @@ public class ServerThread implements Runnable
             Sale order=new Sale();
             int nBottleShop=0;
             int wineIdModify=0;
+            int monthReport=0,yearReport=0;
+
             while(true){
                 cmd = (String) is.readObject();
                 Thread.sleep(1000);
@@ -727,6 +729,27 @@ public class ServerThread implements Runnable
                         Purchase p=new Purchase(3+proposalPurchase.size(), wProp.getFcSupplier(), connectedClient.getFiscalCode(),address,idWine,num, priceProposal, false,false, date);
                         proposalPurchase.add(p);
                         ModelDBMS.newProposalPurchase(p);
+                        break;
+
+                    case "SaveReport":
+                        RequestMonthYearReport reqMonthYear= (RequestMonthYearReport) is.readObject();
+                        monthReport=reqMonthYear.getMonth();
+                        yearReport=reqMonthYear.getYear();
+                        break;
+
+                    case "getReport":
+                        //(introiti, spese, numero bottiglie vendute e disponibili alla vendita, numero di vendite per i diversi vini,
+                        //valutazione dei dipendenti
+                        double income=0,expenses=0;
+                        int nBottleSold=0,nBottleAvailable=0;
+                        //creare oggetto vini-vendite
+                        income= ModelDBMS.getIncome(yearReport,monthReport);
+                        expenses=ModelDBMS.getExpenses(yearReport,monthReport);
+                        nBottleSold=ModelDBMS.getBottleSold(yearReport,monthReport);
+                        nBottleAvailable=ModelDBMS.getBottleAvailable(yearReport,monthReport);
+                        ResponseReport report =new ResponseReport(income,expenses,nBottleAvailable,nBottleSold);
+                        os.writeObject(report);
+                        os.flush();
                         break;
                 }
 

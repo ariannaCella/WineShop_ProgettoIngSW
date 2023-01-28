@@ -47,6 +47,7 @@ public class Sale implements Serializable {
         this.fiscalCode = fiscalCode;
         this.address = address;
         this.price = priceOrder;
+        this.d=new java.sql.Date(System.currentTimeMillis());
     }
 
 
