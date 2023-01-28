@@ -88,7 +88,7 @@ public class Management implements Initializable{
     private Button modifyIdWine;
 
     @FXML
-    private TableColumn<Wine,String> imageWine;
+    private TableColumn<Wine,String> cfSupplier;
 
     @FXML
     private TableColumn<Purchase,Integer> nBottlesPurchase;
@@ -467,12 +467,12 @@ public class Management implements Initializable{
             originWine.setCellValueFactory(new PropertyValueFactory<Wine,String>("origin"));
             noteWine.setCellValueFactory(new PropertyValueFactory<Wine,String>("notes"));
             vinesWine.setCellValueFactory(new PropertyValueFactory<Wine,String>("vines"));
-            yearWine.setCellValueFactory(new PropertyValueFactory<Wine,Integer>("year"));
             nSalesWine.setCellValueFactory(new PropertyValueFactory<Wine,Integer>("nSales"));
+            yearWine.setCellValueFactory(new PropertyValueFactory<Wine,Integer>("year"));
             quantityWine.setCellValueFactory(new PropertyValueFactory<Wine,Integer>("quantity"));
             qualityWine.setCellValueFactory(new PropertyValueFactory<Wine,Float>("quality"));
             priceWine.setCellValueFactory(new PropertyValueFactory<Wine,Float>("price"));
-            imageWine.setCellValueFactory(new PropertyValueFactory<Wine,String>("img"));
+            cfSupplier.setCellValueFactory(new PropertyValueFactory<Wine,String>("FcSupplier"));
 
             tabWine.setItems(obsWine);
 

@@ -42,17 +42,17 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <TableView fx:id="tabSale" layoutX="83.0" layoutY="27.0" prefHeight="430.0" prefWidth="727.0">
+                                <TableView fx:id="tabSale" layoutX="83.0" layoutY="27.0" prefHeight="430.0" prefWidth="797.0">
                                     <columns>
                                         <TableColumn fx:id="idSale" prefWidth="40.0" text="idSale" />
                                         <TableColumn fx:id="cfSale" prefWidth="131.0" text="cfSale" />
                                         <TableColumn fx:id="addressSale" prefWidth="110.0" text="addrSale" />
                                         <TableColumn fx:id="idWineSale" prefWidth="50.0" text="idWineSale" />
-                                        <TableColumn fx:id="nBottlesSale" prefWidth="74.0" text="nBottlesSale" />
-                                        <TableColumn fx:id="priceSale" prefWidth="71.0" text="priceSale" />
-                                        <TableColumn fx:id="dateSale" prefWidth="58.0" text="dateSale" />
-                                        <TableColumn fx:id="signSale" prefWidth="66.0" text="signSale" />
-                                        <TableColumn fx:id="acceptedSale" prefWidth="75.0" text="consSale" />
+                                        <TableColumn fx:id="nBottlesSale" prefWidth="109.60003662109375" text="nBottlesSale" />
+                                        <TableColumn fx:id="priceSale" prefWidth="85.5999755859375" text="priceSale" />
+                                        <TableColumn fx:id="dateSale" prefWidth="117.60003662109375" text="dateSale" />
+                                        <TableColumn fx:id="signSale" prefWidth="73.60003662109375" text="signSale" />
+                                        <TableColumn fx:id="acceptedSale" text="consSale" />
                                     </columns>
                                 </TableView>
                                 <TextField fx:id="txtIdSale" layoutX="553.0" layoutY="491.0" onAction="#textIdSale" prefHeight="25.0" prefWidth="167.0" promptText="Id dell'ordine da firmare" />
@@ -73,13 +73,13 @@
                                         <TableColumn fx:id="producerWine" prefWidth="96.0" text="producerWine" />
                                         <TableColumn fx:id="originWine" prefWidth="86.0" text="originWine" />
                                         <TableColumn fx:id="noteWine" prefWidth="74.0" text="noteWine" />
-                                        <TableColumn fx:id="vinesWine" minWidth="0.0" prefWidth="77.0" text="vinesWine" />
-                                        <TableColumn fx:id="yearWine" prefWidth="70.0" text="yearWine" />
-                                        <TableColumn fx:id="nSalesWine" prefWidth="71.0" text="nSalesWine" />
-                                        <TableColumn fx:id="quantityWine" prefWidth="84.0" text="quantityWine" />
-                                        <TableColumn fx:id="qualityWine" prefWidth="78.0" text="qualityWine" />
+                                        <TableColumn fx:id="vinesWine" minWidth="0.0" prefWidth="88.60000610351562" text="vinesWine" />
+                                        <TableColumn fx:id="yearWine" prefWidth="65.00003051757812" text="yearWine" />
+                                        <TableColumn fx:id="nSalesWine" prefWidth="73.4000244140625" text="nSalesWine" />
+                                        <TableColumn fx:id="quantityWine" prefWidth="83.39996337890625" text="quantityWine" />
+                                        <TableColumn fx:id="qualityWine" prefWidth="80.39996337890625" text="qualityWine" />
                                         <TableColumn fx:id="priceWine" prefWidth="88.0" text="priceWine" />
-                                        <TableColumn fx:id="imageWine" prefWidth="104.0" text="imageWine" />
+                                        <TableColumn fx:id="cfSupplier" prefWidth="96.0" text="cfSupplier" />
                                     </columns>
                                 </TableView>
                                 <TextField fx:id="txtIdWine" layoutX="599.0" layoutY="519.0" onAction="#textIdWine" prefHeight="25.0" prefWidth="174.0" promptText="Modifica per Id" />

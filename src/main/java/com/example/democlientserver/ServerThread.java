@@ -568,6 +568,26 @@ public class ServerThread implements Runnable
                         os.flush();
                         break;
 
+                    case "removeEmployee":
+                        if (os == null) {
+                            os = new ObjectOutputStream(this.socket.getOutputStream());
+                        }
+                        rs = "OK";
+                        o1 = (Object) rs;
+                        os.writeObject(o1);
+                        os.flush();
+                        String rsce;
+                        rsce = (String) is.readObject();
+                        ModelDBMS.RemoveEmployee(rsce);
+                        if (os == null) {
+                            os = new ObjectOutputStream(this.socket.getOutputStream());
+                        }
+                        rs = "Removed";
+                        o1 = (Object) rs;
+                        os.writeObject(o1);
+                        os.flush();
+                        break;
+
                     case "getListSurnameClient":
                         if (os == null) {
                             os = new ObjectOutputStream(this.socket.getOutputStream());

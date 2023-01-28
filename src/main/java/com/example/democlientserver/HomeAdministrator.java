@@ -85,8 +85,40 @@ public class HomeAdministrator implements Initializable {
         thisStage.hide();
     }
     @FXML
-    void removeEmployee(ActionEvent event) {
-
+    void removeEmployee(ActionEvent event) throws IOException, ClassNotFoundException {
+        String txt1=txtRemove.getText();
+        if(txt1.isBlank()){
+            error.setVisible(true);
+            error.setText("Compilare campo username");
+            return;
+        }
+        os.writeObject("removeEmployee");
+        os.flush();
+        if (is == null)
+        {
+            is = new ObjectInputStream(new BufferedInputStream(
+                    client.getInputStream()));
+        }
+        String o = (String) is.readObject();
+        if(o.equals("OK")) {
+            os.writeObject(txt1);
+            os.flush();
+            if (is == null) {
+                is = new ObjectInputStream(new BufferedInputStream(
+                        client.getInputStream()));
+            }
+            String message = (String) is.readObject();
+            if (message.equals("Removed")) {
+                Parent rootEmployee = FXMLLoader.load(getClass().getResource("HomeAdministrator.fxml"));
+                Stage stageEmployee = new Stage();
+                stageEmployee.setTitle("Home Administrator");
+                stageEmployee.setScene(new Scene(rootEmployee, 800, 647));
+                stageEmployee.setResizable(false);
+                stageEmployee.show();
+                Stage thisStageEmployee = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                thisStageEmployee.hide();
+            }
+        }
     }
 
     @FXML

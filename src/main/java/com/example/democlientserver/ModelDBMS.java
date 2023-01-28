@@ -309,7 +309,7 @@ public class ModelDBMS
                 DBURL  , LOGIN, PASSWORD);
              Statement stmt = conn.createStatement();) {
 
-            String strSelect="SELECT w.WineId, w.Name, w.Producer, w.Origin, w.Notes, w.Vines, w.Year, w.NSales, w.Quantity, w.Quality, w.Price, w.Image " +
+            String strSelect="SELECT w.WineId, w.Name, w.Producer, w.Origin, w.Notes, w.Vines, w.Year, w.NSales, w.Quantity, w.Quality, w.Price, w.Image, w.CfSupplier " +
                     "FROM wine AS w ";
             ResultSet rset = stmt.executeQuery(strSelect);
 
@@ -327,7 +327,8 @@ public class ModelDBMS
                 int quality = rset.getInt("Quality");
                 int price = rset.getInt("Price");
                 String img = rset.getString("Image");
-                Wine v=new Wine(id,name,producer,origin,notes,vines,year,nsales,qnt,quality,price,img);
+                String fcS= rset.getString("CfSupplier");
+                Wine v=new Wine(id,name,producer,origin,notes,vines,year,nsales,qnt,quality,price,img,fcS);
                 wines.add(v);
             }
             return wines;
@@ -763,6 +764,25 @@ public class ModelDBMS
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static void RemoveEmployee(String username){
+        try (Connection conn = DriverManager.getConnection(
+                DBURL  , LOGIN, PASSWORD);
+             Statement stmt = conn.createStatement();) {
+
+            String strSelect="DELETE FROM employee WHERE username = ? ";
+            PreparedStatement pstmt = conn.prepareStatement(strSelect);
+            pstmt.setString(1, username);
+            pstmt.addBatch();
+            pstmt.executeBatch();
+
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
     }
 
     public static ArrayList<Sale> SaleDateDBMS(Date d1,Date d2) {
