@@ -5,9 +5,7 @@ import RequestResponse.*;
 import java.io.*;
 import java.net.Socket;
 import java.sql.Date;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Random;
 
 import static com.example.democlientserver.ModelDBMS.*;
 
@@ -544,7 +542,7 @@ public class ServerThread implements Runnable
                         }
                         Client infoClient=connectedClient;
                         Wine infoWine=wineOrder;
-                        int data=0;
+                        Date data=new Date(System.currentTimeMillis());
                         ResponseOrderRepilog res=new ResponseOrderRepilog(infoClient,infoWine,data,nBottleShop,priceOrder);
                         os.writeObject(res);
                         os.flush();
@@ -742,12 +740,13 @@ public class ServerThread implements Runnable
                         //valutazione dei dipendenti
                         double income=0,expenses=0;
                         int nBottleSold=0,nBottleAvailable=0;
-                        //creare oggetto vini-vendite
+                        ArrayList <WineSold> winesSold= new ArrayList<>();
+                        winesSold=ModelDBMS.getWinesSold(yearReport,monthReport);
                         income= ModelDBMS.getIncome(yearReport,monthReport);
                         expenses=ModelDBMS.getExpenses(yearReport,monthReport);
                         nBottleSold=ModelDBMS.getBottleSold(yearReport,monthReport);
-                        nBottleAvailable=ModelDBMS.getBottleAvailable(yearReport,monthReport);
-                        ResponseReport report =new ResponseReport(income,expenses,nBottleAvailable,nBottleSold);
+                        nBottleAvailable=ModelDBMS.getBottleAvailable();
+                        ResponseReport report =new ResponseReport(income,expenses,nBottleAvailable,nBottleSold, winesSold);
                         os.writeObject(report);
                         os.flush();
                         break;

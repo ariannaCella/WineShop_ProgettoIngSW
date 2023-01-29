@@ -5,8 +5,8 @@ package com.example.democlientserver;
 import Actors.*;
 import RequestResponse.RequestChangePassword;
 import RequestResponse.RequestModifyWine;
+import Actors.WineSold;
 
-import java.math.BigInteger;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -862,12 +862,13 @@ public class ModelDBMS {
              Statement stmt = conn.createStatement();) {
 
             String strSelect = "SELECT sum(Price) as expenses " +
-                    "FROM purchase WHERE year(Date)="+yearReport+" AND month(Date)="+monthReport ;
+                    "FROM purchase WHERE year(Data)="+yearReport+" AND month(Data)="+monthReport ;
             ResultSet rset = stmt.executeQuery(strSelect);
 
             double expenses=0;
             while (rset.next()) {
                 expenses=rset.getDouble("expenses");
+                System.out.println("expenses"+expenses);
             }
             return expenses;
         } catch (SQLException e) {
@@ -881,8 +882,8 @@ public class ModelDBMS {
                 DBURL, LOGIN, PASSWORD);
              Statement stmt = conn.createStatement();) {
 
-            String strSelect = "SELECT sum(NSales) as bottlesSold " +
-                    "FROM wine WHERE year(Date)="+yearReport+" AND month(Date)="+monthReport;
+            String strSelect = "SELECT sum(Nbottles) as bottlesSold " +
+                    "FROM sale WHERE year(Date)="+yearReport+" AND month(Date)="+monthReport;
             ResultSet rset = stmt.executeQuery(strSelect);
 
             int bottlesSold=0;
@@ -896,13 +897,13 @@ public class ModelDBMS {
         return 0;
     }
 
-    public static int getBottleAvailable(int yearReport,int monthReport) {
+    public static int getBottleAvailable() {
         try (Connection conn = DriverManager.getConnection(
                 DBURL, LOGIN, PASSWORD);
              Statement stmt = conn.createStatement();) {
 
             String strSelect = "SELECT sum(Quantity) as bottlesAvailable " +
-                    "FROM wine WHERE year(Date)="+yearReport+" AND month(Date)="+monthReport;
+                    "FROM wine ";
             ResultSet rset = stmt.executeQuery(strSelect);
 
             int bottlesAvailable=0;
@@ -916,5 +917,29 @@ public class ModelDBMS {
         return 0;
     }
 
+    public static ArrayList<WineSold> getWinesSold(int yearReport, int monthReport) {
+        try (Connection conn = DriverManager.getConnection(
+                DBURL, LOGIN, PASSWORD);
+             Statement stmt = conn.createStatement();) {
+
+            String strSelect = "SELECT w.WineId, sum(s.Nbottles) as sold " +
+                    "FROM wine as w JOIN sale as s ON w.WineId=s.WineId "+
+                    "WHERE year(Date)="+yearReport+" AND month(Date)="+monthReport+
+                    " GROUP BY w.WineId";
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<WineSold> temp=new ArrayList<WineSold>();
+            int id=0, s=0;
+            while (rset.next()) {
+                id=rset.getInt("WineId");
+                s=rset.getInt("sold");
+                WineSold t=new WineSold(id,s);
+                temp.add(t);
+            }
+            return temp;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
 

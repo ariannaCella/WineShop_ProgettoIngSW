@@ -132,14 +132,14 @@ public class HomeAdministrator implements Initializable {
         os.writeObject("SaveReport");
         os.flush();
         int year=Integer.parseInt(ChoiceYear.getText());
-        int month= (int) ChoiceMonth.getValue();
+        int month= Integer.parseInt((String) ChoiceMonth.getValue());
         RequestMonthYearReport monthYear=new RequestMonthYearReport (year,month);
         os.writeObject(monthYear);
         os.flush();
         Parent root = FXMLLoader.load(getClass().getResource("Report.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Monthly Report");
-        stage.setScene(new Scene(root, 500, 400));
+        stage.setScene(new Scene(root, 600, 400));
         stage.setResizable(false);
         stage.show();
         Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();

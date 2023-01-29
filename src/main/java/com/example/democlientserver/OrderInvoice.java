@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.URL;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -63,8 +64,7 @@ public class OrderInvoice implements Initializable {
             infoClient.setText(res.getClient().getName()+" "+ res.getClient().getSurname());
             infoWine.setText(res.getWine().getName()+": prezzo di vendita alla bottiglia:"+res.getWine().getPrice()+"$\nN° di bottiglie acquistate "+res.getBottle()+"\nPrezzo totale(con eventuali promozioni dovute all'acquisto di casse):"+(float)res.getPrice()+"$");
             infoAddress.setText(res.getClient().getAddress());
-            String d=Integer.toString(res.getDate());
-            infoDate.setText(d);
+            infoDate.setText(res.getDate().toString());
         }
         catch (IOException e) {
             throw new RuntimeException(e);

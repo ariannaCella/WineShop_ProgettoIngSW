@@ -4,16 +4,18 @@ import Actors.Client;
 import Actors.Wine;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 public class ResponseOrderRepilog implements Serializable{
     private static final long serialVersionUID = 1L;
 
     private final Client client;
     private final Wine wine;
-    private final int date,nBottle;
+    private final int nBottle;
+    private final Date date;
     private final double price;
 
-    public ResponseOrderRepilog(final Client c, final Wine w, final int d , final int n,final double p)
+    public ResponseOrderRepilog(final Client c, final Wine w, final Date d , final int n, final double p)
     {
         this.client = c;
         this.wine = w;
@@ -29,7 +31,7 @@ public class ResponseOrderRepilog implements Serializable{
     public Wine getWine() {
         return wine;
     }
-    public int getDate() {
+    public Date getDate() {
         return date;
     }
     public Client getClient() {

@@ -53,8 +53,18 @@
       <ChoiceBox fx:id="ChoiceMonth" layoutX="80.0" layoutY="564.0" prefWidth="150.0">
          <items>
             <FXCollections fx:factory="observableArrayList">
-               <String fx:value="Year" />
-               <String fx:value="Name" />
+               <String fx:value="01" />
+               <String fx:value="02" />
+                <String fx:value="03" />
+                <String fx:value="04" />
+                <String fx:value="05" />
+                <String fx:value="06" />
+                <String fx:value="07" />
+                <String fx:value="08" />
+                <String fx:value="09" />
+                <String fx:value="10" />
+                <String fx:value="11" />
+                <String fx:value="12" />
             </FXCollections>
          </items>
       </ChoiceBox>
