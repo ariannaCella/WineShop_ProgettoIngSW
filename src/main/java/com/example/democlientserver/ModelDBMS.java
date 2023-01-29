@@ -397,7 +397,7 @@ public class ModelDBMS {
              Statement stmt = conn.createStatement();) {
 
             String strSelect = "SELECT s.SaleId, s.Address, s.WineId, s.Nbottles, s.Price, s.Date, s.Signature, s.Accepted " +
-                    "FROM sale AS s ";
+                    "FROM sale AS s WHERE s.Signature= true ";
             ResultSet rset = stmt.executeQuery(strSelect);
 
             ArrayList<Sale> arraySale = new ArrayList<Sale>();

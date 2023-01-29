@@ -29,6 +29,8 @@ public class SignInClient {
     private Button saveData;
     @FXML
     private PasswordField textPass;
+    @FXML
+    private Hyperlink goLogin;
 
     @FXML
     private TextField textUser;
@@ -99,5 +101,17 @@ public class SignInClient {
                 thisStage.hide();
             }
         }
+    }
+
+    @FXML
+    void goLogin(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("Login ONLINE WINE SHOP");
+        stage.setScene(new Scene(root, 500, 400));
+        stage.setResizable(false);
+        stage.show();
+        Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        thisStage.hide();
     }
 }

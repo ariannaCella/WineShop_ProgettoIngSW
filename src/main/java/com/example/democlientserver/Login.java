@@ -148,7 +148,7 @@ public class Login {
         Parent root = FXMLLoader.load(getClass().getResource("SignInClient.fxml"));
         Stage stage = new Stage();
         stage.setTitle("SignIn!");
-        stage.setScene(new Scene(root, 335, 500));
+        stage.setScene(new Scene(root, 335, 532));
         stage.setResizable(false);
         stage.show();
         Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
