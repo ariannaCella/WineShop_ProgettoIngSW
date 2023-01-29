@@ -172,11 +172,11 @@ public class HomeEmployee {
     }
 
     @FXML
-    void searchSalesForDates(ActionEvent event) throws IOException {
+    void searchPurchaseForDates(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("SearchDate.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Search Date");
-        stage.setScene(new Scene(root, 883, 550));
+        stage.setScene(new Scene(root, 1054, 550));
         stage.setResizable(false);
         stage.show();
         Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();

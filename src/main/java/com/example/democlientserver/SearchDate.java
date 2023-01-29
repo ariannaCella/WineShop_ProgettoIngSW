@@ -1,5 +1,6 @@
 package com.example.democlientserver;
 
+import Actors.Purchase;
 import Actors.Sale;
 import RequestResponse.RequestChangePassword;
 import RequestResponse.RequestDate;
@@ -32,14 +33,18 @@ import static com.example.democlientserver.HelloApplication.is;
 
 public class SearchDate implements Initializable {
 
-    @FXML
-    private TableColumn<Sale,Boolean> acceptedPurchase;
 
     @FXML
-    private TableColumn<Sale,String> addressPurchase;
+    private TableColumn<Purchase,Boolean> acceptedPurchase;
 
     @FXML
-    private TableColumn<Sale,String> cfSale;
+    private TableColumn<Purchase,String> addressPurchase;
+
+    @FXML
+    private TableColumn<Purchase,String> cfClient;
+
+    @FXML
+    private TableColumn<Purchase,String> cfPurchase;
 
     @FXML
     private DatePicker dataFine;
@@ -48,31 +53,31 @@ public class SearchDate implements Initializable {
     private DatePicker dataInizio;
 
     @FXML
-    private TableColumn<Sale, java.sql.Date> dateSale;
+    private TableColumn<Purchase,Date> datePurchase;
 
     @FXML
     private Button goHome;
 
     @FXML
-    private TableColumn<Sale,Integer> idSale;
+    private TableColumn<Purchase,Integer> idPurchase;
 
     @FXML
-    private TableColumn<Sale,Integer> idWineSale;
+    private TableColumn<Purchase,Integer> idWinePurchase;
 
     @FXML
-    private TableColumn<Sale,Integer> nBottlesSale;
+    private TableColumn<Purchase,Integer> nBottlesPurchase;
 
     @FXML
-    private TableColumn<Sale,Float> priceSale;
+    private TableColumn<Purchase,Float> pricePurchase;
 
     @FXML
     private Button searchData;
 
     @FXML
-    private TableColumn<Sale,Boolean> signSale;
+    private TableColumn<Purchase,Boolean> signPurchase;
 
     @FXML
-    private TableView<Sale> tabSale;
+    private TableView<Purchase> tabPurchase;
     java.sql.Date dataEnd;
     java.sql.Date dataBegin;
 
@@ -112,26 +117,27 @@ public class SearchDate implements Initializable {
             thisStageEmployee.hide();
         }
     }
-    ObservableList<Sale> obsSale = FXCollections.observableArrayList();
-    static ArrayList<Sale> sales=new ArrayList<>();
+    ObservableList<Purchase> obsPurchase = FXCollections.observableArrayList();
+    static ArrayList<Purchase> purchases=new ArrayList<>();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (valore == 1) {
-            for (int i = 0; i < sales.size(); i++) {
-                Sale temp = sales.get(i);
-                obsSale.add(temp);
+            for (int i = 0; i < purchases.size(); i++) {
+                Purchase temp = purchases.get(i);
+                obsPurchase.add(temp);
             }
 
-            idSale.setCellValueFactory(new PropertyValueFactory<Sale, Integer>("saleId"));
-            cfSale.setCellValueFactory(new PropertyValueFactory<Sale, String>("fiscalCode"));
-            addressSale.setCellValueFactory(new PropertyValueFactory<Sale, String>("address"));
-            idWineSale.setCellValueFactory(new PropertyValueFactory<Sale, Integer>("wineId"));
-            nBottlesSale.setCellValueFactory(new PropertyValueFactory<Sale, Integer>("nBottles"));
-            priceSale.setCellValueFactory(new PropertyValueFactory<Sale, Float>("price"));
-            dateSale.setCellValueFactory(new PropertyValueFactory<Sale, Date>("d"));
-            signSale.setCellValueFactory(new PropertyValueFactory<Sale, Boolean>("signature"));
-            acceptedSale.setCellValueFactory(new PropertyValueFactory<Sale, Boolean>("accepted"));
-            tabSale.setItems(obsSale);
+            idPurchase.setCellValueFactory(new PropertyValueFactory<Purchase, Integer>("purchaseId"));
+            cfPurchase.setCellValueFactory(new PropertyValueFactory<Purchase, String>("fiscalCode"));
+            cfClient.setCellValueFactory(new PropertyValueFactory<Purchase,String>("fiscClient"));
+            addressPurchase.setCellValueFactory(new PropertyValueFactory<Purchase, String>("address"));
+            idWinePurchase.setCellValueFactory(new PropertyValueFactory<Purchase, Integer>("wineId"));
+            nBottlesPurchase.setCellValueFactory(new PropertyValueFactory<Purchase, Integer>("nBottles"));
+            pricePurchase.setCellValueFactory(new PropertyValueFactory<Purchase, Float>("price"));
+            datePurchase.setCellValueFactory(new PropertyValueFactory<Purchase, Date>("data"));
+            signPurchase.setCellValueFactory(new PropertyValueFactory<Purchase, Boolean>("signature"));
+            acceptedPurchase.setCellValueFactory(new PropertyValueFactory<Purchase, Boolean>("accepted"));
+            tabPurchase.setItems(obsPurchase);
         }
     }
     @FXML
@@ -151,12 +157,12 @@ public class SearchDate implements Initializable {
         if(o.equals("OK")) {
             os.writeObject(rd);
             os.flush();
-            sales= (ArrayList<Sale>) is.readObject();
+            purchases= (ArrayList<Purchase>) is.readObject();
             valore=1;
             Parent root = FXMLLoader.load(getClass().getResource("SearchDate.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Search Date");
-            stage.setScene(new Scene(root, 883, 550));
+            stage.setScene(new Scene(root, 1054, 550));
             stage.setResizable(false);
             stage.show();
             Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();

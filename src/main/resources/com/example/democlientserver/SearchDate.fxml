@@ -8,28 +8,29 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="883.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.democlientserver.SearchDate">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="1054.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.democlientserver.SearchDate">
     <children>
-        <DatePicker fx:id="dataInizio" layoutX="192.0" layoutY="121.0" onAction="#dataInizio" promptText="Data di inizio" />
-        <DatePicker fx:id="dataFine" layoutX="420.0" layoutY="121.0" onAction="#dataFine" promptText="Data di fine" />
-        <Label layoutX="269.0" layoutY="59.0" prefHeight="35.0" prefWidth="357.0" text="Ricerca Acquisti Intervallo di Date">
+        <DatePicker fx:id="dataInizio" layoutX="269.0" layoutY="121.0" onAction="#dataInizio" promptText="Data di inizio" />
+        <DatePicker fx:id="dataFine" layoutX="497.0" layoutY="121.0" onAction="#dataFine" promptText="Data di fine" />
+        <Label layoutX="349.0" layoutY="59.0" prefHeight="35.0" prefWidth="357.0" text="Ricerca Acquisti Intervallo di Date">
             <font>
                 <Font size="24.0" />
             </font>
         </Label>
-        <Button fx:id="searchData" layoutX="649.0" layoutY="121.0" mnemonicParsing="false" onAction="#searchData" text="OK" />
+        <Button fx:id="searchData" layoutX="734.0" layoutY="121.0" mnemonicParsing="false" onAction="#searchData" text="OK" />
         <Button fx:id="goHome" layoutX="30.0" layoutY="34.0" mnemonicParsing="false" onAction="#goHome" text="HOME" />
-        <TableView fx:id="tabPurchase" layoutX="23.0" layoutY="172.0" prefHeight="337.0" prefWidth="833.0">
+        <TableView fx:id="tabPurchase" layoutX="80.0" layoutY="165.0" prefHeight="337.0" prefWidth="915.0">
             <columns>
-                <TableColumn fx:id="idPurchase" prefWidth="40.0" text="idPurchase" />
-                <TableColumn fx:id="cfPurchase" prefWidth="131.0" text="cfPurchase" />
+                <TableColumn fx:id="idPurchase" prefWidth="71.0" text="idPurchase" />
+                <TableColumn fx:id="cfPurchase" prefWidth="100.0" text="cfPurchase" />
+            <TableColumn fx:id="cfClient" prefWidth="75.0" text="cfClient" />
                 <TableColumn fx:id="addressPurchase" prefWidth="110.0" text="addrPurchase" />
-                <TableColumn fx:id="idWinePurchase" prefWidth="50.0" text="idWinePurchase" />
-                <TableColumn fx:id="nBottlesPurchase" prefWidth="74.0" text="nBottlesPurchase" />
-                <TableColumn fx:id="pricePurchase" prefWidth="143.0" text="pricePurchase" />
-                <TableColumn fx:id="datePurchase" prefWidth="94.0" text="datePurchase" />
-                <TableColumn fx:id="signPurchase" prefWidth="90.0" text="signPurchase" />
-                <TableColumn fx:id="acceptedPurchase" prefWidth="100.0" text="consPurchase" />
+                <TableColumn fx:id="idWinePurchase" prefWidth="94.0" text="idWinePurchase" />
+                <TableColumn fx:id="nBottlesPurchase" prefWidth="105.0" text="nBottlesPurchase" />
+                <TableColumn fx:id="pricePurchase" prefWidth="88.0" text="pricePurchase" />
+                <TableColumn fx:id="signPurchase" prefWidth="87.0" text="signPurchase" />
+                <TableColumn fx:id="acceptedPurchase" prefWidth="83.0" text="consPurchase" />
+                <TableColumn fx:id="datePurchase" prefWidth="101.0" text="datePurchase" />
             </columns>
         </TableView>
     </children>

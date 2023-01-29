@@ -734,31 +734,32 @@ public class ModelDBMS {
 
     }
 
-    public static ArrayList<Sale> SaleDateDBMS(Date d1, Date d2) {
+    public static ArrayList<Purchase> PurchaseDateDBMS(Date d1, Date d2) {
         try (Connection conn = DriverManager.getConnection(
                 DBURL, LOGIN, PASSWORD);
              Statement stmt = conn.createStatement();) {
 
-            String strSelect = "SELECT s.SaleId, s.FiscalCode, s.Address, s.WineId, s.Nbottles, s.Price, s.Date, s.Signature, s.Accepted " +
-                    "FROM sale AS s WHERE s.Date> '" + d1 + "' AND s.Date < '" + d2 + "'";
+            String strSelect = "SELECT p.PurchaseId, p.FiscalCode, p.FiscClient, p.Address, p.WineId, p.Nbottles, p.Price, p.Data, p.Signature, p.Accepted " +
+                    "FROM purchase AS p WHERE p.Data> '" + d1 + "' AND p.Data < '" + d2 + "'";
             ResultSet rset = stmt.executeQuery(strSelect);
 
-            ArrayList<Sale> arraySale = new ArrayList<Sale>();
+            ArrayList<Purchase> arrayPurchase = new ArrayList<Purchase>();
             while (rset.next()) {
-                int saleId = rset.getInt("SaleId");
+                int saleId = rset.getInt("PurchaseId");
                 String fc = rset.getString("FiscalCode");
+                String fcClient = rset.getString("FiscClient");
                 String addr = rset.getString("Address");
                 int wid = rset.getInt("WineId");
                 int nbott = rset.getInt("Nbottles");
                 float price = rset.getFloat("Price");
-                Date date = rset.getDate("Date");
+                Date date = rset.getDate("Data");
                 boolean sign = rset.getBoolean("Signature");
                 boolean acc = rset.getBoolean("Accepted");
-                Sale s = new Sale(saleId, wid, nbott, sign, acc, fc, addr, price, date);
-                arraySale.add(s);
-                System.out.println(s.infoSale());
+                Purchase s = new Purchase(saleId, fc,fcClient,addr,wid,nbott,price, sign, acc,date);
+                arrayPurchase.add(s);
+
             }
-            return arraySale;
+            return arrayPurchase;
         } catch (SQLException e) {
             e.printStackTrace();
         }
