@@ -109,7 +109,17 @@ public class HomeEmployee {
         }
 
     }
-
+    @FXML
+    void proposalPurchase(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("ProposalPurchaseEmployee.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("Proposal Purchase");
+        stage.setScene(new Scene(root, 632, 346));
+        stage.setResizable(false);
+        stage.show();
+        Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        thisStage.hide();
+    }
     @FXML
     void searchClientSurname(ActionEvent event) throws IOException, ClassNotFoundException {
         String txt1=txtClientSurname.getText();

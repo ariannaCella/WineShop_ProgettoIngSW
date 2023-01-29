@@ -24,8 +24,8 @@
         <Button fx:id="SearchWine" layoutX="429.0" layoutY="254.0" mnemonicParsing="false" onAction="#SearchWine" text="Cerca" />
         <Button fx:id="managDb" layoutX="90.0" layoutY="159.0" mnemonicParsing="false" onAction="#managementDatabase" text="Gestione DB" />
         <Button fx:id="searchPurchaseDate" layoutX="90.0" layoutY="206.0" mnemonicParsing="false" onAction="#searchPurchaseForDates" text="Ricerca Proposte di acquisto per intervallo di date" />
-        <TextField fx:id="txtClientSurname" layoutX="90.0" layoutY="310.0" prefHeight="25.0" prefWidth="170.0" promptText="Ricerca Cliente per Cognome" />
-        <Button fx:id="SearchClientSurname" layoutX="285.0" layoutY="310.0" mnemonicParsing="false" onAction="#searchClientSurname" text="Cerca" />
+        <TextField fx:id="txtClientSurname" layoutX="90.0" layoutY="302.0" prefHeight="25.0" prefWidth="170.0" promptText="Ricerca Cliente per Cognome" />
+        <Button fx:id="SearchClientSurname" layoutX="285.0" layoutY="302.0" mnemonicParsing="false" onAction="#searchClientSurname" text="Cerca" />
         <ChoiceBox fx:id="ChoiceWine" layoutX="90.0" layoutY="254.0" prefWidth="150.0">
             <items>
                 <FXCollections fx:factory="observableArrayList">
@@ -35,5 +35,6 @@
             </items>
         </ChoiceBox>
         <Label fx:id="error" layoutX="472.0" layoutY="293.0" prefHeight="17.0" prefWidth="5.0" />
+      <Button layoutX="90.0" layoutY="349.0" mnemonicParsing="false" onAction="#proposalPurchase" prefHeight="25.0" prefWidth="163.0" text="Richiesta rifornimento vini" />
     </children>
 </Pane>
