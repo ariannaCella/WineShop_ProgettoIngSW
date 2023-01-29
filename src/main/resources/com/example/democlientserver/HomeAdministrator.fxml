@@ -23,7 +23,7 @@
         <TextField fx:id="txtWine" layoutX="267.0" layoutY="454.0" onAction="#textWineName" promptText="Ricerca Vino" />
         <Button fx:id="SearchWine" layoutX="449.0" layoutY="454.0" mnemonicParsing="false" onAction="#SearchWine" text="Cerca" />
         <Button fx:id="managDb" layoutX="80.0" layoutY="345.0" mnemonicParsing="false" onAction="#managementDatabase" text="Gestione DB" />
-        <Button fx:id="searchPurchaseDate" layoutX="80.0" layoutY="392.0" mnemonicParsing="false" onAction="#searchSalesForDates" text="Ricerca Proposte di acquisto per intervallo di date" />
+        <Button fx:id="searchPurchaseDate" layoutX="80.0" layoutY="392.0" mnemonicParsing="false" onAction="#searchPurchaseForDates" text="Ricerca Proposte di acquisto per intervallo di date" />
         <TextField fx:id="txtClientSurname" layoutX="80.0" layoutY="507.0" prefHeight="25.0" prefWidth="170.0" promptText="Ricerca Cliente per Cognome" />
         <Button fx:id="SearchClientSurname" layoutX="267.0" layoutY="507.0" mnemonicParsing="false" onAction="#searchClientSurname" text="Cerca" />
         <ChoiceBox fx:id="ChoiceWine" layoutX="79.0" layoutY="454.0" prefWidth="150.0">

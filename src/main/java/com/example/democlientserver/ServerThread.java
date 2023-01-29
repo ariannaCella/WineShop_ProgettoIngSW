@@ -72,7 +72,7 @@ public class ServerThread implements Runnable
             Supplier connectedSupplier=new Supplier();
             ArrayList<Wine> winesInPromo=new ArrayList<>();
             ArrayList<Sale> salesTot=new ArrayList<Sale>();
-            ArrayList<Sale> SaleDate=new ArrayList<Sale>();
+            ArrayList<Purchase> PurchaseDate=new ArrayList<Purchase>();
             ArrayList<Client> clientTot=new ArrayList<Client>();
             ArrayList<Employee> employeeTot=new ArrayList<Employee>();
             ArrayList<Purchase> purchaseTot=new ArrayList<Purchase>();
@@ -608,8 +608,9 @@ public class ServerThread implements Runnable
                         reqd = (RequestDate) is.readObject();
                         Date d1 =reqd.getBegin();
                         Date d2=reqd.getEnd();
-                        SaleDate=ModelDBMS.SaleDateDBMS(d1,d2);
-                        os.writeObject(SaleDate);
+
+                        PurchaseDate=ModelDBMS.PurchaseDateDBMS(d1,d2);
+                        os.writeObject(PurchaseDate);
                         os.flush();
                         break;
 
