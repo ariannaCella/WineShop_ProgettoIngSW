@@ -43,6 +43,17 @@ public class ListWines implements Initializable{
     @FXML
     private ChoiceBox<String> choiceTypeUser5;
     @FXML
+    private ChoiceBox<String> choiceTypeUser6;
+
+    @FXML
+    private ChoiceBox<String> choiceTypeUser7;
+
+    @FXML
+    private ChoiceBox<String> choiceTypeUser8;
+
+    @FXML
+    private ChoiceBox<String> choiceTypeUser9;
+    @FXML
     private Button goBackHome;
     @FXML
     private Label noWine;
@@ -64,6 +75,17 @@ public class ListWines implements Initializable{
     @FXML
     private Label error5;
     @FXML
+    private Label error6;
+
+    @FXML
+    private Label error7;
+
+    @FXML
+    private Label error8;
+
+    @FXML
+    private Label error9;
+    @FXML
     private ScrollPane scroll;
     @FXML
     private VBox viewShop0;
@@ -83,6 +105,17 @@ public class ListWines implements Initializable{
     private VBox viewShop5;
 
     @FXML
+    private VBox viewShop6;
+
+    @FXML
+    private VBox viewShop7;
+
+    @FXML
+    private VBox viewShop8;
+
+    @FXML
+    private VBox viewShop9;
+    @FXML
     private Label imgWine0;
 
     @FXML
@@ -98,6 +131,17 @@ public class ListWines implements Initializable{
     private Label imgWine4;
     @FXML
     private Label imgWine5;
+    @FXML
+    private Label imgWine6;
+
+    @FXML
+    private Label imgWine7;
+
+    @FXML
+    private Label imgWine8;
+
+    @FXML
+    private Label imgWine9;
 
     @FXML
     private Label txtInfoWine0;
@@ -115,10 +159,34 @@ public class ListWines implements Initializable{
     private Label txtInfoWine4;
     @FXML
     private Label txtInfoWine5;
+
     @FXML
-    private Button shopping0,shopping1,shopping2,shopping3,shopping4,shopping5;
+    private Label txtInfoWine6;
+
+    @FXML
+    private Label txtInfoWine7;
+
+    @FXML
+    private Label txtInfoWine8;
+
+    @FXML
+    private Label txtInfoWine9;
+
+    @FXML
+    private Button shopping0,shopping1,shopping2,shopping3,shopping4,shopping5,shopping6,shopping7,shopping8,shopping9;
     @FXML
     private TextField quantityShop0,quantityShop1,quantityShop2,quantityShop3,quantityShop4,quantityShop5;
+    @FXML
+    private TextField quantityShop6;
+
+    @FXML
+    private TextField quantityShop7;
+
+    @FXML
+    private TextField quantityShop8;
+
+    @FXML
+    private TextField quantityShop9;
     @FXML
     private ArrayList <Label> txtInfoWine = new ArrayList<>();
     private ArrayList <Label> imgInfoWine = new ArrayList<>();
@@ -146,18 +214,30 @@ public class ListWines implements Initializable{
             txtInfoWine.add(txtInfoWine3);
             txtInfoWine.add(txtInfoWine4);
             txtInfoWine.add(txtInfoWine5);
+            txtInfoWine.add(txtInfoWine6);
+            txtInfoWine.add(txtInfoWine7);
+            txtInfoWine.add(txtInfoWine8);
+            txtInfoWine.add(txtInfoWine9);
             imgInfoWine.add(imgWine0);
             imgInfoWine.add(imgWine1);
             imgInfoWine.add(imgWine2);
             imgInfoWine.add(imgWine3);
             imgInfoWine.add(imgWine4);
             imgInfoWine.add(imgWine5);
+            imgInfoWine.add(imgWine6);
+            imgInfoWine.add(imgWine7);
+            imgInfoWine.add(imgWine8);
+            imgInfoWine.add(imgWine9);
             forShop.add(viewShop0);
             forShop.add(viewShop1);
             forShop.add(viewShop2);
             forShop.add(viewShop3);
             forShop.add(viewShop4);
             forShop.add(viewShop5);
+            forShop.add(viewShop6);
+            forShop.add(viewShop7);
+            forShop.add(viewShop8);
+            forShop.add(viewShop9);
             if(n>0){
                 scroll.setVisible(true);
                 for(int i=0;i<n;i++) {
@@ -165,8 +245,8 @@ public class ListWines implements Initializable{
                     forShop.get(i).setVisible(true);
                     InputStream stream = null;
                     try {
-                        //stream = new FileInputStream("C:\\Users\\huawei\\eclipse-workspace\\ele\\demoClient-server\\src\\main\\resources\\com\\example\\democlientserver\\"+winesList.get(i).getImgWine());
-                        stream = new FileInputStream("C:\\Users\\Elena\\Desktop\\VinoDefinitiva\\ProgettoPoggi\\src\\main\\resources\\com\\example\\democlientserver\\"+winesList.get(i).getImgWine());
+                        stream = new FileInputStream("C:\\Users\\huawei\\eclipse-workspace\\ele\\demoClient-server\\src\\main\\resources\\com\\example\\democlientserver\\"+winesList.get(i).getImgWine());
+                       // stream = new FileInputStream("C:\\Users\\Elena\\Desktop\\VinoDefinitiva\\ProgettoPoggi\\src\\main\\resources\\com\\example\\democlientserver\\"+winesList.get(i).getImgWine());
                     } catch (FileNotFoundException e) {
                         throw new RuntimeException(e);
                     }
@@ -266,7 +346,7 @@ public class ListWines implements Initializable{
         String n=quantityShop1.getText();
         if((n.isBlank())||typeCaseOrBottle==null){error1.setVisible(true);return;}
         int number=Integer.parseInt(n);
-        if(number==0){error0.setVisible(true);return;}
+        if(number==0){error1.setVisible(true);return;}
         functionShop(number,chosenBottleWine,typeCaseOrBottle,buttonNumber,actionEvent);
     }
     public void shopWine2(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
@@ -276,7 +356,7 @@ public class ListWines implements Initializable{
         String n=quantityShop2.getText();
         if((n.isBlank())||typeCaseOrBottle==null){error2.setVisible(true);return;}
         int number=Integer.parseInt(n);
-        if(number==0){error0.setVisible(true);return;}
+        if(number==0){error2.setVisible(true);return;}
         functionShop(number,chosenBottleWine,typeCaseOrBottle,buttonNumber,actionEvent);
     }
     public void shopWine3(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
@@ -286,7 +366,7 @@ public class ListWines implements Initializable{
         String n=quantityShop3.getText();
         if((n.isBlank())||typeCaseOrBottle==null){error3.setVisible(true);return;}
         int number=Integer.parseInt(n);
-        if(number==0){error0.setVisible(true);return;}
+        if(number==0){error3.setVisible(true);return;}
         functionShop(number,chosenBottleWine,typeCaseOrBottle,buttonNumber,actionEvent);
     }
     public void shopWine4(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
@@ -296,7 +376,7 @@ public class ListWines implements Initializable{
         String n=quantityShop4.getText();
         if((n.isBlank())||typeCaseOrBottle==null){error4.setVisible(true);return;}
         int number=Integer.parseInt(n);
-        if(number==0){error0.setVisible(true);return;}
+        if(number==0){error4.setVisible(true);return;}
         functionShop(number,chosenBottleWine,typeCaseOrBottle,buttonNumber,actionEvent);
     }
     public void shopWine5(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
@@ -306,8 +386,48 @@ public class ListWines implements Initializable{
         String n=quantityShop5.getText();
         if((n.isBlank())||typeCaseOrBottle==null){error5.setVisible(true);return;}
         int number=Integer.parseInt(n);
-        if(number==0){error0.setVisible(true);return;}
+        if(number==0){error5.setVisible(true);return;}
         functionShop(number,chosenBottleWine,typeCaseOrBottle,buttonNumber,actionEvent);
     }
 
+    public void shopWine6(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
+        int buttonNumber=6;
+        chosenBottleWine=winesList.get(6);
+        String typeCaseOrBottle=choiceTypeUser6.getValue();
+        String n=quantityShop6.getText();
+        if((n.isBlank())||typeCaseOrBottle==null){error6.setVisible(true);return;}
+        int number=Integer.parseInt(n);
+        if(number==0){error6.setVisible(true);return;}
+        functionShop(number,chosenBottleWine,typeCaseOrBottle,buttonNumber,actionEvent);
+    }
+    public void shopWine7(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
+        int buttonNumber=7;
+        chosenBottleWine=winesList.get(7);
+        String typeCaseOrBottle=choiceTypeUser7.getValue();
+        String n=quantityShop7.getText();
+        if((n.isBlank())||typeCaseOrBottle==null){error7.setVisible(true);return;}
+        int number=Integer.parseInt(n);
+        if(number==0){error7.setVisible(true);return;}
+        functionShop(number,chosenBottleWine,typeCaseOrBottle,buttonNumber,actionEvent);
+    }
+    public void shopWine8(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
+        int buttonNumber=8;
+        chosenBottleWine=winesList.get(8);
+        String typeCaseOrBottle=choiceTypeUser8.getValue();
+        String n=quantityShop8.getText();
+        if((n.isBlank())||typeCaseOrBottle==null){error8.setVisible(true);return;}
+        int number=Integer.parseInt(n);
+        if(number==0){error8.setVisible(true);return;}
+        functionShop(number,chosenBottleWine,typeCaseOrBottle,buttonNumber,actionEvent);
+    }
+    public void shopWine9(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
+        int buttonNumber=9;
+        chosenBottleWine=winesList.get(9);
+        String typeCaseOrBottle=choiceTypeUser9.getValue();
+        String n=quantityShop9.getText();
+        if((n.isBlank())||typeCaseOrBottle==null){error9.setVisible(true);return;}
+        int number=Integer.parseInt(n);
+        if(number==0){error9.setVisible(true);return;}
+        functionShop(number,chosenBottleWine,typeCaseOrBottle,buttonNumber,actionEvent);
+    }
 }

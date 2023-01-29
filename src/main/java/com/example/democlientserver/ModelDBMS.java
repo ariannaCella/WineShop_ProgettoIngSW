@@ -1,7 +1,5 @@
 package com.example.democlientserver;
 
-
-
 import Actors.*;
 import RequestResponse.RequestChangePassword;
 import RequestResponse.RequestModifyWine;
@@ -709,6 +707,32 @@ public class ModelDBMS {
                 String username = rset.getString("Username");
                 Client v = new Client(name, surname, fiscalCode, email, phone, address, username);
                 c.add(v);
+            }
+            return c;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Client getAgency() {
+        try (Connection conn = DriverManager.getConnection(
+                DBURL, LOGIN, PASSWORD);
+             Statement stmt = conn.createStatement();) {
+
+            String strSelect = "SELECT c.Name, c.Surname, c.FiscalCode, c.Email, c.Phone, c.Address, c.Username FROM client AS c WHERE c.FiscalCode = 'aziendaWineShop' ";
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            Client c = new Client();
+            while (rset.next()) {
+                String name = rset.getString("Name");
+                String surname = rset.getString("Surname");
+                String fiscalCode = rset.getString("FiscalCode");
+                String email = rset.getString("Email");
+                int phone = rset.getInt("Phone");
+                String address = rset.getString("Address");
+                String username = rset.getString("Username");
+                c = new Client(name, surname, fiscalCode, email, phone, address, username);
             }
             return c;
         } catch (SQLException e) {

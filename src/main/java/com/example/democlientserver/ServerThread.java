@@ -739,7 +739,8 @@ public class ServerThread implements Runnable
                         int numE=reqPropEmployee.getNumberBottles();
                         Wine wPropE=searchPriceCFSupWineDBMS(idWineE);
                         Date dateE = new Date(System.currentTimeMillis());
-                        Purchase pE=new Purchase(3+proposalPurchase.size(), wPropE.getFcSupplier(), connectedEmployee.getFiscalCode(),connectedEmployee.getAddress(),idWineE,numE, wPropE.getPrice()*numE, false,false, dateE);
+                        Client agency= ModelDBMS.getAgency();
+                        Purchase pE=new Purchase(3+proposalPurchase.size(), wPropE.getFcSupplier(), agency.getFiscalCode(),agency.getAddress(),idWineE,numE, wPropE.getPrice()*numE, false,false, dateE);
                         proposalPurchase.add(pE);
                         ModelDBMS.newProposalPurchase(pE);
                         break;
