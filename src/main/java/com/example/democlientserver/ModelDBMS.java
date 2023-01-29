@@ -829,7 +829,12 @@ public class ModelDBMS {
             pstmt.setInt(1, idpurchase);
             pstmt.addBatch();
             pstmt.executeBatch();
-            System.out.println(strSelect);
+            String strSelect2 = "UPDATE wine SET Quantity += true WHERE WineId = (SELECT w.WineId FROM wine AS w  JOIN purchase AS p ON w.WineId= p.WineId WHERE PurchaseId = ?";
+            PreparedStatement pstmt = conn.prepareStatement(strSelect2);
+            pstmt.setInt(1, idpurchase);
+            pstmt.addBatch();
+            pstmt.executeBatch();
+            //System.out.println(strSelect);
             return 1;
         } catch (SQLException e) {
             throw new RuntimeException(e);
