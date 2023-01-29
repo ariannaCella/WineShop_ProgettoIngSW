@@ -33,10 +33,10 @@ import static com.example.democlientserver.HelloApplication.is;
 public class SearchDate implements Initializable {
 
     @FXML
-    private TableColumn<Sale,Boolean> acceptedSale;
+    private TableColumn<Sale,Boolean> acceptedPurchase;
 
     @FXML
-    private TableColumn<Sale,String> addressSale;
+    private TableColumn<Sale,String> addressPurchase;
 
     @FXML
     private TableColumn<Sale,String> cfSale;
