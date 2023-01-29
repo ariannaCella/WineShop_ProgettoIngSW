@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.collections.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<Pane prefHeight="647.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.democlientserver.HomeAdministrator">
+<Pane prefHeight="635.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.democlientserver.HomeAdministrator">
     <children>
         <Label fx:id="Title" layoutX="257.0" layoutY="28.0" text="Home Amministratore">
             <font>
@@ -20,13 +26,13 @@
         </Label>
         <Button fx:id="modifyPassw" layoutX="623.0" layoutY="333.0" mnemonicParsing="false" onAction="#modifyPassword" text="Modifica Password" />
         <Button fx:id="LogOut" layoutX="35.0" layoutY="33.0" mnemonicParsing="false" onAction="#LogOut" text="Log Out" />
-        <TextField fx:id="txtWine" layoutX="267.0" layoutY="454.0" onAction="#textWineName" promptText="Ricerca Vino" />
-        <Button fx:id="SearchWine" layoutX="449.0" layoutY="454.0" mnemonicParsing="false" onAction="#SearchWine" text="Cerca" />
-        <Button fx:id="managDb" layoutX="80.0" layoutY="345.0" mnemonicParsing="false" onAction="#managementDatabase" text="Gestione DB" />
-        <Button fx:id="searchPurchaseDate" layoutX="80.0" layoutY="392.0" mnemonicParsing="false" onAction="#searchSalesForDates" text="Ricerca Proposte di acquisto per intervallo di date" />
-        <TextField fx:id="txtClientSurname" layoutX="80.0" layoutY="507.0" prefHeight="25.0" prefWidth="170.0" promptText="Ricerca Cliente per Cognome" />
-        <Button fx:id="SearchClientSurname" layoutX="267.0" layoutY="507.0" mnemonicParsing="false" onAction="#searchClientSurname" text="Cerca" />
-        <ChoiceBox fx:id="ChoiceWine" layoutX="79.0" layoutY="454.0" prefWidth="150.0">
+        <TextField fx:id="txtWine" layoutX="266.0" layoutY="437.0" onAction="#textWineName" promptText="Ricerca Vino" />
+        <Button fx:id="SearchWine" layoutX="449.0" layoutY="437.0" mnemonicParsing="false" onAction="#SearchWine" text="Cerca" />
+        <Button fx:id="managDb" layoutX="72.0" layoutY="333.0" mnemonicParsing="false" onAction="#managementDatabase" text="Gestione DB" />
+        <Button fx:id="searchPurchaseDate" layoutX="72.0" layoutY="378.0" mnemonicParsing="false" onAction="#searchSalesForDates" text="Ricerca Proposte di acquisto per intervallo di date" />
+        <TextField fx:id="txtClientSurname" layoutX="70.0" layoutY="482.0" prefHeight="25.0" prefWidth="170.0" promptText="Ricerca Cliente per Cognome" />
+        <Button fx:id="SearchClientSurname" layoutX="267.0" layoutY="482.0" mnemonicParsing="false" onAction="#searchClientSurname" text="Cerca" />
+        <ChoiceBox fx:id="ChoiceWine" layoutX="72.0" layoutY="437.0" prefWidth="150.0">
             <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="Year" />
@@ -37,7 +43,7 @@
         <Label fx:id="error" layoutX="472.0" layoutY="293.0" prefHeight="17.0" prefWidth="5.0" />
       <Separator layoutX="63.0" layoutY="302.0" prefHeight="17.0" prefWidth="685.0" />
       <Label layoutX="66.0" layoutY="285.0" text="Operazioni" />
-      <Button fx:id="report" layoutX="449.0" layoutY="564.0" mnemonicParsing="false" onAction="#report" text="Ottieni Report Mensile" />
+      <Button fx:id="report" layoutX="449.0" layoutY="540.0" mnemonicParsing="false" onAction="#report" text="Ottieni Report Mensile" />
       <Button fx:id="newEmployee" layoutX="75.0" layoutY="174.0" mnemonicParsing="false" onAction="#newEmployee" text="Aggiungi nuovo Impiegato" />
       <TextField fx:id="txtRemove" layoutX="75.0" layoutY="220.0" prefHeight="25.0" prefWidth="202.0" promptText="Username impiegato da rimuovere" />
       <Button layoutX="282.0" layoutY="220.0" mnemonicParsing="false" onAction="#removeEmployee" text="Rimuovi" />
@@ -50,7 +56,7 @@
             <TableColumn fx:id="username" prefWidth="122.0" text="username" />
         </columns>
       </TableView>
-      <ChoiceBox fx:id="ChoiceMonth" layoutX="80.0" layoutY="564.0" prefWidth="150.0">
+      <ChoiceBox fx:id="ChoiceMonth" layoutX="72.0" layoutY="540.0" prefWidth="150.0">
          <items>
             <FXCollections fx:factory="observableArrayList">
                <String fx:value="01" />
@@ -68,8 +74,9 @@
             </FXCollections>
          </items>
       </ChoiceBox>
-      <Label layoutX="79.0" layoutY="547.0" prefHeight="17.0" prefWidth="150.0" text="Inserire mese del report" />
-      <TextField fx:id="ChoiceYear" layoutX="267.0" layoutY="564.0" promptText="Inserire anno del report" />
-      <Label layoutX="81.0" layoutY="440.0" prefHeight="17.0" prefWidth="149.0" text="Selezionare tipo di ricerca" />
+      <Label layoutX="72.0" layoutY="523.0" prefHeight="17.0" prefWidth="150.0" text="Inserire mese del report" />
+      <TextField fx:id="ChoiceYear" layoutX="266.0" layoutY="540.0" promptText="Inserire anno del report" />
+      <Label layoutX="72.0" layoutY="420.0" prefHeight="17.0" prefWidth="149.0" text="Selezionare tipo di ricerca" />
+      <Button layoutX="72.0" layoutY="585.0" mnemonicParsing="false" onAction="#proposalPurchase" text="Richiesta di rifornimento dei vini" />
     </children>
 </Pane>

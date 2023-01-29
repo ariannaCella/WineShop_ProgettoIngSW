@@ -729,6 +729,20 @@ public class ServerThread implements Runnable
                         ModelDBMS.newProposalPurchase(p);
                         break;
 
+                    case "Create Proposal Purchase Employee":
+                        if (os == null) {
+                            os = new ObjectOutputStream(this.socket.getOutputStream());
+                        }
+                        RequestProposalPurchase reqPropEmployee= (RequestProposalPurchase) is.readObject();
+                        int idWineE=reqPropEmployee.getIdWine();
+                        int numE=reqPropEmployee.getNumberBottles();
+                        Wine wPropE=searchPriceCFSupWineDBMS(idWineE);
+                        Date dateE = new Date(System.currentTimeMillis());
+                        Purchase pE=new Purchase(3+proposalPurchase.size(), wPropE.getFcSupplier(), connectedEmployee.getFiscalCode(),connectedEmployee.getAddress(),idWineE,numE, wPropE.getPrice()*numE, false,false, dateE);
+                        proposalPurchase.add(pE);
+                        ModelDBMS.newProposalPurchase(pE);
+                        break;
+
                     case "SaveReport":
                         RequestMonthYearReport reqMonthYear= (RequestMonthYearReport) is.readObject();
                         monthReport=reqMonthYear.getMonth();

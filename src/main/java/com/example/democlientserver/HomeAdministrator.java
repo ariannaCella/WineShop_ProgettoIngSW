@@ -276,14 +276,17 @@ public class HomeAdministrator implements Initializable {
     }
 
     @FXML
-    void textWineName(ActionEvent event) {
-
+    void proposalPurchase(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("ProposalPurchaseEmployee.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("Proposal Purchase");
+        stage.setScene(new Scene(root, 632, 346));
+        stage.setResizable(false);
+        stage.show();
+        Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        thisStage.hide();
     }
 
-    @FXML
-    void textWineYear(ActionEvent event) {
-
-    }
     ArrayList<Employee> employees=new ArrayList<>();
     ObservableList<Employee> obsEmployee = FXCollections.observableArrayList();
 

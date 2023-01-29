@@ -28,15 +28,21 @@ import static com.example.democlientserver.HelloApplication.is;
 public class ProposalPurchaseEmployee  implements Initializable {
 
     @FXML
-    private TextField address, id;
-
-    @FXML
-    private CheckBox casse12;
-
-    @FXML
-    private CheckBox casse6;
-    @FXML
     private Label error;
+
+    @FXML
+    private TextField id;
+
+
+    @FXML
+    private TextField number;
+
+    @FXML
+    private TableColumn<Wine, Integer> quantity;
+
+    @FXML
+    private Button sendProposal;
+
 
     @FXML
     private TableColumn<Wine,Integer> idWine;
@@ -48,15 +54,7 @@ public class ProposalPurchaseEmployee  implements Initializable {
     private TableColumn<Wine, String> name;
 
     @FXML
-    private TextField number;
-
-    @FXML
-    private Button sendProposal;
-    @FXML
     private TableColumn<Wine,Double> price;
-
-    @FXML
-    private TextField txtUser;
 
     @FXML
     private TableColumn<Wine,Integer> year;
@@ -76,42 +74,46 @@ public class ProposalPurchaseEmployee  implements Initializable {
     @FXML
     void makeProposal(ActionEvent event){
         try {
-            if(id.getText().isBlank()||number.getText().isBlank()||address.getText().isBlank()) {
+            if(id.getText().isBlank()||number.getText().isBlank()) {
                 error.setText("Inserire valori mancanti");
                 error.setVisible(true);
                 return;
             }
             int idWine=Integer.parseInt(id.getText());
-            String ad=address.getText();
             int num= Integer.parseInt(number.getText());
-            int casse=0; //se rimane 0 si vogliono bottiglie, se diventa 6 si vogliono casse da 6 se diventa 12 casse da 12
-            if (casse6.isSelected()){
-                casse=6;
-            }
-            if (casse12.isSelected()){
-                casse=12;
-            }
-            if (casse6.isSelected() & casse12.isSelected()) {
-                error.setText("Inserire solo uno tra casse da 6 e casse da 12");
-                error.setVisible(true);
-                return;
-            }
 
-            os.writeObject("Create Proposal Purchase");
+            os.writeObject("Create Proposal Purchase Employee");
             os.flush();
-            RequestProposalPurchase requestProp= new RequestProposalPurchase(idWine,num,ad,casse);
+            RequestProposalPurchase requestProp= new RequestProposalPurchase(idWine,num,null,0);
             os.writeObject(requestProp);
             os.flush();
-            Parent root = FXMLLoader.load(getClass().getResource("ViewProposalPurchase.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("Purchases");
-            stage.setScene(new Scene(root, 893, 565));
-            stage.setResizable(false);
-            stage.show();
-            Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            thisStage.hide();
+            os.writeObject("isAdministrator");
+            os.flush();
+            int admin= (int) is.readObject();
+            if(admin==0) {
+                Parent rootEmployee = FXMLLoader.load(getClass().getResource("HomeEmployee.fxml"));
+                Stage stageEmployee = new Stage();
+                stageEmployee.setTitle("Home Employee");
+                stageEmployee.setScene(new Scene(rootEmployee, 600, 400));
+                stageEmployee.setResizable(false);
+                stageEmployee.show();
+                Stage thisStageEmployee = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                thisStageEmployee.hide();
+            }
+            else if(admin==1){
+                Parent rootEmployee = FXMLLoader.load(getClass().getResource("HomeAdministrator.fxml"));
+                Stage stageEmployee = new Stage();
+                stageEmployee.setTitle("Home Administrator");
+                stageEmployee.setScene(new Scene(rootEmployee, 800, 647));
+                stageEmployee.setResizable(false);
+                stageEmployee.show();
+                Stage thisStageEmployee = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                thisStageEmployee.hide();
+            }
 
         } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
@@ -143,6 +145,7 @@ public class ProposalPurchaseEmployee  implements Initializable {
             name.setCellValueFactory(new PropertyValueFactory<Wine,String>("name"));
             year.setCellValueFactory(new PropertyValueFactory<Wine,Integer>("year"));
             price.setCellValueFactory(new PropertyValueFactory<Wine,Double>("price"));
+            quantity.setCellValueFactory(new PropertyValueFactory<Wine,Integer>("quantity"));
 
             listWine.setItems(obsWine);
 
