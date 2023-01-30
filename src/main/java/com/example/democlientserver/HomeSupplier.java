@@ -137,7 +137,7 @@ public class HomeSupplier implements Initializable {
 
             id.setCellValueFactory(new PropertyValueFactory<Purchase,Integer>("purchaseId"));
             idWine.setCellValueFactory(new PropertyValueFactory<Purchase,Integer>("wineId"));
-            nBottles.setCellValueFactory(new PropertyValueFactory<Purchase,Integer>("nBottles"));
+            nBottles.setCellValueFactory(new PropertyValueFactory<Purchase,Integer>("bottles"));
             price.setCellValueFactory(new PropertyValueFactory<Purchase,Double>("price"));
             signature.setCellValueFactory(new PropertyValueFactory<Purchase,Boolean>("signature"));
             accepted.setCellValueFactory(new PropertyValueFactory<Purchase,Boolean>("accepted"));

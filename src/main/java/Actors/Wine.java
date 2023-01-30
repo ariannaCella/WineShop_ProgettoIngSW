@@ -7,7 +7,7 @@ import java.io.Serializable;
 public class Wine implements Serializable {
 	String name,producer,origin,notes,vines,img, fcSupplier;
 	int year,wineId, quantity;
-	int nSales;
+	int sales;
 	int quality; //from one to ten stars
 	double price;
 
@@ -21,7 +21,7 @@ public class Wine implements Serializable {
 		this.notes=note;
 		this.vines=v;
 		this.year=y;
-		this.nSales=nsale;
+		this.sales=nsale;
 		this.quantity=qn;
 		this.quality=ql;
 		this.price= pr;
@@ -36,7 +36,7 @@ public class Wine implements Serializable {
 		this.notes=note;
 		this.vines=v;
 		this.year=y;
-		this.nSales=nsale;
+		this.sales=nsale;
 		this.quantity=qn;
 		this.quality=ql;
 		this.price= pr;
@@ -52,7 +52,7 @@ public class Wine implements Serializable {
 		this.notes=null;
 		this.vines=null;
 		this.year=0;
-		this.nSales=0;
+		this.sales=0;
 		this.quantity=0;
 		this.quality=0;
 		this.price= 0;
@@ -61,20 +61,20 @@ public class Wine implements Serializable {
     }
 
     public void updatePrice() { // ci sarà da chiamare quando verrà venduto il vino
-		this.price+=nSales*0.50;
+		this.price+=sales*0.50;
 	}
 
 	public void updateQuality() { // ci sarà da chiamare quando verrà venduto il vino
-		this.quality+=nSales*0.05;
+		this.quality+=sales*0.05;
 	}
 	public void updateQuantity() { // ci sarà da chiamare quando verrà venduto il vino
 
-		this.quantity-=nSales;
+		this.quantity-=sales;
 
 	}
 
 	public void addSales(int nsales) { //verrà chiamata quando vendo vino prima updatePrice
-		this.nSales=this.nSales+nsales;
+		this.sales=this.sales+nsales;
 	}
 	public String infoWine(){
 		return name +", "+ producer +", origine:"+origin+"\nNote:"+notes+"\nVitigni:"+vines+", anno di produzione:"+year+"\nQualità:"+quality+"\nPrezzo di vendita:"+price+"$";
@@ -155,12 +155,12 @@ public class Wine implements Serializable {
 		this.quantity = quantity;
 	}
 
-	public int getnSales() {
-		return nSales;
+	public int getSales() {
+		return sales;
 	}
 
-	public void setnSales(int nSales) {
-		this.nSales = nSales;
+	public void setSales(int nSales) {
+		this.sales = nSales;
 	}
 
 	public int getQuality() {

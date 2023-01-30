@@ -122,11 +122,11 @@ public class wineView implements Initializable {
             originWine.setCellValueFactory(new PropertyValueFactory<Wine,String>("origin"));
             noteWine.setCellValueFactory(new PropertyValueFactory<Wine,String>("notes"));
             yearWine.setCellValueFactory(new PropertyValueFactory<Wine,Integer>("year"));
-            nSalesWine.setCellValueFactory(new PropertyValueFactory<Wine,Integer>("nSales"));
+            nSalesWine.setCellValueFactory(new PropertyValueFactory<Wine,Integer>("sales"));
             quantityWine.setCellValueFactory(new PropertyValueFactory<Wine,Integer>("quantity"));
             qualityWine.setCellValueFactory(new PropertyValueFactory<Wine,Float>("quality"));
             priceWine.setCellValueFactory(new PropertyValueFactory<Wine,Float>("price"));
-            imageWine.setCellValueFactory(new PropertyValueFactory<Wine,String>("img"));
+            vinesWine.setCellValueFactory(new PropertyValueFactory<Wine,String>("vines"));
 
             tabWine.setItems(obsWine);
 

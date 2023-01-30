@@ -364,7 +364,7 @@ public class ModelDBMS {
                 DBURL, LOGIN, PASSWORD);
              Statement stmt = conn.createStatement();) {
 
-            String strSelect = "SELECT s.SaleId, s.FiscalCode, s.Address, s.WineId, s.Nbottles, s.Price, s.Date, s.Signature, s.Accepted " +
+            String strSelect = "SELECT s.SaleId, s.FiscalCode, s.Address, s.WineId, s.Nbottles as Bottles, s.Price, s.Date, s.Signature, s.Accepted " +
                     "FROM sale AS s ";
             ResultSet rset = stmt.executeQuery(strSelect);
 
@@ -374,7 +374,7 @@ public class ModelDBMS {
                 String fc = rset.getString("FiscalCode");
                 String addr = rset.getString("Address");
                 int wid = rset.getInt("WineId");
-                int nbott = rset.getInt("Nbottles");
+                int nbott = rset.getInt("Bottles");
                 float price = rset.getFloat("Price");
                 Date date = rset.getDate("Date");
                 boolean sign = rset.getBoolean("Signature");
@@ -654,7 +654,7 @@ public class ModelDBMS {
             pstmt.setString(2, order.getFiscalCode());
             pstmt.setString(3, order.getAddress());
             pstmt.setInt(4, order.getWineId());
-            pstmt.setInt(5, order.getnBottles());
+            pstmt.setInt(5, order.getBottles());
             pstmt.setDouble(6, order.getPrice());
             pstmt.setDate(7, order.getD());
             pstmt.setBoolean(8, order.getSignature());
@@ -678,7 +678,7 @@ public class ModelDBMS {
             pstmt.setString(3, p.getFiscClient());
             pstmt.setString(4, p.getAddress());
             pstmt.setInt(5, p.getWineId());
-            pstmt.setInt(6, p.getnBottles());
+            pstmt.setInt(6, p.getBottles());
             pstmt.setDouble(7, p.getPrice());
             pstmt.setBoolean(8, p.getSignature());
             pstmt.setBoolean(9, p.getAccepted());

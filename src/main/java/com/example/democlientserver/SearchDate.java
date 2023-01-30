@@ -132,7 +132,7 @@ public class SearchDate implements Initializable {
             cfClient.setCellValueFactory(new PropertyValueFactory<Purchase,String>("fiscClient"));
             addressPurchase.setCellValueFactory(new PropertyValueFactory<Purchase, String>("address"));
             idWinePurchase.setCellValueFactory(new PropertyValueFactory<Purchase, Integer>("wineId"));
-            nBottlesPurchase.setCellValueFactory(new PropertyValueFactory<Purchase, Integer>("nBottles"));
+            nBottlesPurchase.setCellValueFactory(new PropertyValueFactory<Purchase, Integer>("bottles"));
             pricePurchase.setCellValueFactory(new PropertyValueFactory<Purchase, Float>("price"));
             datePurchase.setCellValueFactory(new PropertyValueFactory<Purchase, Date>("data"));
             signPurchase.setCellValueFactory(new PropertyValueFactory<Purchase, Boolean>("signature"));

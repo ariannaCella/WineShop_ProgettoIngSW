@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="1039.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.democlientserver.wineView">
     <children>
         <Label layoutX="457.0" layoutY="40.0" prefHeight="32.0" prefWidth="125.0" text="Ricerca Vini">
@@ -15,7 +14,7 @@
                 <Font size="22.0" />
             </font>
         </Label>
-        <TableView fx:id="tabWine" layoutX="28.0" layoutY="107.0" prefHeight="472.0" prefWidth="971.0">
+        <TableView fx:id="tabWine" layoutX="66.0" layoutY="101.0" prefHeight="472.0" prefWidth="908.0">
             <columns>
                 <TableColumn fx:id="idWine" prefWidth="37.0" text="idWine" />
                 <TableColumn fx:id="nameWine" prefWidth="105.0" text="nameWine" />
@@ -27,8 +26,7 @@
                 <TableColumn fx:id="nSalesWine" prefWidth="71.0" text="nSalesWine" />
                 <TableColumn fx:id="quantityWine" prefWidth="84.0" text="quantityWine" />
                 <TableColumn fx:id="qualityWine" prefWidth="78.0" text="qualityWine" />
-                <TableColumn fx:id="priceWine" prefWidth="88.0" text="priceWine" />
-                <TableColumn fx:id="imageWine" prefWidth="104.0" text="imageWine" />
+                <TableColumn fx:id="priceWine" prefWidth="124.0" text="priceWine" />
             </columns>
         </TableView>
         <Button fx:id="goHome" layoutX="66.0" layoutY="608.0" mnemonicParsing="false" onAction="#goHome" text="Home" />

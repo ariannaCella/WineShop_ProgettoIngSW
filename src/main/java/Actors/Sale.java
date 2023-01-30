@@ -5,7 +5,7 @@ import java.text.DateFormat;
 import java.util.Date;
 
 public class Sale implements Serializable {
-    private int saleId, wineId, nBottles;
+    private int saleId, wineId, bottles;
     private boolean signature = false, accepted = false;
     private String fiscalCode, address;
     private double price;
@@ -14,7 +14,7 @@ public class Sale implements Serializable {
     public Sale(int saleId, int wineId, int nBott, boolean signature, boolean accepted, String fiscalCode, String address, double price, java.sql.Date d) {
         this.saleId = saleId;
         this.wineId = wineId;
-        this.nBottles = nBott;
+        this.bottles = nBott;
         this.signature = signature;
         this.accepted = accepted;
         this.fiscalCode = fiscalCode;
@@ -27,7 +27,7 @@ public class Sale implements Serializable {
     public Sale() {
         this.saleId = 0;
         this.wineId = 0;
-        this.nBottles = 0;
+        this.bottles = 0;
         this.signature = false;
         this.accepted = false;
         this.fiscalCode = null;
@@ -41,7 +41,7 @@ public class Sale implements Serializable {
     public Sale(int saleId, int wineId, int nBottleShop, boolean signature, boolean accepted, String fiscalCode, String address, double priceOrder) {
         this.saleId = saleId;
         this.wineId = wineId;
-        this.nBottles = nBottleShop;
+        this.bottles = nBottleShop;
         this.signature = signature;
         this.accepted = accepted;
         this.fiscalCode = fiscalCode;
@@ -55,7 +55,7 @@ public class Sale implements Serializable {
         this.saleId = saleId;
         this.address = addr;
         this.wineId = wid;
-        this.nBottles = nbott;
+        this.bottles = nbott;
         this.price = price;
         this.d=date;
         this.signature = sign;
@@ -63,7 +63,7 @@ public class Sale implements Serializable {
     }
 
     public String infoSale() {
-        return "Id:" + saleId + "\nCodice Fiscale: " + fiscalCode + "  indirizzo:" + address + "\nwineId:" + wineId + ", numero bottiglie:" + nBottles + " Prezzo di vendita:" + price + "$\nData: "+d+"\npresa visione impiegato:" + signature + "\nconsegnato:" + accepted + "\n";
+        return "Id:" + saleId + "\nCodice Fiscale: " + fiscalCode + "  indirizzo:" + address + "\nwineId:" + wineId + ", numero bottiglie:" + bottles + " Prezzo di vendita:" + price + "$\nData: "+d+"\npresa visione impiegato:" + signature + "\nconsegnato:" + accepted + "\n";
     }
 
     public int getSaleId() {
@@ -82,12 +82,12 @@ public class Sale implements Serializable {
         this.wineId = wineId;
     }
 
-    public int getnBottles() {
-        return nBottles;
+    public int getBottles() {
+        return bottles;
     }
 
-    public void setnBottles(int nBottles) {
-        this.nBottles = nBottles;
+    public void setBottles(int nBottles) {
+        this.bottles = nBottles;
     }
 
     public boolean getSignature() {

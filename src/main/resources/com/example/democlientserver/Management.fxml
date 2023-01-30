@@ -18,17 +18,17 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="504.0" prefWidth="754.0">
                             <children>
-                                <TableView fx:id="tabPurchase" layoutX="80.0" layoutY="26.0" prefHeight="431.0" prefWidth="803.0">
+                                <TableView fx:id="tabPurchase" layoutX="80.0" layoutY="26.0" prefHeight="431.0" prefWidth="807.0">
                                     <columns>
                                         <TableColumn fx:id="idPurchase" prefWidth="29.0" text="idPurchase" />
                                         <TableColumn fx:id="fcSupplierPurch" prefWidth="143.0" text="fcSupplierPurch" />
                                         <TableColumn fx:id="fcClientPurchase" prefWidth="114.0" text="fcClientPurchase" />
                                         <TableColumn fx:id="addressPurchase" prefWidth="146.0" text="addressPurchase" />
-                                        <TableColumn fx:id="idWinePurchase" minWidth="0.0" prefWidth="60.0" text="idWinePurchase" />
-                                        <TableColumn fx:id="nBottlesPurchase" prefWidth="68.0" text="nBottlesPurchase" />
-                                        <TableColumn fx:id="pricePurchase" prefWidth="86.0" text="pricePurchase" />
-                                        <TableColumn fx:id="signaturePurchase" prefWidth="72.0" text="signaturePurchase" />
-                                        <TableColumn fx:id="consegnatoPurchase" prefWidth="83.0" text="consegnatoPurchase" />
+                                        <TableColumn fx:id="idWinePurchase" minWidth="0.0" prefWidth="61.5999755859375" text="idWinePurchase" />
+                                        <TableColumn fx:id="quantityPurchase" prefWidth="70.4000244140625" text="quantityPurchase" />
+                                        <TableColumn fx:id="pricePurchase" minWidth="7.99993896484375" prefWidth="83.20001220703125" text="pricePurchase" />
+                                        <TableColumn fx:id="signaturePurchase" minWidth="0.0" prefWidth="73.59991455078125" text="signaturePurchase" />
+                                        <TableColumn fx:id="consegnatoPurchase" minWidth="0.7999267578125" prefWidth="86.4000244140625" text="consegnatoPurchase" />
                                     </columns>
                                 </TableView>
                                 <TextField fx:id="txtIdPurchase" layoutX="560.0" layoutY="494.0" onAction="#textIdPurchase" prefHeight="25.0" prefWidth="173.0" promptText="Id dell'ordine da firmare" />
@@ -47,8 +47,8 @@
                                         <TableColumn fx:id="idSale" prefWidth="40.0" text="idSale" />
                                         <TableColumn fx:id="cfSale" prefWidth="131.0" text="cfSale" />
                                         <TableColumn fx:id="addressSale" prefWidth="110.0" text="addrSale" />
-                                        <TableColumn fx:id="idWineSale" prefWidth="50.0" text="idWineSale" />
-                                        <TableColumn fx:id="nBottlesSale" prefWidth="109.60003662109375" text="nBottlesSale" />
+                                        <TableColumn fx:id="idWineSale" prefWidth="74.39996337890625" text="idWineSale" />
+                                        <TableColumn fx:id="quantitySale" prefWidth="86.4000244140625" text="quantitySale" />
                                         <TableColumn fx:id="priceSale" prefWidth="85.5999755859375" text="priceSale" />
                                         <TableColumn fx:id="dateSale" prefWidth="117.60003662109375" text="dateSale" />
                                         <TableColumn fx:id="signSale" prefWidth="73.60003662109375" text="signSale" />
@@ -93,12 +93,12 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <TableView fx:id="tabClient" layoutX="33.0" layoutY="33.0" prefHeight="478.0" prefWidth="925.0">
+                                <TableView fx:id="tabClient" layoutX="106.0" layoutY="44.0" prefHeight="478.0" prefWidth="794.0">
                                     <columns>
                                         <TableColumn fx:id="nameClient" prefWidth="75.0" text="nameClient" />
-                                        <TableColumn fx:id="surnameClient" prefWidth="75.0" text="surnameClient" />
-                                        <TableColumn fx:id="FiscalCodeClient" prefWidth="116.0" text="FiscalCodeClient" />
-                                        <TableColumn fx:id="emailClient" prefWidth="130.0" text="emailClient" />
+                                        <TableColumn fx:id="surnameClient" prefWidth="100.79998779296875" text="surnameClient" />
+                                        <TableColumn fx:id="FiscalCodeClient" prefWidth="108.79997253417969" text="FiscalCodeClient" />
+                                        <TableColumn fx:id="emailClient" prefWidth="112.800048828125" text="emailClient" />
                                         <TableColumn fx:id="phoneClient" minWidth="0.0" prefWidth="124.0" text="phoneClient" />
                                         <TableColumn fx:id="addressClient" prefWidth="137.0" text="addressClient" />
                                         <TableColumn fx:id="usernameClient" prefWidth="133.0" text="UsernameClient" />

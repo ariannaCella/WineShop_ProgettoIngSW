@@ -774,7 +774,7 @@ public class ServerThread implements Runnable
                         String idP=(String) is.readObject();
                         Purchase purch=ModelDBMS.getPurchaseById(idP);
                         wineOrder=ModelDBMS.searchWineIdDBMS(purch.getWineId());
-                        nBottleShop=purch.getnBottles();
+                        nBottleShop=purch.getBottles();
                         priceOrder=purch.getPrice();
                         ModelDBMS.deletePurchase(purch); //una volta cliccato per procedere con l'acquisto la proposta d'acquisto viene eliminata anche se l'acquisto verrà annullato
                         break;

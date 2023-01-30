@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class Purchase implements Serializable {
-    private int purchaseId, wineId, nBottles;
+    private int purchaseId, wineId, bottles;
     private boolean signature=false, accepted=false;
     private String fiscalCode, fiscClient, address;
     private double price;
@@ -16,7 +16,7 @@ public class Purchase implements Serializable {
         this.fiscClient=fclient;
         this.address=addr;
         this.wineId=wi;
-        this.nBottles=nbott;
+        this.bottles=nbott;
         this.price=pr;
     }
 
@@ -26,7 +26,7 @@ public class Purchase implements Serializable {
         this.fiscClient=fClient;
         this.address=addr;
         this.wineId=wid;
-        this.nBottles=nbott;
+        this.bottles=nbott;
         this.price=price;
         this.signature=sign;
         this.accepted=acc;
@@ -38,7 +38,7 @@ public class Purchase implements Serializable {
         this.fiscClient=fClient;
         this.address=addr;
         this.wineId=wid;
-        this.nBottles=nbott;
+        this.bottles=nbott;
         this.price=price;
         this.signature=sign;
         this.accepted=acc;
@@ -47,7 +47,7 @@ public class Purchase implements Serializable {
     public Purchase(int purchaseId,  int wid, int nbott, double price, boolean sign, boolean acc, Date data) {
         this.purchaseId=purchaseId;
         this.wineId=wid;
-        this.nBottles=nbott;
+        this.bottles=nbott;
         this.price=price;
         this.signature=sign;
         this.accepted=acc;
@@ -56,7 +56,7 @@ public class Purchase implements Serializable {
     public Purchase(int purchaseId,  int wid, int nbott, double price, boolean sign, boolean acc) {
         this.purchaseId=purchaseId;
         this.wineId=wid;
-        this.nBottles=nbott;
+        this.bottles=nbott;
         this.price=price;
         this.signature=sign;
         this.accepted=acc;
@@ -66,7 +66,7 @@ public class Purchase implements Serializable {
     public Purchase( int purchaseId,String addr, int wid, int nbott, double price, boolean sign, boolean acc) {
         this.address=addr;
         this.wineId=wid;
-        this.nBottles=nbott;
+        this.bottles=nbott;
         this.price=price;
         this.signature=sign;
         this.accepted=acc;
@@ -79,7 +79,7 @@ public class Purchase implements Serializable {
         this.fiscClient=null;
         this.address=null;
         this.wineId=0;
-        this.nBottles=0;
+        this.bottles=0;
         this.price=0;
         this.signature=false;
         this.accepted=false;
@@ -87,7 +87,7 @@ public class Purchase implements Serializable {
     }
 
     public String infoPurchase(){
-        return "Id:"+purchaseId +"\nCodice Fiscale fornitore: "+ fiscalCode +"\nCodice Fiscale cliente:"+fiscClient+"  indirizzo:"+address+"\nwineId:"+wineId+", numero bottiglie:"+nBottles+"Prezzo di vendita:"+price+"$\n\npresa visione impiegato:"+signature+"\nconsegnato:"+accepted+"\n";
+        return "Id:"+purchaseId +"\nCodice Fiscale fornitore: "+ fiscalCode +"\nCodice Fiscale cliente:"+fiscClient+"  indirizzo:"+address+"\nwineId:"+wineId+", numero bottiglie:"+bottles+"Prezzo di vendita:"+price+"$\n\npresa visione impiegato:"+signature+"\nconsegnato:"+accepted+"\n";
     }
     public int getPurchaseId() {return purchaseId;}
 
@@ -97,9 +97,9 @@ public class Purchase implements Serializable {
 
     public void setWineId(int wineId) {this.wineId = wineId;}
 
-    public int getnBottles() {return nBottles;}
+    public int getBottles() {return bottles;}
 
-    public void setnBottles(int nBottles) {this.nBottles = nBottles;}
+    public void setBottles(int nBottles) {this.bottles = nBottles;}
 
     public boolean getSignature() {return signature; }
 

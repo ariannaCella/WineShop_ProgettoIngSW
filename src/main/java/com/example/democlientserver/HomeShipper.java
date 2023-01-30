@@ -144,7 +144,7 @@ public class HomeShipper implements Initializable {
             id.setCellValueFactory(new PropertyValueFactory<Sale,Integer>("saleId"));
             address.setCellValueFactory(new PropertyValueFactory<Sale,String>("address"));
             idWine.setCellValueFactory(new PropertyValueFactory<Sale,Integer>("wineId"));
-            nBottles.setCellValueFactory(new PropertyValueFactory<Sale,Integer>("nBottles"));
+            nBottles.setCellValueFactory(new PropertyValueFactory<Sale,Integer>("bottles"));
             price.setCellValueFactory(new PropertyValueFactory<Sale,Double>("price"));
             date.setCellValueFactory(new PropertyValueFactory<Sale, Date>("d"));
             signature.setCellValueFactory(new PropertyValueFactory<Sale,Boolean>("signature"));

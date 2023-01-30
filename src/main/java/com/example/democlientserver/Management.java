@@ -2,7 +2,6 @@ package com.example.democlientserver;
 
 import Actors.*;
 import RequestResponse.RequestSearchWineId;
-import RequestResponse.RequestShop;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +25,6 @@ import javafx.stage.Stage;
 
 import static com.example.democlientserver.HelloApplication.*;
 import static com.example.democlientserver.HelloApplication.is;
-import static com.example.democlientserver.ModelDBMS.*;
 import static java.lang.Integer.parseInt;
 
 
@@ -91,10 +89,10 @@ public class Management implements Initializable{
     private TableColumn<Wine,String> cfSupplier;
 
     @FXML
-    private TableColumn<Purchase,Integer> nBottlesPurchase;
+    private TableColumn<Purchase,Integer> quantityPurchase;
 
     @FXML
-    private TableColumn<Sale,Integer> nBottlesSale;
+    private TableColumn<Sale,Integer> quantitySale;
 
     @FXML
     private TableColumn<Wine,Integer> nSalesWine;
@@ -127,7 +125,7 @@ public class Management implements Initializable{
     private TableColumn<Client,Integer> phoneClient;
 
     @FXML
-    private TableColumn<Purchase,Float> pricePurchase;
+    private TableColumn<Purchase, Double> pricePurchase;
 
     @FXML
     private TableColumn<Sale,Float> priceSale;
@@ -390,13 +388,14 @@ public class Management implements Initializable{
             ArrayList<Sale> sales= (ArrayList<Sale>) is.readObject();
             for(int i=0; i<sales.size(); i++){
                 Sale temp= sales.get(i);
+                System.out.println("prova:"+temp.getBottles());
                 obsSale.add(temp);}
 
             idSale.setCellValueFactory(new PropertyValueFactory<Sale,Integer>("saleId"));
             cfSale.setCellValueFactory(new PropertyValueFactory<Sale,String>("fiscalCode"));
             addressSale.setCellValueFactory(new PropertyValueFactory<Sale,String>("address"));
             idWineSale.setCellValueFactory(new PropertyValueFactory<Sale,Integer>("wineId"));
-            nBottlesSale.setCellValueFactory(new PropertyValueFactory<Sale,Integer>("nBottles"));
+            quantitySale.setCellValueFactory(new PropertyValueFactory<Sale,Integer>("bottles"));
             priceSale.setCellValueFactory(new PropertyValueFactory<Sale,Float>("price"));
             dateSale.setCellValueFactory(new PropertyValueFactory<Sale, Date>("d"));
             signSale.setCellValueFactory(new PropertyValueFactory<Sale,Boolean>("signature"));
@@ -441,8 +440,8 @@ public class Management implements Initializable{
             fcClientPurchase.setCellValueFactory(new PropertyValueFactory<Purchase,String>("fiscClient"));
             addressPurchase.setCellValueFactory(new PropertyValueFactory<Purchase,String>("address"));
             idWinePurchase.setCellValueFactory(new PropertyValueFactory<Purchase,Integer>("wineId"));
-            nBottlesPurchase.setCellValueFactory(new PropertyValueFactory<Purchase,Integer>("nBottles"));
-            pricePurchase.setCellValueFactory(new PropertyValueFactory<Purchase,Float>("price"));
+            quantityPurchase.setCellValueFactory(new PropertyValueFactory<Purchase,Integer>("bottles"));
+            pricePurchase.setCellValueFactory(new PropertyValueFactory<Purchase,Double>("price"));
             signaturePurchase.setCellValueFactory(new PropertyValueFactory<Purchase,Boolean>("signature"));
             consegnatoPurchase.setCellValueFactory(new PropertyValueFactory<Purchase,Boolean>("accepted"));
 
@@ -467,7 +466,7 @@ public class Management implements Initializable{
             originWine.setCellValueFactory(new PropertyValueFactory<Wine,String>("origin"));
             noteWine.setCellValueFactory(new PropertyValueFactory<Wine,String>("notes"));
             vinesWine.setCellValueFactory(new PropertyValueFactory<Wine,String>("vines"));
-            nSalesWine.setCellValueFactory(new PropertyValueFactory<Wine,Integer>("nSales"));
+            nSalesWine.setCellValueFactory(new PropertyValueFactory<Wine,Integer>("sales"));
             yearWine.setCellValueFactory(new PropertyValueFactory<Wine,Integer>("year"));
             quantityWine.setCellValueFactory(new PropertyValueFactory<Wine,Integer>("quantity"));
             qualityWine.setCellValueFactory(new PropertyValueFactory<Wine,Float>("quality"));

@@ -94,7 +94,7 @@ public class ViewProposalPurchase implements Initializable {
             idPurchase.setCellValueFactory(new PropertyValueFactory<Purchase,Integer>("purchaseId"));
             address.setCellValueFactory(new PropertyValueFactory<Purchase,String>("Address"));
             id.setCellValueFactory(new PropertyValueFactory<Purchase,Integer>("WineId"));
-            nBottles.setCellValueFactory(new PropertyValueFactory<Purchase,Integer>("Nbottles"));
+            nBottles.setCellValueFactory(new PropertyValueFactory<Purchase,Integer>("bottles"));
             price.setCellValueFactory(new PropertyValueFactory<Purchase, Double>("Price"));
             signature.setCellValueFactory(new PropertyValueFactory<Purchase,Boolean>("Signature"));
             delivered.setCellValueFactory(new PropertyValueFactory<Purchase,Boolean>("Accepted"));

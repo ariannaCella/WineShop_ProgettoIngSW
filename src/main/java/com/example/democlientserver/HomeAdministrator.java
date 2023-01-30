@@ -192,7 +192,7 @@ public class HomeAdministrator implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource("wineView.fxml"));
             Stage stage = new Stage();
             stage.setTitle("wines!");
-            stage.setScene(new Scene(root, 1000, 800));
+            stage.setScene(new Scene(root, 1039, 674));
             stage.setResizable(false);
             stage.show();
             Stage thisStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
