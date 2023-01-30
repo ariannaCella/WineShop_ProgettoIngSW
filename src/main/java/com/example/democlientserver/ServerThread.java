@@ -6,6 +6,8 @@ import java.io.*;
 import java.net.Socket;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import static com.example.democlientserver.ModelDBMS.*;
 
@@ -84,7 +86,7 @@ public class ServerThread implements Runnable
             int nBottleShop=0;
             int wineIdModify=0;
             int monthReport=0,yearReport=0;
-
+            ArrayList <Valutation> valutationTot=new ArrayList <Valutation> ();
             while(true){
                 cmd = (String) is.readObject();
                 Thread.sleep(1000);
@@ -395,9 +397,9 @@ public class ServerThread implements Runnable
                         wineOrder.updateQuantity();
                         ModelDBMS.updateQuantity(nBottleShop,wineOrder);
                         ModelDBMS.addSales(nBottleShop,wineOrder);
-                        System.out.println(connectedClient.getFiscalCode());
                         salesTot= listSaleDBMS();
-                        order=new Sale(salesTot.size()+2, wineOrder.getWineId(), nBottleShop, false , false, connectedClient.getFiscalCode(), connectedClient.getAddress(), priceOrder);
+                        Date d=new Date(System.currentTimeMillis());
+                        order=new Sale(salesTot.size()+2, wineOrder.getWineId(), nBottleShop, false , false, connectedClient.getFiscalCode(), connectedClient.getAddress(), priceOrder,d);
                         ModelDBMS.newOrder(order);
                         break;
 
@@ -754,7 +756,7 @@ public class ServerThread implements Runnable
                     case "getReport":
                         //(introiti, spese, numero bottiglie vendute e disponibili alla vendita, numero di vendite per i diversi vini,
                         //valutazione dei dipendenti
-                        double income=0,expenses=0;
+                        double income=0,expenses=0, averageVote=0;
                         int nBottleSold=0,nBottleAvailable=0;
                         ArrayList <WineSold> winesSold= new ArrayList<>();
                         winesSold=ModelDBMS.getWinesSold(yearReport,monthReport);
@@ -762,10 +764,29 @@ public class ServerThread implements Runnable
                         expenses=ModelDBMS.getExpenses(yearReport,monthReport);
                         nBottleSold=ModelDBMS.getBottleSold(yearReport,monthReport);
                         nBottleAvailable=ModelDBMS.getBottleAvailable();
-                        ResponseReport report =new ResponseReport(income,expenses,nBottleAvailable,nBottleSold, winesSold);
+                        averageVote=ModelDBMS.getAverageValutation(yearReport,monthReport);
+                        ResponseReport report =new ResponseReport(income,expenses,nBottleAvailable,nBottleSold, winesSold, averageVote);
                         os.writeObject(report);
                         os.flush();
                         break;
+
+                    case "shopPurchase":
+                        String idP=(String) is.readObject();
+                        Purchase purch=ModelDBMS.getPurchaseById(idP);
+                        wineOrder=ModelDBMS.searchWineIdDBMS(purch.getWineId());
+                        nBottleShop=purch.getnBottles();
+                        priceOrder=purch.getPrice();
+                        ModelDBMS.deletePurchase(purch); //una volta cliccato per procedere con l'acquisto la proposta d'acquisto viene eliminata anche se l'acquisto verrà annullato
+                        break;
+
+                    case "valutation":
+                        int vote= (Integer) is.readObject();
+                        Date dateV=new Date(System.currentTimeMillis());
+                        Valutation v=new Valutation(vote,dateV);
+                        valutationTot.add(v);
+                        ModelDBMS.newValutation(v);
+                        break;
+
                 }
 
             }

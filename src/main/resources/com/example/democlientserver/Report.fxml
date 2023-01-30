@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -11,7 +12,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.democlientserver.Report">
    <children>
-      <HBox layoutY="49.0" prefHeight="351.0" prefWidth="607.0">
+      <HBox layoutY="83.0" prefHeight="255.0" prefWidth="607.0">
          <children>
             <VBox prefHeight="351.0" prefWidth="453.0" spacing="20.0">
                <children>
@@ -82,7 +83,7 @@
             </VBox>
          </children>
       </HBox>
-      <Label alignment="CENTER" prefHeight="18.0" prefWidth="607.0" text="REPORT MENSILE " textAlignment="CENTER">
+      <Label alignment="CENTER" prefHeight="54.0" prefWidth="607.0" text="REPORT MENSILE " textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -90,5 +91,6 @@
             <Insets top="20.0" />
          </padding>
       </Label>
+      <Button layoutX="22.0" layoutY="27.0" mnemonicParsing="false" onAction="#goHome" text="HOME" />
    </children>
 </AnchorPane>

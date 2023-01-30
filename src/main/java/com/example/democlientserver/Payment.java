@@ -58,8 +58,6 @@ public class Payment {
         }
         else {
             if (pswUser.equals(pswInput)) {
-                  //genero ordine
-                    System.out.println("ordine generato");
                     os.writeObject("generateOrder");
                     os.flush();
                     Parent root = FXMLLoader.load(getClass().getResource("OrderInvoice.fxml"));

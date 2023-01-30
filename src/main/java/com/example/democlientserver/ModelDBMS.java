@@ -4,6 +4,7 @@ import Actors.*;
 import RequestResponse.RequestChangePassword;
 import RequestResponse.RequestModifyWine;
 import Actors.WineSold;
+import javafx.scene.chart.PieChart;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -484,19 +485,20 @@ public class ModelDBMS {
                 DBURL, LOGIN, PASSWORD);
              Statement stmt = conn.createStatement();) {
 
-            String strSelect = "SELECT p.Address, p.WineId, p.Nbottles, p.Price, p.Signature, p.Accepted " +
+            String strSelect = "SELECT p.PurchaseId, p.Address, p.WineId, p.Nbottles, p.Price, p.Signature, p.Accepted " +
                     "FROM purchase AS p WHERE p.FiscClient = '" + cf + "' ";
             ResultSet rset = stmt.executeQuery(strSelect);
 
             ArrayList<Purchase> arrayPurchase = new ArrayList<Purchase>();
             while (rset.next()) {
+                int p=rset.getInt("PurchaseId");
                 String addr = rset.getString("Address");
                 int wid = rset.getInt("WineId");
                 int nbott = rset.getInt("Nbottles");
                 float price = rset.getFloat("Price");
                 boolean sign = rset.getBoolean("Signature");
                 boolean acc = rset.getBoolean("Accepted");
-                Purchase s = new Purchase(addr, wid, nbott, price, sign, acc);
+                Purchase s = new Purchase(p,addr, wid, nbott, price, sign, acc);
                 System.out.println(s.infoPurchase());
                 arrayPurchase.add(s);
 
@@ -977,6 +979,85 @@ public class ModelDBMS {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static Purchase getPurchaseById(String idP) {
+        try (Connection conn = DriverManager.getConnection(
+                DBURL, LOGIN, PASSWORD);
+             Statement stmt = conn.createStatement();) {
+
+            String strSelect = "SELECT *  " +
+                    "FROM purchase WHERE PurchaseId="+idP;
+            ResultSet rset = stmt.executeQuery(strSelect);
+            Purchase purch=new Purchase();
+            while (rset.next()) {
+                int id=rset.getInt("PurchaseId");
+                String cf=rset.getString("FiscalCode");
+                String cfC=rset.getString("FiscClient");
+                String add=rset.getString("Address");
+                int idW=rset.getInt("WineId");
+                int n=rset.getInt("Nbottles");
+                Double price=rset.getDouble("Price");
+                Boolean s=rset.getBoolean("Signature");
+                Boolean a=rset.getBoolean("Accepted");
+                Date d= rset.getDate("Data");
+                purch=new Purchase(id,cf,cfC,add,idW,n,price,s,a,d);
+            }
+            return purch;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static void deletePurchase(Purchase purch) {
+        try (Connection conn = DriverManager.getConnection(
+                DBURL, LOGIN, PASSWORD);
+             Statement stmt = conn.createStatement();) {
+
+            String strSelect = "DELETE FROM purchase WHERE PurchaseId = ? ";
+            PreparedStatement pstmt = conn.prepareStatement(strSelect);
+            pstmt.setInt(1, purch.getPurchaseId());
+            pstmt.addBatch();
+            pstmt.executeBatch();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void newValutation(Valutation v) {
+        try (Connection conn = DriverManager.getConnection(
+                DBURL, LOGIN, PASSWORD);
+             Statement stmt = conn.createStatement();) {
+
+            String insertSql = "insert into valutation values (?, ?)";
+            PreparedStatement pstmt = conn.prepareStatement(insertSql);
+            pstmt.setInt(1, v.getVote());
+            pstmt.setDate(2, v.getDate());
+            pstmt.addBatch();
+            pstmt.executeBatch();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static double getAverageValutation(int yearReport, int monthReport) {
+        try (Connection conn = DriverManager.getConnection(
+                DBURL, LOGIN, PASSWORD);
+             Statement stmt = conn.createStatement();) {
+
+            String strSelect = "SELECT AVG(Vote) as averageValutation FROM valutation WHERE year(Data)="+yearReport+" AND month(Data)="+monthReport;
+            ResultSet rset = stmt.executeQuery(strSelect);
+            Double avg= null;
+            while (rset.next()) {
+                avg=rset.getDouble("averageValutation");
+            }
+            return avg;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 }
 

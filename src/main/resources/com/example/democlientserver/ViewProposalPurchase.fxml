@@ -4,26 +4,35 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="565.0" prefWidth="893.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.democlientserver.ViewProposalPurchase">
    <children>
-      <TableView fx:id="tabPurchase" layoutX="45.0" layoutY="154.0" prefHeight="324.0" prefWidth="803.0">
+      <TableView fx:id="tabPurchase" layoutX="44.0" layoutY="154.0" prefHeight="302.0" prefWidth="803.0">
          <columns>
-            <TableColumn fx:id="address" prefWidth="146.0" text="address" />
-            <TableColumn fx:id="id" minWidth="0.0" prefWidth="98.0" text="id" />
-            <TableColumn fx:id="nBottles" prefWidth="84.0" text="nBottles" />
-            <TableColumn fx:id="price" prefWidth="121.0" text="price" />
-            <TableColumn fx:id="signature" prefWidth="194.0" text="signature" />
-            <TableColumn fx:id="delivered" prefWidth="159.0" text="delivered" />
+            <TableColumn fx:id="idPurchase" prefWidth="66.39999389648438" text="idPurchase" />
+            <TableColumn fx:id="address" prefWidth="155.20000457763672" text="address" />
+            <TableColumn fx:id="id" minWidth="0.0" prefWidth="59.2000732421875" text="id" />
+            <TableColumn fx:id="nBottles" prefWidth="77.59991455078125" text="nBottles" />
+            <TableColumn fx:id="price" prefWidth="86.39996337890625" text="price" />
+            <TableColumn fx:id="signature" prefWidth="175.20004272460938" text="signature" />
+            <TableColumn fx:id="delivered" prefWidth="180.800048828125" text="delivered" />
          </columns>
       </TableView>
-      <Label layoutX="266.0" layoutY="72.0" text="Le tue proposte di acquisto">
+      <Label layoutX="266.0" layoutY="43.0" text="Le tue proposte di acquisto" textFill="#3f05df">
          <font>
-            <Font size="30.0" />
+            <Font name="Berlin Sans FB Demi Bold" size="30.0" />
          </font>
       </Label>
-      <Button fx:id="goHome" layoutX="45.0" layoutY="40.0" mnemonicParsing="false" onAction="#goHome" text="HOME" />
+      <Button fx:id="goHome" layoutX="45.0" layoutY="40.0" mnemonicParsing="false" onAction="#goHome" text="HOME" textFill="#3e04ea" />
+      <TextField fx:id="idPurchaseShop" layoutX="542.0" layoutY="493.0" promptText="Inserire idPurchase" />
+      <Button layoutX="715.0" layoutY="493.0" mnemonicParsing="false" onAction="#shop" text="Procedi con l'acquisto" textFill="#400bef">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+         </font>
+      </Button>
+      <Label alignment="CENTER" layoutX="266.0" layoutY="92.0" prefHeight="35.0" prefWidth="359.0" text="Quando delivered sarà uguale a True potrai procedere &#10;con l'acquisto inserendo il suo idPurchase" textAlignment="CENTER" textFill="#230cd4" />
    </children>
 </AnchorPane>

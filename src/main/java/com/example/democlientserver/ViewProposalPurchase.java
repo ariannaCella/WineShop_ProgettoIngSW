@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -32,6 +33,12 @@ public class ViewProposalPurchase implements Initializable {
     private TableColumn<Purchase, String> address;
     @FXML
     private Button goHome;
+    @FXML
+    private TableColumn<Purchase, Integer> idPurchase;
+
+    @FXML
+    private TextField idPurchaseShop;
+
 
     @FXML
     private TableColumn<Purchase,Boolean> delivered;
@@ -84,7 +91,7 @@ public class ViewProposalPurchase implements Initializable {
                 Purchase temp= purchases.get(i);
                 obsPurchase.add(temp);}
 
-
+            idPurchase.setCellValueFactory(new PropertyValueFactory<Purchase,Integer>("purchaseId"));
             address.setCellValueFactory(new PropertyValueFactory<Purchase,String>("Address"));
             id.setCellValueFactory(new PropertyValueFactory<Purchase,Integer>("WineId"));
             nBottles.setCellValueFactory(new PropertyValueFactory<Purchase,Integer>("Nbottles"));
@@ -100,11 +107,22 @@ public class ViewProposalPurchase implements Initializable {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-
-
-
-
-
     }
 
+    @FXML
+    void shop(ActionEvent event) throws IOException {
+        String id=idPurchaseShop.getText();
+        os.writeObject("shopPurchase");
+        os.flush();
+        os.writeObject(id);
+        os.flush();
+        Parent root = FXMLLoader.load(getClass().getResource("Payment.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("Shop");
+        stage.setScene(new Scene(root, 600, 400));
+        stage.setResizable(false);
+        stage.show();
+        Stage thisStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        thisStage.hide();
+    }
 }

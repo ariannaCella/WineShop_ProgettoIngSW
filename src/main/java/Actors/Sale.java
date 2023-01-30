@@ -33,7 +33,7 @@ public class Sale implements Serializable {
         this.fiscalCode = null;
         this.address = null;
         this.price = 0;
-        this.d = java.sql.Date.valueOf("2001-11-11");
+        this.d = null;
     }
     Date date = new Date();
     static DateFormat formatoData = DateFormat.getDateInstance(DateFormat.SHORT);

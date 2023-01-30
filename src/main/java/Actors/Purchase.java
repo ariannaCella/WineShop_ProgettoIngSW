@@ -63,13 +63,27 @@ public class Purchase implements Serializable {
 
     }
 
-    public Purchase( String addr, int wid, int nbott, double price, boolean sign, boolean acc) {
+    public Purchase( int purchaseId,String addr, int wid, int nbott, double price, boolean sign, boolean acc) {
         this.address=addr;
         this.wineId=wid;
         this.nBottles=nbott;
         this.price=price;
         this.signature=sign;
         this.accepted=acc;
+        this.purchaseId=purchaseId;
+    }
+
+    public Purchase() {
+        this.purchaseId=0;
+        this.fiscalCode=null;
+        this.fiscClient=null;
+        this.address=null;
+        this.wineId=0;
+        this.nBottles=0;
+        this.price=0;
+        this.signature=false;
+        this.accepted=false;
+        this.data=null;
     }
 
     public String infoPurchase(){
